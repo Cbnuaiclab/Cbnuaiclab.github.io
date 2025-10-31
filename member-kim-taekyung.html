@@ -1,183 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Prof. KIM Tae-Kyung - AICLab</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        :root {
-            --navy-primary: #0a2463;
-            --navy-dark: #051839;
-            --navy-light: #1e3a8a;
-            --accent-gold: #fbbf24;
-            --accent-cyan: #06b6d4;
-            --text-dark: #1a1a1a;
-            --text-gray: #666;
-            --bg-light: #f8fafc;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-            line-height: 1.6;
-            color: var(--text-dark);
-            background: #ffffff;
-        }
-
-        header {
-            background: #ffffff;
-            border-bottom: 2px solid var(--navy-primary);
-            padding: 1.5rem 2rem;
-            box-shadow: 0 2px 10px rgba(10, 36, 99, 0.1);
-        }
-
-        nav {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.3rem;
-            font-weight: 700;
-            color: var(--navy-primary);
-            text-decoration: none;
-        }
-
-        .back-link {
-            color: var(--navy-primary);
-            text-decoration: none;
-            font-weight: 600;
-            padding: 0.5rem 1.5rem;
-            border: 2px solid var(--navy-primary);
-            border-radius: 8px;
-            transition: all 0.3s;
-        }
-
-        .back-link:hover {
-            background: var(--navy-primary);
-            color: white;
-        }
-
-        .profile-container {
-            max-width: 1000px;
-            margin: 4rem auto;
-            padding: 0 2rem;
-        }
-
-        .profile-header {
-            text-align: center;
-            padding: 3rem;
-            background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 100%);
-            border-radius: 20px;
-            color: white;
-            margin-bottom: 3rem;
-            box-shadow: 0 10px 40px rgba(10, 36, 99, 0.2);
-        }
-
-        .profile-photo {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            background: white;
-            margin: 0 auto 2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 4rem;
-            color: var(--navy-primary);
-            font-weight: 700;
-            border: 5px solid var(--accent-gold);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
-        }
-
-        .profile-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .profile-header .position {
-            font-size: 1.3rem;
-            color: var(--accent-gold);
-            font-weight: 600;
-            margin-bottom: 1rem;
-        }
-
-        .profile-header .expertise {
-            font-size: 1.1rem;
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .profile-section {
-            background: white;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            border-radius: 16px;
-            border: 2px solid #e5e5e5;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-
-        .profile-section h2 {
-            color: var(--navy-primary);
-            font-size: 1.8rem;
-            margin-bottom: 1.5rem;
-            padding-bottom: 1rem;
-            border-bottom: 3px solid var(--accent-cyan);
-        }
-
-        .profile-section p {
-            color: var(--text-gray);
-            font-size: 1.05rem;
-            line-height: 1.9;
-            margin-bottom: 1rem;
-        }
-
-        .profile-section ul {
-            list-style: none;
-            padding-left: 0;
-        }
-
-        .profile-section ul li {
-            color: var(--text-gray);
-            font-size: 1.05rem;
-            line-height: 1.8;
-            padding-left: 2rem;
-            position: relative;
-            margin-bottom: 0.8rem;
-        }
-
-        .profile-section ul li::before {
-            content: "▸";
-            color: var(--accent-cyan);
-            font-weight: bold;
-            position: absolute;
-            left: 0.5rem;
-        }
-
-        .highlight {
-            background: linear-gradient(135deg, rgba(10, 36, 99, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
-            padding: 1.5rem;
-            border-radius: 12px;
-            border-left: 4px solid var(--accent-cyan);
-            margin: 1.5rem 0;
-        }
-
-        footer {
-            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-primary) 100%);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            margin-top: 4rem;
-        }
-    </style>
+    <link rel="stylesheet" href="./assets/css/profile.css">
 </head>
+
 <body>
     <header>
         <nav>
@@ -205,8 +35,10 @@
         <div class="profile-section">
             <h2>💼 Professional Experience</h2>
             <ul>
-                <li><strong>2024 - Present:</strong> Assistant Professor, Department of Management Information Systems, Chungbuk National University, Korea</li>
-                <li><strong>2020 - 2023:</strong> Assistant Professor, AI Department of Computer & Information Technology, Incheon Jaeneung University, Republic of Korea</li>
+                <li><strong>2024 - Present:</strong> Assistant Professor, Department of Management Information Systems,
+                    Chungbuk National University, Korea</li>
+                <li><strong>2020 - 2023:</strong> Assistant Professor, AI Department of Computer & Information
+                    Technology, Incheon Jaeneung University, Republic of Korea</li>
                 <li><strong>2013 - 2019:</strong> Director, Korea Software HRD Center, Phnom Penh, Cambodia</li>
             </ul>
         </div>
@@ -214,7 +46,10 @@
         <div class="profile-section">
             <h2>🔬 Research Interests</h2>
             <div class="highlight">
-                <p>Professor Kim's research focuses on the intersection of big data analytics, artificial intelligence applications, and innovative software education methodologies. His work bridges theoretical foundations with practical implementations, particularly in developing AI solutions for educational contexts and industry applications.</p>
+                <p>Professor Kim's research focuses on the intersection of big data analytics, artificial intelligence
+                    applications, and innovative software education methodologies. His work bridges theoretical
+                    foundations with practical implementations, particularly in developing AI solutions for educational
+                    contexts and industry applications.</p>
             </div>
             <ul>
                 <li>Big Data Analytics and Processing</li>
@@ -226,12 +61,18 @@
 
         <div class="profile-section">
             <h2>🎯 Role in AICLab</h2>
-            <p>As the Principal Investigator and founder of AICLab, Professor Kim leads the lab's strategic direction in pursuing applied AI and computer vision research. He established AICLab in 2025 with the mission of bridging academic excellence with industry needs, fostering a collaborative environment where diverse talents unite to solve real-world challenges through innovative AI solutions.</p>
+            <p>As the Principal Investigator and founder of AICLab, Professor Kim leads the lab's strategic direction in
+                pursuing applied AI and computer vision research. He established AICLab in 2025 with the mission of
+                bridging academic excellence with industry needs, fostering a collaborative environment where diverse
+                talents unite to solve real-world challenges through innovative AI solutions.</p>
         </div>
 
         <div class="profile-section">
             <h2>🌏 International Collaboration</h2>
-            <p>With extensive experience in international academic collaboration, particularly through his leadership role at the Korea Software HRD Center in Cambodia (2013-2019), Professor Kim brings a unique perspective on building cross-cultural research partnerships and developing human resources in emerging technology sectors.</p>
+            <p>With extensive experience in international academic collaboration, particularly through his leadership
+                role at the Korea Software HRD Center in Cambodia (2013-2019), Professor Kim brings a unique perspective
+                on building cross-cultural research partnerships and developing human resources in emerging technology
+                sectors.</p>
         </div>
     </div>
 
@@ -239,4 +80,5 @@
         <p>© 2025 AICLab - AI Convergence Lab. All rights reserved.</p>
     </footer>
 </body>
+
 </html>
