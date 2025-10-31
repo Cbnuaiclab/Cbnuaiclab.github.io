@@ -1,0 +1,913 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AICLab - AI Convergence Lab | Chungbuk National University</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy-primary: #0a2463;
+            --navy-dark: #051839;
+            --navy-light: #1e3a8a;
+            --accent-gold: #fbbf24;
+            --accent-cyan: #06b6d4;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --bg-light: #f8fafc;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: #ffffff;
+        }
+
+        /* Header */
+        header {
+            background: #ffffff;
+            border-bottom: 2px solid var(--navy-primary);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(10, 36, 99, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--navy-primary);
+            letter-spacing: -0.5px;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo::before {
+            content: "";
+            display: inline-block;
+            width: 120px;                 /* adjust size to fit your design */
+            height: 120px;
+            background-image: url("assets/aic logo v1.png");  /* <-- path to your local file */
+            background-size: contain;     /* keep full image visible */
+            background-repeat: no-repeat;
+            background-position: center;
+            vertical-align: middle;       /* aligns with text */
+            margin-right: 8px;
+            font-size: 1.5rem;
+        }
+
+        .logo span {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        nav ul {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--navy-primary);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-cyan);
+            transition: width 0.3s;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section with AI Background */
+        .hero {
+            margin-top: 80px;
+            padding: 8rem 2rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            position: relative;
+            background: linear-gradient(135deg, rgba(10, 36, 99, 0.03) 0%, rgba(6, 182, 212, 0.03) 100%);
+            border-radius: 20px;
+        }
+
+        .hero::before {
+            content: '⚡';
+            position: absolute;
+            top: 20px;
+            right: 10%;
+            font-size: 3rem;
+            opacity: 0.2;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .hero::after {
+            content: '💡';
+            position: absolute;
+            bottom: 20px;
+            left: 10%;
+            font-size: 3rem;
+            opacity: 0.2;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .hero-photo {
+            width: 120px;
+            height: 80px;
+            border-radius: 50%;
+            background: white;
+            margin: 0 auto 2rem; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--navy-primary);
+            font-weight: 700;
+            border: 5px solid var(--accent-gold);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+            letter-spacing: -1.5px;
+            color: var(--navy-primary);
+            text-transform: uppercase;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+            font-weight: 400;
+        }
+
+        .hero .tagline {
+            font-size: 1.4rem;
+            color: var(--accent-cyan);
+            margin-bottom: 3rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+        }
+
+        /* Stats Section with Navy Theme */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .stat-item {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 100%);
+            color: white;
+            box-shadow: 0 10px 30px rgba(10, 36, 99, 0.2);
+            transition: transform 0.3s;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .stat-number {
+            font-size: 2.8rem;
+            font-weight: 800;
+            color: var(--accent-gold);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 500;
+        }
+
+        /* Section Styles */
+        section {
+            max-width: 1200px;
+            margin: 6rem auto;
+            padding: 0 2rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 3rem;
+            text-align: center;
+            letter-spacing: -0.5px;
+            color: var(--navy-primary);
+            position: relative;
+        }
+
+        h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy-primary), var(--accent-cyan));
+            margin: 1rem auto 0;
+            border-radius: 2px;
+        }
+
+        /* Team Grid */
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .team-member {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 16px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            background: white;
+            border: 2px solid transparent;
+        }
+
+        .team-member:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(10, 36, 99, 0.15);
+            border-color: var(--accent-cyan);
+        }
+
+        .member-photo {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 100%);
+            margin: 0 auto 1.5rem;
+            overflow: hidden;  
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+            font-weight: 700;
+            border: 4px solid var(--accent-cyan);
+            box-shadow: 0 5px 20px rgba(10, 36, 99, 0.2);
+        }
+        
+        .member-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;     /* crop image nicely */
+        }
+
+        .member-name {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 0.3rem;
+            color: var(--navy-primary);
+        }
+
+        .member-role {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            line-height: 1.5;
+        }
+
+        /* Research Areas with AI Icons */
+        .research-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .research-card {
+            padding: 2.5rem;
+            border: 2px solid #e5e5e5;
+            border-radius: 16px;
+            transition: all 0.3s;
+            background: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .research-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--navy-primary), var(--accent-cyan));
+            transform: scaleX(0);
+            transition: transform 0.3s;
+        }
+
+        .research-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .research-card:hover {
+            border-color: var(--navy-primary);
+            box-shadow: 0 10px 30px rgba(10, 36, 99, 0.15);
+            transform: translateY(-5px);
+        }
+
+        .research-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            filter: grayscale(0.3);
+        }
+
+        .research-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: var(--navy-primary);
+        }
+
+        .research-card p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        /* Publications */
+        .publication-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .publication-item {
+            padding: 2rem 2.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid var(--navy-primary);
+            background: var(--bg-light);
+            border-radius: 12px;
+            transition: all 0.3s;
+        }
+
+        .publication-item:hover {
+            border-left-color: var(--accent-cyan);
+            box-shadow: 0 5px 20px rgba(10, 36, 99, 0.1);
+        }
+
+        .publication-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            color: var(--navy-primary);
+        }
+
+        .publication-meta {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .publication-venue {
+            font-size: 0.9rem;
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-primary) 100%);
+            color: #ffffff;
+            padding: 4rem 2rem;
+            margin-top: 6rem;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--accent-gold), var(--accent-cyan));
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-left {
+        flex: 1 1 300px;
+        text-align: left;
+        }
+        .footer-center {
+        flex: 1 1 200px;
+        text-align: center;
+        }
+        .footer-right {
+        flex: 1 1 300px;
+        text-align: right;
+        }
+
+        footer h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        footer p {
+            color: rgba(255, 255, 255, 0.85);
+            font-size: 0.95rem;
+            line-height: 1.9;
+        }
+
+        footer strong {
+            color: var(--accent-gold);
+        }
+
+        /* Philosophy Section with Core Values */
+        .philosophy {
+            text-align: center;
+            padding: 5rem 2rem;
+            background: linear-gradient(135deg, rgba(10, 36, 99, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+            margin: 6rem 0;
+            border-radius: 20px;
+            position: relative;
+        }
+
+        .philosophy::before {
+            content: '🎯';
+            position: absolute;
+            top: 30px;
+            left: 5%;
+            font-size: 4rem;
+            opacity: 0.1;
+        }
+
+        .philosophy::after {
+            content: '🚀';
+            position: absolute;
+            bottom: 30px;
+            right: 5%;
+            font-size: 4rem;
+            opacity: 0.1;
+        }
+
+        .philosophy-content {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .philosophy h2 {
+            margin-bottom: 2.5rem;
+        }
+
+        .philosophy p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 2;
+            margin-bottom: 1.5rem;
+        }
+
+        .philosophy p strong {
+            color: var(--navy-primary);
+            font-weight: 700;
+        }
+
+        .values {
+            display: flex;
+            justify-content: center;
+            gap: 4rem;
+            margin-top: 4rem;
+        }
+
+        .value-item {
+            text-align: center;
+            padding: 2rem;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(10, 36, 99, 0.1);
+            transition: transform 0.3s;
+            min-width: 150px;
+        }
+
+        .value-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(10, 36, 99, 0.15);
+        }
+
+        .value-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .value-text {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--navy-primary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* AI Visual Elements */
+        .ai-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            opacity: 0.03;
+            background-image: 
+                repeating-linear-gradient(0deg, transparent, transparent 50px, var(--navy-primary) 50px, var(--navy-primary) 51px),
+                repeating-linear-gradient(90deg, transparent, transparent 50px, var(--navy-primary) 50px, var(--navy-primary) 51px);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .values {
+                flex-direction: column;
+                gap: 2rem;
+            }
+
+            nav ul {
+                gap: 1.5rem;
+            }
+
+            nav a {
+                font-size: 0.85rem;
+            }
+
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .team-grid {
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Additional Professional Touches */
+        ::selection {
+            background: var(--accent-cyan);
+            color: white;
+        }
+
+        /* Loading Animation for Stats */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .stat-item {
+            animation: fadeInUp 0.6s ease-out;
+            animation-fill-mode: both;
+        }
+
+        .stat-item:nth-child(1) { animation-delay: 0.1s; }
+        .stat-item:nth-child(2) { animation-delay: 0.2s; }
+        .stat-item:nth-child(3) { animation-delay: 0.3s; }
+        .stat-item:nth-child(4) { animation-delay: 0.4s; }
+    </style>
+</head>
+<body>
+    <div class="ai-background"></div>
+    <header>
+        <nav>
+            <div class="logo"><span></span></div>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#projects">Research Projects</a></li>
+                <li><a href="#activities">Member's Activities</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h1>AICLab</h1>
+            <p class="subtitle">AI Convergence Lab | Chungbuk National University</p>
+            <p class="tagline">Dream. Excellence. Teamwork.</p>
+        </section>
+
+        <div class="hero-photo">
+            <img src="Assets/5.jpg"/>
+        </div>
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number">8+</span>
+                <span class="stat-label">Researchers</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">2025</span>
+                <span class="stat-label">Established</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">5+</span>
+                <span class="stat-label">Research Areas</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">Growing</span>
+                <span class="stat-label">Publications</span>
+            </div>
+        </div>
+
+        <!-- Professor's Welcome Message -->
+        <section style="max-width: 900px; margin: 5rem auto; padding: 3rem; background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 100%); border-radius: 20px; box-shadow: 0 15px 40px rgba(10, 36, 99, 0.3); color: white; text-align: center;">
+            <div style="font-size: 3rem; margin-bottom: 1rem;">👋</div>
+            <h2 style="color: white; font-size: 2rem; margin-bottom: 1.5rem;">Welcome to AICLab!</h2>
+            <p style="font-size: 1.1rem; line-height: 1.9; color: rgba(255, 255, 255, 0.95); margin-bottom: 1rem;">
+                We are excited to embark on this journey of innovation and discovery in Applied AI and Computer Vision. 
+                Our lab brings together passionate researchers from diverse backgrounds, united by a common vision 
+                to create impactful solutions that bridge academic excellence with industry needs.
+            </p>
+            <p style="font-size: 1rem; line-height: 1.8; color: rgba(255, 255, 255, 0.85);">
+                <strong style="color: var(--accent-gold);">— Professor KIM Tae-Kyung</strong><br>
+                Principal Investigator, AICLab
+            </p>
+        </section>
+
+        <div class="philosophy">
+            <div class="philosophy-content">
+                <h2>🎯 Mission & Vision</h2>
+                <p><strong>Mission:</strong> AICLab was established with the mission of pursuing applied AI and computer vision for industry and academic purposes.</p>
+                <p><strong>Vision:</strong> We aim to be the trusted problem solver for industry in terms of Applied AI and computer vision initiatives and solutions to improve pain points and operational efficiency. Together with our partners and clients, we strive to achieve excellence in our work.</p>
+                
+                <div class="values">
+                    <div class="value-item">
+                        <div class="value-icon">🎯</div>
+                        <div class="value-text">Dream</div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">⭐</div>
+                        <div class="value-text">Excellence</div>
+                    </div>
+                    <div class="value-item">
+                        <div class="value-icon">🤝</div>
+                        <div class="value-text">Teamwork</div>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem; font-size: 0.95rem; color: #666;">
+                    To set our target as broad as the peak of the mountain. Pursue our dream while maintaining excellence in our work, and by collaborating with our highly talented team members who share the same vision and mission.
+                </p>
+            </div>
+        </div>
+
+        <section id="team">
+            <h2>👥 Research Team</h2>
+            <p style="text-align: center; color: var(--text-gray); margin-bottom: 3rem; font-size: 1.1rem;">
+                Talented Minds Pursuing Excellence Together
+            </p>
+            <div class="team-grid">
+                <a href="member-kim-taekyung.html" style="text-decoration: none; color: inherit;">
+                    <div class="team-member">
+                        <div class="member-photo">KTK</div>
+                        <div class="member-name">Prof. KIM Tae-Kyung</div>
+                        <div class="member-role">Principal Investigator</div>
+                    </div>
+                </a>
+                <a href="member-kong-vungsovanreach.html" style="text-decoration: none; color: inherit;">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="ASSETS/2 KONG VUNGSOVANREACH.JPG" alt="KV" />
+                        </div>
+                        <div class="member-name">KONG Vungsovanreach</div>
+                        <div class="member-role">PhD Candidate<br>Computer Vision, LLM, VLM</div>
+                    </div>
+                </a>
+                <a href="member-chan-sokheang.html" style="text-decoration: none; color: inherit;">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="Assets/3 CHAN Sokheang.jpg" alt="KV" />
+                        </div>
+                        <div class="member-name">CHAN Sokheang</div>
+                        <div class="member-role">Master Student<br>Data Analytics, LLM</div>
+                    </div>
+                </a>
+                <a href="member-chhor-ratanaktepi.html" style="text-decoration: none; color: inherit;">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="Assets/4 CHHOR Ratanaktepi.jpg"/>
+                        </div>
+                        <div class="member-name">CHHOR Ratanaktepi</div>
+                        <div class="member-role">PhD Student<br>Big Data</div>
+                    </div>
+                </a>
+                <a href="member-chhun-rotanakkosal.html" style="text-decoration: none; color: inherit;">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="Assets/5 CHHUN Rotanakkosal.jpg"/>
+                        </div>
+                        <div class="member-name">CHHUN Rotanakkosal</div>
+                        <div class="member-role">Integrated Student<br>Computer Vision, LLM</div>
+                    </div>
+                </a>
+                <a href="member-pov-phannet.html" style="text-decoration: none; color: inherit;">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="Assets/7 POV Phannet.jpg"/>
+                        </div>
+                        <div class="member-name">POV Phannet</div>
+                        <div class="member-role">PhD Student<br>Healthcare AI, Computer Vision</div>
+                    </div>
+                </a>
+                <a href="member-vorn-naro.html" style="text-decoration: none; color: inherit;">
+                    <div class="team-member">
+                        <div class="member-photo">
+                            <img src="Assets/8 VORN Naro.png"/>
+                        </div>
+                        <div class="member-name">VORN Naro</div>
+                        <div class="member-role">Master Candidate<br>LLM, Cybersecurity</div>
+                    </div>
+                </a>
+                <a href="member-chiv-kimchhor.html" style="text-decoration: none; color: inherit;">
+                    <div class="team-member">
+                        <div class="member-photo">CK</div>
+                        <div class="member-name">CHIV Kimchhor</div>
+                        <div class="member-role">Researcher</div>
+                    </div>
+                </a>
+            </div>
+        </section>
+
+        <section id="publications">
+            <h2>📚 Publications</h2>
+            <p style="text-align: center; color: var(--text-gray); margin-bottom: 3rem; font-size: 1.1rem;">
+                Building the Future of Applied AI
+            </p>
+            <div class="publication-list">
+                <div class="publication-item">
+                    <h4>Ongoing Research Projects</h4>
+                    <p class="publication-meta">AICLab Team (2025 - Present)</p>
+                    <p class="publication-venue">Focus: Applied AI and Computer Vision for Industry Applications</p>
+                </div>
+                <div class="publication-item">
+                    <h4>Multimodal AI Systems</h4>
+                    <p class="publication-meta">Integration of LLMs with Computer Vision</p>
+                    <p class="publication-venue">Research Area: Vision-Language Models and Real-world Applications</p>
+                </div>
+                <div class="publication-item">
+                    <h4>Healthcare AI Applications</h4>
+                    <p class="publication-meta">Collaboration: France-Cambodia Research Partnership</p>
+                    <p class="publication-venue">Focus: AI-driven Antibiotic Treatment Optimization</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects">
+            <h2>🔬 Research Projects</h2>
+            <p style="text-align: center; color: var(--text-gray); margin-bottom: 3rem; font-size: 1.1rem;">
+                Bridging AI Research with Real-World Impact
+            </p>
+            <div class="research-grid">
+                <div class="research-card">
+                    <div class="research-icon">👁️</div>
+                    <h3>Computer Vision</h3>
+                    <p>Advanced image and video analysis, object detection, and real-world applications in safety, healthcare, and surveillance using deep learning frameworks</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">🤖</div>
+                    <h3>Large Language Models (LLMs)</h3>
+                    <p>Integrating LLMs with visual data for multimodal AI applications, natural language processing, and vision-language understanding</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">💡</div>
+                    <h3>Applied AI</h3>
+                    <p>Developing practical AI solutions for industry applications, bridging the gap between academic research and real-world implementation</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">🔒</div>
+                    <h3>AI for Cybersecurity</h3>
+                    <p>AI-driven security systems, penetration testing, and multimodal approaches to enhance digital security and system protection</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">📊</div>
+                    <h3>Big Data & Analytics</h3>
+                    <p>Data science, analytics, and big data convergence for scalable AI systems and operational efficiency improvements</p>
+                </div>
+                <div class="research-card">
+                    <div class="research-icon">🏥</div>
+                    <h3>Healthcare AI</h3>
+                    <p>AI-driven medical imaging analysis, diagnostic support systems, and healthcare applications including antibiotic treatment optimization</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="activities">
+            <h2>🎯 Member's Activities</h2>
+            <p style="text-align: center; color: var(--text-gray); margin-bottom: 3rem; font-size: 1.1rem;">
+                Building Excellence Through Collaboration and Learning
+            </p>
+            <div class="publication-list">
+                <div class="publication-item">
+                    <h4>International and Domestic Conferences</h4>
+                    <p class="publication-meta">Cross-member collaboration initiatives</p>
+                    <p class="publication-venue">Fostering interdisciplinary research and shared learning experiences</p>
+                </div>
+                <div class="publication-item">
+                    <h4>Internal Seminars</h4>
+                    <p class="publication-meta">Regular knowledge sharing sessions among lab members</p>
+                    <p class="publication-venue">Weekly presentations on latest research, methodologies, and industry trends</p>
+                </div>
+                <div class="publication-item">
+                    <h4>Team Building Activities</h4>
+                    <p class="publication-meta">Strengthening bonds beyond research</p>
+                    <p class="publication-venue">Recent: Hiking Trip to Mungyeong | Building teamwork and collaboration</p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-right">
+            <h3>Contact Us</h3>
+                <p>
+                    Email : cbnuaiclab@gmail.com <br>
+                    Room N13-216<br>
+                    Chungbuk National University<br>
+                    Chungdae-Ro 1, Seowon-Gu<br>
+                    Cheongju, Chungbuk<br>
+                    South Korea
+                </p>
+            </div>
+
+            <div class="footer-left">
+                <p style="margin-top: 1.5rem;">
+                    <strong>AI Convergence Lab </strong><br>
+                    Department of Big Data
+                </p>
+            </div>
+
+            <div class="footer-center">
+                <p style="margin-top: 2rem; font-size: 0.85rem;">
+                    © 2025 AICLab - AI Convergence Lab. All rights reserved.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

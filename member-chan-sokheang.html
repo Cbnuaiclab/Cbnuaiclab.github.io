@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHAN Sokheang - AICLab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy-primary: #0a2463;
+            --navy-dark: #051839;
+            --navy-light: #1e3a8a;
+            --accent-gold: #fbbf24;
+            --accent-cyan: #06b6d4;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --bg-light: #f8fafc;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: #ffffff;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 2px solid var(--navy-primary);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(10, 36, 99, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--navy-primary);
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: var(--navy-primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--navy-primary);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--navy-primary);
+            color: white;
+        }
+
+        .profile-container {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .profile-header {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 100%);
+            border-radius: 20px;
+            color: white;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(10, 36, 99, 0.2);
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: white;
+            margin: 0 auto 2rem;
+            overflow: hidden;  
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--navy-primary);
+            font-weight: 700;
+            border: 5px solid var(--accent-gold);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;     /* crop image nicely */
+        }
+
+        .profile-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-header .position {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .profile-header .expertise {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .profile-section {
+            background: white;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-radius: 16px;
+            border: 2px solid #e5e5e5;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .profile-section h2 {
+            color: var(--navy-primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--accent-cyan);
+        }
+
+        .profile-section p {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .profile-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .profile-section ul li {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .profile-section ul li::before {
+            content: "▸";
+            color: var(--accent-cyan);
+            font-weight: bold;
+            position: absolute;
+            left: 0.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(10, 36, 99, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-cyan);
+            margin: 1.5rem 0;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-primary) 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="ai-lab-portfolio.html" class="logo">🤖 AICLab</a>
+            <a href="ai-lab-portfolio.html#team" class="back-link">← Back to Team</a>
+        </nav>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-photo">
+                <img src="Assets/3 CHAN Sokheang.jpg" /> 
+            </div>
+            <h1>CHAN Sokheang</h1>
+            <div class="position">Master Student</div>
+            <div class="expertise">Data Analytics | LLM | Applied AI</div>
+        </div>
+
+        <div class="profile-section">
+            <h2>👨‍🎓 About</h2>
+            <div class="highlight">
+                <p>Master's Degree student majoring in Big Data Convergence at Chungbuk National University. Specializes in data analytics and multimodal AI with over 4+ years of experience in software development and 2+ years in data analytics, ML, and AI.</p>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <h2>📚 Academic Background</h2>
+            <ul>
+                <li><strong>Current:</strong> Master's Degree in Big Data Convergence, Chungbuk National University</li>
+                <li>Focus: Data Analytics and Multimodal AI</li>
+            </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2>💼 Professional Experience</h2>
+            <ul>
+                <li><strong>4+ years</strong> in Software Development</li>
+                <li><strong>2+ years</strong> in Data Analytics, Machine Learning, and AI</li>
+                <li>Experienced in developing scalable AI systems</li>
+            </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2>🔬 Research Interests</h2>
+            <ul>
+                <li><strong>Natural Language Processing (NLP):</strong> Understanding and processing human language</li>
+                <li><strong>Large Language Models (LLMs):</strong> Working with state-of-the-art language models</li>
+                <li><strong>Applied Artificial Intelligence:</strong> Focus on real-world applications</li>
+                <li><strong>Data Analytics:</strong> Extracting insights from complex datasets</li>
+            </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2>🎯 Research Goals</h2>
+            <p>Aims to contribute to developing scalable and practical AI systems that bridge the gap between academic research and industry needs. Passionate about creating AI solutions that have real-world impact and can be deployed in production environments.</p>
+        </div>
+
+        <div class="profile-section">
+            <h2>💡 Technical Skills</h2>
+            <ul>
+                <li>Data Analysis and Visualization</li>
+                <li>Machine Learning Algorithms</li>
+                <li>Natural Language Processing</li>
+                <li>Large Language Model Integration</li>
+                <li>Software Development (4+ years experience)</li>
+                <li>Big Data Technologies</li>
+            </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2>🌟 Approach to Research</h2>
+            <p>Believes in practical, application-oriented research that can be translated into real-world solutions. Focuses on understanding both the theoretical foundations and practical implementations of AI systems, ensuring that research outcomes are not only academically rigorous but also industrially relevant.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 AICLab - AI Convergence Lab. All rights reserved.</p>
+    </footer>
+</body>
+</html>

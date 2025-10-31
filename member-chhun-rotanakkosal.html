@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHHUN Rotanakkosal - AICLab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy-primary: #0a2463;
+            --navy-dark: #051839;
+            --navy-light: #1e3a8a;
+            --accent-gold: #fbbf24;
+            --accent-cyan: #06b6d4;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --bg-light: #f8fafc;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: #ffffff;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 2px solid var(--navy-primary);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(10, 36, 99, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--navy-primary);
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: var(--navy-primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--navy-primary);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--navy-primary);
+            color: white;
+        }
+
+        .profile-container {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .profile-header {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 100%);
+            border-radius: 20px;
+            color: white;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(10, 36, 99, 0.2);
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: white;
+            margin: 0 auto 2rem;
+            overflow: hidden; 
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--navy-primary);
+            font-weight: 700;
+            border: 5px solid var(--accent-gold);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;     /* crop image nicely */
+        }
+
+        .profile-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-header .position {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .profile-header .expertise {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .profile-section {
+            background: white;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-radius: 16px;
+            border: 2px solid #e5e5e5;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .profile-section h2 {
+            color: var(--navy-primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--accent-cyan);
+        }
+
+        .profile-section p {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .profile-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .profile-section ul li {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .profile-section ul li::before {
+            content: "▸";
+            color: var(--accent-cyan);
+            font-weight: bold;
+            position: absolute;
+            left: 0.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(10, 36, 99, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-cyan);
+            margin: 1.5rem 0;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-primary) 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="ai-lab-portfolio.html" class="logo">🤖 AICLab</a>
+            <a href="ai-lab-portfolio.html#team" class="back-link">← Back to Team</a>
+        </nav>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-photo">
+                <img src="Assets/5 CHHUN Rotanakkosal.jpg"/>
+            </div>
+            <h1>CHHUN Rotanakkosal</h1>
+            <div class="position">Integrated Student (Master's)</div>
+            <div class="expertise">Computer Vision | LLM | Full-Stack Development | DevOps</div>
+        </div>
+
+        <div class="profile-section">
+            <h2>👨‍🎓 Academic Background</h2>
+            <ul>
+                <li><strong>Current:</strong> Master's Degree in Big Data (Integrated Student), Chungbuk National University (September 2024 - Present)</li>
+                <li><strong>Bachelor's Degree:</strong> Computer Science, Royal University of Phnom Penh, Cambodia (2023)</li>
+            </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2>💼 Professional Experience</h2>
+            <ul>
+                <li><strong>2023 - Mid 2025:</strong> IT Instructor, Korean Software HRD Center, Phnom Penh, Cambodia</li>
+                <li>Taught software development and DevOps practices</li>
+                <li><strong>Current:</strong> Researcher at AI Convergence Lab, Chungbuk National University</li>
+            </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2>🔬 Research Focus</h2>
+            <div class="highlight">
+                <p>His work centers on the intersection of computer vision and Large Language Models (LLMs). He is particularly passionate about the synergy between computer vision and LLMs, exploring how these technologies can be integrated to create intelligent systems.</p>
+            </div>
+            <ul>
+                <li><strong>Computer Vision & LLM Integration:</strong> Exploring synergies between visual understanding and language models</li>
+                <li><strong>Multimodal AI Solutions:</strong> Developing systems that leverage both visual and textual data</li>
+                <li><strong>Intelligent Systems:</strong> Creating AI systems that can understand and process multiple data modalities</li>
+            </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2>💡 Technical Expertise</h2>
+            <div class="highlight">
+                <p>With a strong foundation in software engineering and emerging expertise in AI research, his technical skills span multiple domains from traditional software development to cutting-edge AI technologies.</p>
+            </div>
+            <ul>
+                <li><strong>Full-Stack Development:</strong> Proficient across multiple programming languages and frameworks</li>
+                <li><strong>DevOps:</strong> Cloud platforms and deployment practices</li>
+                <li><strong>Computer Vision:</strong> Image processing and visual understanding systems</li>
+                <li><strong>Large Language Models:</strong> Integration and application of LLMs</li>
+                <li><strong>Programming Languages:</strong> Multiple languages across different paradigms</li>
+            </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2>🎯 Career Aspirations</h2>
+            <p>Aims to pursue doctoral studies to further advance contributions to the field of artificial intelligence and its practical applications. His goal is to bridge the gap between theoretical AI research and real-world implementations, creating systems that are both academically rigorous and practically valuable.</p>
+        </div>
+
+        <div class="profile-section">
+            <h2>🌟 Teaching Experience</h2>
+            <p>As an IT Instructor at the Korean Software HRD Center (2023-2025), he gained valuable experience in teaching software development and DevOps practices. This teaching background provides him with the ability to communicate complex technical concepts clearly and mentor junior developers and students.</p>
+        </div>
+
+        <div class="profile-section">
+            <h2>🚀 Current Research at AICLab</h2>
+            <ul>
+                <li>Developing multimodal AI solutions combining vision and language</li>
+                <li>Exploring practical applications of computer vision and LLM integration</li>
+                <li>Contributing to lab projects at the intersection of visual AI and language understanding</li>
+                <li>Bridging software engineering practices with AI research methodologies</li>
+            </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2>💭 Research Philosophy</h2>
+            <p>Believes in creating AI systems that combine strong engineering foundations with innovative research. His approach integrates practical software development skills with cutting-edge AI research, ensuring that solutions are both technically sound and deployable in real-world scenarios.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 AICLab - AI Convergence Lab. All rights reserved.</p>
+    </footer>
+</body>
+</html>

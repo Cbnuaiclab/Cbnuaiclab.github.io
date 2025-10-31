@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VORN Naro - AICLab</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy-primary: #0a2463;
+            --navy-dark: #051839;
+            --navy-light: #1e3a8a;
+            --accent-gold: #fbbf24;
+            --accent-cyan: #06b6d4;
+            --text-dark: #1a1a1a;
+            --text-gray: #666;
+            --bg-light: #f8fafc;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background: #ffffff;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 2px solid var(--navy-primary);
+            padding: 1.5rem 2rem;
+            box-shadow: 0 2px 10px rgba(10, 36, 99, 0.1);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--navy-primary);
+            text-decoration: none;
+        }
+
+        .back-link {
+            color: var(--navy-primary);
+            text-decoration: none;
+            font-weight: 600;
+            padding: 0.5rem 1.5rem;
+            border: 2px solid var(--navy-primary);
+            border-radius: 8px;
+            transition: all 0.3s;
+        }
+
+        .back-link:hover {
+            background: var(--navy-primary);
+            color: white;
+        }
+
+        .profile-container {
+            max-width: 1000px;
+            margin: 4rem auto;
+            padding: 0 2rem;
+        }
+
+        .profile-header {
+            text-align: center;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 100%);
+            border-radius: 20px;
+            color: white;
+            margin-bottom: 3rem;
+            box-shadow: 0 10px 40px rgba(10, 36, 99, 0.2);
+        }
+
+        .profile-photo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: white;
+            margin: 0 auto 2rem;
+            display: flex;
+            overflow: hidden;  
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: var(--navy-primary);
+            font-weight: 700;
+            border: 5px solid var(--accent-gold);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .profile-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;     /* crop image nicely */
+        }
+        .profile-header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .profile-header .position {
+            font-size: 1.3rem;
+            color: var(--accent-gold);
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .profile-header .expertise {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .profile-section {
+            background: white;
+            padding: 2.5rem;
+            margin-bottom: 2rem;
+            border-radius: 16px;
+            border: 2px solid #e5e5e5;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .profile-section h2 {
+            color: var(--navy-primary);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--accent-cyan);
+        }
+
+        .profile-section p {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            line-height: 1.9;
+            margin-bottom: 1rem;
+        }
+
+        .profile-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .profile-section ul li {
+            color: var(--text-gray);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            padding-left: 2rem;
+            position: relative;
+            margin-bottom: 0.8rem;
+        }
+
+        .profile-section ul li::before {
+            content: "▸";
+            color: var(--accent-cyan);
+            font-weight: bold;
+            position: absolute;
+            left: 0.5rem;
+        }
+
+        .highlight {
+            background: linear-gradient(135deg, rgba(10, 36, 99, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+            padding: 1.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--accent-cyan);
+            margin: 1.5rem 0;
+        }
+
+        footer {
+            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-primary) 100%);
+            color: white;
+            padding: 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="ai-lab-portfolio.html" class="logo">🤖 AICLab</a>
+            <a href="ai-lab-portfolio.html#team" class="back-link">← Back to Team</a>
+        </nav>
+    </header>
+
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-photo">
+                <img src="Assets/8 VORN Naro.png"/>
+            </div>
+            <h1>VORN Naro</h1>
+            <div class="position">Master Candidate</div>
+            <div class="expertise">Big Data | LLM | Cybersecurity | Applied AI</div>
+        </div>
+
+        <div class="profile-section">
+            <h2>👨‍🎓 Academic Background</h2>
+            <ul>
+                <li><strong>Current:</strong> Master's Degree in Big Data Convergence (Integrated Student), Chungbuk National University, South Korea (September 2024 - Present)</li>
+                <li><strong>Bachelor's Degree:</strong> Computer Science, Royal University of Phnom Penh, Cambodia (2023)</li>
+            </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2>💼 Professional Experience</h2>
+            <div class="highlight">
+                <p>Brings a unique combination of backend development expertise and cybersecurity research experience, providing a strong foundation for AI-driven security applications.</p>
+            </div>
+            <ul>
+                <li><strong>3 years</strong> of experience in Backend Development using Java</li>
+                <li><strong>1 year</strong> of experience as a Cybersecurity Researcher</li>
+                <li>Focus on penetration testing and system security assessment</li>
+                <li><strong>Current:</strong> Researcher at AI Convergence Lab, Chungbuk National University</li>
+            </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2>🔬 Research Focus</h2>
+            <div class="highlight">
+                <p>His work explores the intersection of multimodal AI, large language models (LLMs), and cybersecurity applications. This unique combination aims to develop intelligent security systems that leverage AI for enhanced digital protection.</p>
+            </div>
+            <ul>
+                <li><strong>Multimodal Learning (MLLMs):</strong> Integrating multiple data types for comprehensive AI understanding</li>
+                <li><strong>AI-driven Cybersecurity Systems:</strong> Applying AI to detect and prevent security threats</li>
+                <li><strong>Applied Artificial Intelligence:</strong> Real-world problem-solving with AI</li>
+                <li><strong>Large Language Models:</strong> Leveraging LLMs for security applications</li>
+            </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2>💡 Technical Expertise</h2>
+            <ul>
+                <li><strong>Backend Development:</strong> 3 years with Java, building robust server-side systems</li>
+                <li><strong>Cybersecurity:</strong> Penetration testing, vulnerability assessment, system security</li>
+                <li><strong>Big Data Technologies:</strong> Processing and analyzing large-scale datasets</li>
+                <li><strong>Multimodal AI:</strong> Working with diverse data types in AI systems</li>
+                <li><strong>Large Language Models:</strong> Integration and application in security contexts</li>
+            </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2>🔒 Cybersecurity Background</h2>
+            <p>With one year of focused cybersecurity research experience, Vorn Naro has developed expertise in penetration testing and system security assessment. This background provides valuable insights into security vulnerabilities and defense mechanisms, which he now integrates with AI technologies to create more intelligent and proactive security solutions.</p>
+        </div>
+
+        <div class="profile-section">
+            <h2>🎯 Research Goals</h2>
+            <div class="highlight">
+                <p>Aims to develop scalable and intelligent AI systems that enhance digital security and bridge the gap between academic research and industry innovation. His goal is to create AI-powered security solutions that are both theoretically sound and practically deployable.</p>
+            </div>
+        </div>
+
+        <div class="profile-section">
+            <h2>🌟 Unique Perspective</h2>
+            <p>The combination of backend development experience, cybersecurity research, and AI expertise provides Vorn Naro with a unique perspective on building secure, scalable AI systems. He understands both the technical implementation challenges and the security considerations necessary for production AI systems.</p>
+        </div>
+
+        <div class="profile-section">
+            <h2>🚀 Current Research at AICLab</h2>
+            <ul>
+                <li>Exploring multimodal AI for cybersecurity applications</li>
+                <li>Developing LLM-based security analysis tools</li>
+                <li>Investigating AI-driven threat detection and prevention</li>
+                <li>Building scalable security systems using big data analytics</li>
+                <li>Bridging AI research with practical cybersecurity needs</li>
+            </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2>💭 Vision</h2>
+            <p>Envisions a future where AI and cybersecurity are deeply integrated, creating intelligent systems that can proactively identify and respond to security threats. His work aims to make digital environments safer through the application of advanced AI technologies, while ensuring these systems are scalable and practical for real-world deployment.</p>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 AICLab - AI Convergence Lab. All rights reserved.</p>
+    </footer>
+</body>
+</html>
