@@ -177,3 +177,237 @@ footer {
     text-align: center;
     margin-top: 4rem;
 }
+
+/* ============================================
+   RESPONSIVE DESIGN - CLEAN & PROFESSIONAL
+   ============================================ */
+
+/* Tablet (iPad and similar) */
+@media (max-width: 1024px) {
+    .profile-container {
+        padding: 0 2rem;
+        margin: 3rem auto;
+    }
+
+    .profile-header {
+        padding: 2.5rem 2rem;
+    }
+
+    .profile-header h1 {
+        font-size: 2.3rem;
+    }
+
+    .profile-header .position {
+        font-size: 1.25rem;
+    }
+
+    .profile-section {
+        padding: 2rem;
+    }
+
+    .profile-section h2 {
+        font-size: 1.7rem;
+    }
+}
+
+/* Mobile and Small Tablets */
+@media (max-width: 768px) {
+    header {
+        padding: 1rem 1.5rem;
+    }
+
+    nav {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .back-link {
+        padding: 0.5rem 1.2rem;
+        font-size: 0.9rem;
+        white-space: nowrap;
+    }
+
+    .profile-container {
+        padding: 0 1.5rem;
+        margin: 2rem auto;
+    }
+
+    .profile-header {
+        padding: 2.5rem 1.5rem;
+        margin-bottom: 2rem;
+        border-radius: 16px;
+    }
+
+    .profile-photo {
+        width: 150px;
+        height: 150px;
+        font-size: 3.5rem;
+        border-width: 4px;
+        margin-bottom: 1.5rem;
+    }
+
+    .profile-header h1 {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .profile-header .position {
+        font-size: 1.2rem;
+        margin-bottom: 1rem;
+    }
+
+    .profile-header .expertise {
+        font-size: 1.05rem;
+        line-height: 1.6;
+    }
+
+    .profile-section {
+        padding: 2rem 1.5rem;
+        margin-bottom: 1.5rem;
+        border-radius: 12px;
+    }
+
+    .profile-section h2 {
+        font-size: 1.6rem;
+        margin-bottom: 1.2rem;
+        padding-bottom: 0.8rem;
+    }
+
+    .profile-section p {
+        font-size: 1.02rem;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+    }
+
+    .profile-section ul {
+        margin: 1rem 0;
+    }
+
+    .profile-section ul li {
+        font-size: 1.02rem;
+        line-height: 1.8;
+        padding-left: 1.8rem;
+        margin-bottom: 0.7rem;
+    }
+
+    .profile-section ul li::before {
+        left: 0.3rem;
+    }
+
+    .highlight {
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        border-radius: 10px;
+    }
+
+    footer {
+        padding: 2rem 1.5rem;
+        margin-top: 3rem;
+    }
+
+    footer p {
+        font-size: 0.9rem;
+        line-height: 1.7;
+    }
+}
+
+/* Small Mobile Phones */
+@media (max-width: 480px) {
+    header {
+        padding: 1rem;
+    }
+
+    .logo {
+        font-size: 1rem;
+    }
+
+    .back-link {
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .profile-container {
+        padding: 0 1rem;
+        margin: 1.5rem auto;
+    }
+
+    .profile-header {
+        padding: 2rem 1rem;
+        border-radius: 12px;
+    }
+
+    .profile-photo {
+        width: 130px;
+        height: 130px;
+        font-size: 3rem;
+        border-width: 3px;
+        margin-bottom: 1.2rem;
+    }
+
+    .profile-header h1 {
+        font-size: 1.6rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .profile-header .position {
+        font-size: 1.05rem;
+        margin-bottom: 0.8rem;
+    }
+
+    .profile-header .expertise {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+
+    .profile-section {
+        padding: 1.5rem 1rem;
+        margin-bottom: 1.2rem;
+    }
+
+    .profile-section h2 {
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        padding-bottom: 0.6rem;
+        border-bottom-width: 2px;
+    }
+
+    .profile-section p {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        margin-bottom: 0.8rem;
+    }
+
+    .profile-section ul {
+        margin: 0.8rem 0;
+    }
+
+    .profile-section ul li {
+        font-size: 0.95rem;
+        line-height: 1.7;
+        padding-left: 1.5rem;
+        margin-bottom: 0.6rem;
+    }
+
+    .profile-section ul li::before {
+        left: 0.2rem;
+        font-size: 0.9rem;
+    }
+
+    .highlight {
+        padding: 1.2rem;
+        margin: 1.2rem 0;
+    }
+
+    footer {
+        padding: 2rem 1rem;
+    }
+
+    footer p {
+        font-size: 0.85rem;
+        line-height: 1.6;
+    }
+}

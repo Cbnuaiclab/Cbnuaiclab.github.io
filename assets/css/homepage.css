@@ -71,10 +71,29 @@
             font-weight: 600;
         }
 
-        nav ul {
+        .nav-menu {
             display: flex;
             gap: 2.5rem;
             list-style: none;
+        }
+
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--navy-primary);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 3px;
         }
 
         nav a {
@@ -556,35 +575,441 @@
                 repeating-linear-gradient(90deg, transparent, transparent 50px, var(--navy-primary) 50px, var(--navy-primary) 51px);
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
+        /* ============================================
+           RESPONSIVE DESIGN - MOBILE FIRST APPROACH
+           ============================================ */
+
+        /* Tablet (iPad and similar) */
+        @media (max-width: 1024px) {
+            nav {
+                padding: 1.2rem 2rem;
+            }
+
+            .hero {
+                padding: 6rem 2rem;
+                margin-top: 90px;
+            }
+
             .hero h1 {
-                font-size: 2.5rem;
+                font-size: 3rem;
             }
 
             .stats {
                 grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+                padding: 0 2rem;
+            }
+
+            .research-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        /* Mobile and Small Tablets */
+        @media (max-width: 768px) {
+            /* Navigation */
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .logo::before {
+                width: 90px;
+                height: 45px;
+            }
+
+            .mobile-menu-toggle {
+                display: flex;
+            }
+
+            .mobile-menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(8px, 8px);
+            }
+
+            .mobile-menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+
+            .mobile-menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(8px, -8px);
+            }
+
+            .nav-menu {
+                position: fixed;
+                top: 77px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 77px);
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(10px);
+                padding: 3rem 0;
+                gap: 0;
+                transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+                box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+                overflow-y: auto;
+            }
+
+            .nav-menu.active {
+                left: 0;
+            }
+
+            .nav-menu li {
+                margin: 0;
+                padding: 0;
+                border-bottom: 1px solid rgba(10, 36, 99, 0.1);
+            }
+
+            .nav-menu li:last-child {
+                border-bottom: none;
+            }
+
+            nav a {
+                display: block;
+                padding: 1.2rem 2rem;
+                font-size: 1.1rem;
+                font-weight: 600;
+                color: var(--navy-primary);
+                transition: all 0.3s ease;
+            }
+
+            nav a:hover {
+                background: linear-gradient(135deg, rgba(10, 36, 99, 0.05) 0%, rgba(6, 182, 212, 0.05) 100%);
+                padding-left: 2.5rem;
+            }
+
+            nav a::after {
+                display: none;
+            }
+
+            /* Hero Section */
+            .hero {
+                margin-top: 77px;
+                padding: 4rem 1.5rem;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+                letter-spacing: -1px;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+                line-height: 1.5;
+            }
+
+            .hero .tagline {
+                font-size: 1.2rem;
+                letter-spacing: 1.5px;
+            }
+
+            .hero-photo {
+                width: 100%;
+                max-width: 400px;
+                height: auto;
+                border-radius: 16px;
+                margin: 0 auto 2rem;
+            }
+
+            .hero-photo img {
+                width: 100%;
+                height: auto;
+                border-radius: 16px;
+            }
+
+            /* Stats */
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1rem;
+                padding: 0 1.5rem;
+                margin: 3rem auto;
+            }
+
+            .stat-item {
+                padding: 1.5rem 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            /* Sections */
+            section {
+                margin: 4rem auto;
+                padding: 0 1.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+                margin-bottom: 2rem;
+            }
+
+            /* Professor Welcome (inline styles need override) */
+            section[style*="max-width: 900px"] {
+                margin: 4rem 1.5rem !important;
+                padding: 2.5rem 1.5rem !important;
+            }
+
+            section[style*="max-width: 900px"] h2 {
+                font-size: 1.8rem !important;
+            }
+
+            section[style*="max-width: 900px"] p {
+                font-size: 1rem !important;
+                line-height: 1.7 !important;
+            }
+
+            section[style*="max-width: 900px"] div {
+                font-size: 2.5rem !important;
+            }
+
+            /* Philosophy */
+            .philosophy {
+                padding: 3rem 1.5rem;
+                margin: 4rem 0;
+            }
+
+            .philosophy p {
+                font-size: 1rem;
+                line-height: 1.8;
             }
 
             .values {
+                flex-direction: row;
+                flex-wrap: wrap;
+                gap: 1rem;
+                justify-content: center;
+            }
+
+            .value-item {
+                flex: 1 1 calc(50% - 1rem);
+                min-width: 140px;
+                max-width: 200px;
+                padding: 1.5rem 1rem;
+            }
+
+            /* Team Grid */
+            .team-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 1.5rem;
+            }
+
+            .team-member {
+                padding: 1.5rem 1rem;
+            }
+
+            .member-photo {
+                width: 100px;
+                height: 100px;
+                font-size: 1.8rem;
+                border-width: 3px;
+            }
+
+            .member-name {
+                font-size: 1rem;
+            }
+
+            .member-role {
+                font-size: 0.85rem;
+            }
+
+            /* Research Grid */
+            .research-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .research-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .research-icon {
+                font-size: 2.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .research-card h3 {
+                font-size: 1.3rem;
+            }
+
+            .research-card p {
+                font-size: 0.95rem;
+            }
+
+            /* Publications */
+            .publication-item {
+                padding: 1.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .publication-item h4 {
+                font-size: 1.1rem;
+            }
+
+            .publication-meta,
+            .publication-venue {
+                font-size: 0.85rem;
+            }
+
+            /* Footer */
+            .footer-content {
+                display: flex;
                 flex-direction: column;
                 gap: 2rem;
             }
 
-            nav ul {
+            .footer-left,
+            .footer-center,
+            .footer-right {
+                text-align: center !important;
+            }
+
+            footer h3 {
+                font-size: 1.3rem;
+            }
+
+            footer p {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Small Mobile Phones */
+        @media (max-width: 480px) {
+            /* Navigation */
+            nav {
+                padding: 0.8rem 1rem;
+            }
+
+            .logo::before {
+                width: 70px;
+                height: 35px;
+            }
+
+            /* Hero */
+            .hero {
+                padding: 3rem 1rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 0.9rem;
+            }
+
+            .hero .tagline {
+                font-size: 1rem;
+                letter-spacing: 1px;
+            }
+
+            .hero-photo {
+                max-width: 300px;
+            }
+
+            /* Stats - Single Column on Very Small Screens */
+            .stats {
+                grid-template-columns: 1fr;
+                padding: 0 1rem;
+            }
+
+            .stat-number {
+                font-size: 2rem;
+            }
+
+            .stat-label {
+                font-size: 0.9rem;
+            }
+
+            /* Sections */
+            section {
+                padding: 0 1rem;
+                margin: 3rem auto;
+            }
+
+            h2 {
+                font-size: 1.6rem;
+            }
+
+            h2::after {
+                width: 60px;
+                height: 3px;
+            }
+
+            /* Professor Welcome */
+            section[style*="max-width: 900px"] {
+                margin: 3rem 1rem !important;
+                padding: 2rem 1rem !important;
+                border-radius: 16px !important;
+            }
+
+            section[style*="max-width: 900px"] div {
+                font-size: 2rem !important;
+            }
+
+            section[style*="max-width: 900px"] h2 {
+                font-size: 1.5rem !important;
+            }
+
+            section[style*="max-width: 900px"] p {
+                font-size: 0.95rem !important;
+            }
+
+            /* Philosophy */
+            .philosophy {
+                padding: 2.5rem 1rem;
+            }
+
+            .values {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .value-item {
+                flex: 1 1 100%;
+                max-width: 100%;
+            }
+
+            .value-icon {
+                font-size: 2.5rem;
+            }
+
+            .value-text {
+                font-size: 1rem;
+            }
+
+            /* Team Grid - Single Column */
+            .team-grid {
+                grid-template-columns: 1fr;
                 gap: 1.5rem;
             }
 
-            nav a {
-                font-size: 0.85rem;
+            .team-member {
+                padding: 1.5rem;
             }
 
-            .research-grid {
-                grid-template-columns: 1fr;
+            .member-photo {
+                width: 110px;
+                height: 110px;
             }
 
-            .team-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            /* Research Cards */
+            .research-card {
+                padding: 1.5rem;
+            }
+
+            .research-icon {
+                font-size: 2.5rem;
+            }
+
+            /* Publications */
+            .publication-item {
+                padding: 1.2rem;
+            }
+
+            /* Footer */
+            footer {
+                padding: 3rem 1rem;
             }
         }
 
