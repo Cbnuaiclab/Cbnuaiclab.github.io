@@ -57,7 +57,7 @@
             display: inline-block;
             width: 120px;                 /* adjust size to fit your design */
             height: 60px;
-            background-image: url("/assets/img/logo/aiclab_logo_short.png");  /* <-- path to your local file */
+            background-image: url("/assets/img/logo/aiclab_logo_red_short.jpg");  /* <-- path to your local file */
             background-size: contain;     /* keep full image visible */
             background-repeat: no-repeat;
             background-position: center;
