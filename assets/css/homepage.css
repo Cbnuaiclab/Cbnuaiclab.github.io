@@ -101,10 +101,12 @@
         nav a {
             text-decoration: none;
             color: var(--text-gray);
-            font-size: 0.95rem;
-            font-weight: 500;
+            font-size: 1.05rem;
+            font-weight: 600;
             transition: color 0.3s;
             position: relative;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
         nav a:hover {
@@ -129,13 +131,13 @@
         /* Hero Section with AI Background */
         .hero {
             margin-top: 80px;
-            padding: 6rem 2rem 4rem;
+            padding: 0;
             max-width: 100%;
             margin-left: auto;
             margin-right: auto;
             text-align: center;
             position: relative;
-            background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
+            background: #ffffff;
             border-radius: 0;
         }
 
@@ -146,13 +148,23 @@
 
         .hero-photo {
             width: 100%;
-            max-width: 1200px;
-            height: 400px;
-            margin: 3rem auto 0;
+            max-width: 100%;
+            height: 600px;
+            margin: 0;
             position: relative;
-            border-radius: 12px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(139, 40, 80, 0.3);
+            box-shadow: none;
+        }
+
+        .hero-photo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.1) 50%, rgba(0, 0, 0, 0.4) 100%);
+            z-index: 1;
         }
 
         .hero-photo img {
@@ -171,9 +183,13 @@
             letter-spacing: -1.5px;
             color: white;
             text-transform: uppercase;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            position: relative;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+            position: absolute;
             z-index: 2;
+            top: 35%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
         }
 
         .hero .subtitle {
@@ -181,19 +197,28 @@
             color: rgba(255, 255, 255, 0.95);
             margin-bottom: 0.5rem;
             font-weight: 400;
-            position: relative;
+            position: absolute;
             z-index: 2;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
         }
 
         .hero .tagline {
             font-size: 1.4rem;
             color: var(--accent-gold);
-            margin-bottom: 2rem;
+            margin-bottom: 0;
             font-weight: 700;
             letter-spacing: 2px;
-            position: relative;
+            position: absolute;
             z-index: 2;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100%;
+            text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.5);
         }
 
         /* Stats Section with Navy Theme */
@@ -210,10 +235,11 @@
             text-align: center;
             padding: 2rem 1.5rem;
             border-radius: 12px;
-            background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
-            color: white;
-            box-shadow: 0 10px 30px rgba(139, 40, 80, 0.2);
-            transition: transform 0.3s, box-shadow 0.3s;
+            background: white;
+            border: 3px solid var(--accent-red);
+            color: var(--text-dark);
+            box-shadow: 0 5px 20px rgba(139, 40, 80, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s, border-color 0.3s;
             position: relative;
             overflow: hidden;
         }
@@ -225,7 +251,7 @@
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            background: linear-gradient(135deg, transparent, rgba(136, 33, 78, 0.05), transparent);
             transition: left 0.5s;
         }
 
@@ -235,22 +261,27 @@
 
         .stat-item:hover {
             transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(10, 36, 99, 0.3);
+            box-shadow: 0 15px 40px rgba(139, 40, 80, 0.2);
+            border-color: var(--accent-gold);
         }
 
         .stat-number {
             font-size: 2.8rem;
             font-weight: 800;
-            color: var(--accent-gold);
+            color: var(--accent-red);
             display: block;
             margin-bottom: 0.5rem;
+            text-align: center;
         }
 
         .stat-label {
             font-size: 0.95rem;
-            color: rgba(255, 255, 255, 0.9);
+            color: var(--text-gray);
             font-weight: 500;
+            text-align: center;
         }
+
+    
 
         /* Section Styles */
         section {
@@ -627,12 +658,25 @@
             }
 
             .hero {
-                padding: 6rem 2rem;
+                padding: 0;
                 margin-top: 90px;
             }
 
             .hero h1 {
                 font-size: 3rem;
+                top: 35%;
+            }
+
+            .hero .subtitle {
+                top: 50%;
+            }
+
+            .hero .tagline {
+                top: 60%;
+            }
+
+            .hero-photo {
+                height: 500px;
             }
 
             .stats {
@@ -726,31 +770,34 @@
             /* Hero Section */
             .hero {
                 margin-top: 77px;
-                padding: 3rem 1.5rem 2rem;
+                padding: 0;
             }
 
             .hero h1 {
                 font-size: 2.5rem;
                 letter-spacing: -1px;
+                top: 35%;
             }
 
             .hero .subtitle {
                 font-size: 1rem;
                 line-height: 1.5;
+                top: 50%;
             }
 
             .hero .tagline {
                 font-size: 1.2rem;
                 letter-spacing: 1.5px;
-                margin-bottom: 1.5rem;
+                margin-bottom: 0;
+                top: 60%;
             }
 
             .hero-photo {
                 width: 100%;
                 max-width: 100%;
-                height: 250px;
-                border-radius: 12px;
-                margin: 2rem auto 0;
+                height: 400px;
+                border-radius: 0;
+                margin: 0;
             }
 
             .hero-photo img {
@@ -774,6 +821,10 @@
 
             .stat-number {
                 font-size: 2rem;
+            }
+
+            .stat-item:last-child .stat-number {
+                font-size: 1.7rem;
             }
 
             /* Sections */
@@ -937,27 +988,30 @@
 
             /* Hero */
             .hero {
-                padding: 2.5rem 1rem 1.5rem;
+                padding: 0;
             }
 
             .hero h1 {
                 font-size: 2rem;
+                top: 35%;
             }
 
             .hero .subtitle {
                 font-size: 0.9rem;
+                top: 50%;
             }
 
             .hero .tagline {
                 font-size: 1rem;
                 letter-spacing: 1px;
-                margin-bottom: 1rem;
+                margin-bottom: 0;
+                top: 60%;
             }
 
             .hero-photo {
                 max-width: 100%;
-                height: 200px;
-                margin: 1.5rem auto 0;
+                height: 300px;
+                margin: 0;
             }
 
             /* Stats - Single Column on Very Small Screens */
@@ -968,6 +1022,10 @@
 
             .stat-number {
                 font-size: 2rem;
+            }
+
+            .stat-item:last-child .stat-number {
+                font-size: 1.6rem;
             }
 
             .stat-label {
