@@ -10,8 +10,8 @@
             --navy-light: #1e3a8a;
             --accent-gold: #fbbf24;
             --accent-cyan: #06b6d4;
-            --accent-red: #8b2850;
-            --accent-red-light: #a03060;
+            --accent-red: #88214E;
+            --accent-red-light: #88214E;
             --text-dark: #1a1a1a;
             --text-gray: #666;
             --bg-light: #f8fafc;
@@ -92,7 +92,7 @@
         .mobile-menu-toggle span {
             width: 25px;
             height: 3px;
-            background: var(--navy-primary);
+            background: var(--accent-red);
             margin: 3px 0;
             transition: all 0.3s ease;
             border-radius: 3px;
@@ -135,7 +135,7 @@
             margin-right: auto;
             text-align: center;
             position: relative;
-            background: var(--navy-primary);
+            background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
             border-radius: 0;
         }
 
@@ -210,9 +210,9 @@
             text-align: center;
             padding: 2rem 1.5rem;
             border-radius: 12px;
-            background: linear-gradient(135deg, var(--navy-primary) 0%, var(--navy-light) 100%);
+            background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
             color: white;
-            box-shadow: 0 10px 30px rgba(10, 36, 99, 0.2);
+            box-shadow: 0 10px 30px rgba(139, 40, 80, 0.2);
             transition: transform 0.3s, box-shadow 0.3s;
             position: relative;
             overflow: hidden;
@@ -328,7 +328,14 @@
         .member-photo img {
             width: 100%;
             height: 100%;
-            object-fit: cover;     /* crop image nicely */
+            object-fit: cover;
+            object-position: center;
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+            -webkit-font-smoothing: subpixel-antialiased;
         }
 
         .member-name {
@@ -444,7 +451,7 @@
 
         /* Footer */
         footer {
-            background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy-primary) 100%);
+            background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
             color: #ffffff;
             padding: 2.5rem 2rem;
             margin-top: 4rem;
