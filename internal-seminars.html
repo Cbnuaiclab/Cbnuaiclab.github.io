@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Internal Seminars - AICLab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/profile.css">
+    <style>
+        .seminar-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: white;
+            border: 3px solid var(--accent-red);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(139, 40, 80, 0.15);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--accent-red);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .seminar-table-wrapper {
+            background: white;
+            border: 3px solid var(--accent-red);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(139, 40, 80, 0.15);
+            overflow-x: auto;
+        }
+
+        .seminar-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        .seminar-table thead {
+            background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
+            color: white;
+        }
+
+        .seminar-table thead th {
+            padding: 1.2rem 1rem;
+            text-align: left;
+            font-weight: 700;
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            border-bottom: 3px solid var(--accent-gold);
+        }
+
+        .seminar-table tbody tr {
+            border-bottom: 1px solid rgba(139, 40, 80, 0.1);
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .seminar-table tbody tr:hover {
+            background-color: rgba(139, 40, 80, 0.05);
+            transform: translateX(5px);
+        }
+
+        .seminar-table tbody tr:last-child {
+            border-bottom: none;
+        }
+
+        .seminar-table tbody td {
+            padding: 1.2rem 1rem;
+            color: var(--text-dark);
+            vertical-align: top;
+        }
+
+        .seminar-table tbody td:first-child {
+            font-weight: 700;
+            color: var(--accent-red);
+            text-align: center;
+            width: 80px;
+        }
+
+        .topic-cell {
+            font-weight: 600;
+            color: var(--accent-red);
+        }
+
+        .subtopic-cell {
+            color: var(--text-gray);
+            line-height: 1.6;
+        }
+
+        .materials-cell {
+            min-width: 150px;
+        }
+
+        .materials-cell a {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            background: var(--accent-red);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 0.2rem;
+        }
+
+        .materials-cell a:hover {
+            background: var(--accent-gold);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(139, 40, 80, 0.3);
+        }
+
+        .materials-cell a i {
+            margin-right: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .seminar-container {
+                padding: 1rem;
+            }
+
+            .page-header {
+                padding: 2rem 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .seminar-table-wrapper {
+                padding: 1rem;
+                border-radius: 12px;
+            }
+
+            .seminar-table {
+                font-size: 0.9rem;
+            }
+
+            .seminar-table thead th,
+            .seminar-table tbody td {
+                padding: 0.8rem 0.5rem;
+            }
+
+            /* Stack table on mobile */
+            .seminar-table thead {
+                display: none;
+            }
+
+            .seminar-table tbody tr {
+                display: block;
+                margin-bottom: 1.5rem;
+                border: 2px solid var(--accent-red);
+                border-radius: 12px;
+                padding: 1rem;
+            }
+
+            .seminar-table tbody td {
+                display: block;
+                text-align: left;
+                padding: 0.5rem 0;
+                border: none;
+            }
+
+            .seminar-table tbody td:first-child {
+                font-size: 1.5rem;
+                text-align: left;
+                margin-bottom: 0.5rem;
+            }
+
+            .seminar-table tbody td:before {
+                content: attr(data-label);
+                font-weight: 700;
+                color: var(--accent-red);
+                display: block;
+                margin-bottom: 0.3rem;
+            }
+
+            .seminar-table tbody td:first-child:before {
+                content: "No.";
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo"><span></span></a>
+            <a href="index.html#activities" class="back-link"><i class="fas fa-arrow-left"></i> Back to Activities</a>
+        </nav>
+    </header>
+
+    <div class="seminar-container">
+        <div class="page-header">
+            <h1><i class="fas fa-chalkboard-teacher"></i> Internal Seminars</h1>
+            <p>Regular knowledge sharing sessions among lab members - Weekly presentations on latest research, methodologies, and industry trends</p>
+        </div>
+
+        <div class="seminar-table-wrapper">
+            <table class="seminar-table">
+                <thead>
+                    <tr>
+                        <th>No</th>
+                        <th>Topic</th>
+                        <th>Sub Topic</th>
+                        <th>Materials</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Sample row 1 - Replace with actual data -->
+                    <tr>
+                        <td>1</td>
+                        <td class="topic-cell" data-label="Topic">Introduction to Large Language Models</td>
+                        <td class="subtopic-cell" data-label="Sub Topic">Overview of GPT architecture, Transformer models, and their applications in natural language processing</td>
+                        <td class="materials-cell" data-label="Materials">
+                            <a href="#"><i class="fas fa-file-pdf"></i> Slides</a>
+                            <a href="#"><i class="fas fa-code"></i> Code</a>
+                        </td>
+                    </tr>
+                    <!-- Sample row 2 - Replace with actual data -->
+                    <tr>
+                        <td>2</td>
+                        <td class="topic-cell" data-label="Topic">Computer Vision Fundamentals</td>
+                        <td class="subtopic-cell" data-label="Sub Topic">Image processing techniques, CNNs, object detection, and segmentation methods</td>
+                        <td class="materials-cell" data-label="Materials">
+                            <a href="#"><i class="fas fa-file-pdf"></i> Slides</a>
+                            <a href="#"><i class="fas fa-video"></i> Recording</a>
+                        </td>
+                    </tr>
+                    <!-- Sample row 3 - Replace with actual data -->
+                    <tr>
+                        <td>3</td>
+                        <td class="topic-cell" data-label="Topic">Deep Learning Optimization</td>
+                        <td class="subtopic-cell" data-label="Sub Topic">Advanced optimization techniques, learning rate scheduling, and regularization strategies</td>
+                        <td class="materials-cell" data-label="Materials">
+                            <a href="#"><i class="fas fa-file-pdf"></i> Slides</a>
+                        </td>
+                    </tr>
+                    <!-- Sample row 4 - Replace with actual data -->
+                    <tr>
+                        <td>4</td>
+                        <td class="topic-cell" data-label="Topic">Big Data Analytics</td>
+                        <td class="subtopic-cell" data-label="Sub Topic">Data preprocessing, feature engineering, and scalable machine learning frameworks</td>
+                        <td class="materials-cell" data-label="Materials">
+                            <a href="#"><i class="fas fa-file-pdf"></i> Slides</a>
+                            <a href="#"><i class="fas fa-code"></i> Code</a>
+                        </td>
+                    </tr>
+                    <!-- Sample row 5 - Replace with actual data -->
+                    <tr>
+                        <td>5</td>
+                        <td class="topic-cell" data-label="Topic">Vision-Language Models</td>
+                        <td class="subtopic-cell" data-label="Sub Topic">Multimodal learning, CLIP, BLIP, and applications in image-text understanding</td>
+                        <td class="materials-cell" data-label="Materials">
+                            <a href="#"><i class="fas fa-file-pdf"></i> Slides</a>
+                            <a href="#"><i class="fas fa-link"></i> Paper</a>
+                        </td>
+                    </tr>
+                    <!-- Add more rows as needed from your Google Sheets data -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <footer style="margin-top: 4rem; padding: 2rem; text-align: center; background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%); color: white;">
+        <p>© 2025 AICLab - AI Convergence Lab. All rights reserved.</p>
+    </footer>
+</body>
+
+</html>
