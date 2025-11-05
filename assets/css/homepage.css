@@ -369,6 +369,42 @@
             -webkit-font-smoothing: subpixel-antialiased;
         }
 
+        /* White background for scaled-down profile pictures */
+        .member-photo:has(img[src*="chhun_rotanakkosal"]),
+        .member-photo:has(img[src*="pov_phannet"]) {
+            background: white !important;
+        }
+
+        /* Specific adjustments for zoomed-in profile pictures */
+        .member-photo img[src*="chhun_rotanakkosal"],
+        .member-photo img[src*="pov_phannet"] {
+            object-fit: cover;
+            object-position: center 20%;
+            transform: scale(0.85);
+        }
+
+        .member-photo img[src*="vorn_naro"] {
+            object-fit: contain;
+            background: white;
+        }
+
+        .member-photo img[src*="chan_sokheang"] {
+            object-fit: cover;
+            object-position: center;
+            filter: brightness(1.1) contrast(1.05);
+        }
+
+        .member-photo img[src*="chhor_ratanaktepi"] {
+            object-fit: cover;
+            object-position: center 30%;
+        }
+
+        .member-photo img[src*="kong_vungsovanreach"] {
+            object-fit: cover;
+            object-position: center;
+            transform: scale(1.15);
+        }
+
         .member-name {
             font-size: 1.1rem;
             font-weight: 700;
@@ -481,11 +517,11 @@
         }
 
         /* Footer */
+        /* Footer Styles */
         footer {
             background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
             color: #ffffff;
-            padding: 2.5rem 2rem;
-            margin-top: 4rem;
+            margin-top: 6rem;
             position: relative;
         }
 
@@ -499,45 +535,162 @@
             background: linear-gradient(90deg, var(--accent-red), var(--accent-gold));
         }
 
+        .footer-main {
+            padding: 4rem 2rem 2rem;
+        }
+
         .footer-content {
             max-width: 1200px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
         }
 
-        .footer-left {
-        flex: 1 1 300px;
-        text-align: left;
-        }
-        .footer-center {
-        flex: 1 1 200px;
-        text-align: center;
-        }
-        .footer-right {
-        flex: 1 1 300px;
-        text-align: right;
-        }
-
-        footer h3 {
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+        .footer-section h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
             font-weight: 700;
+            color: var(--accent-gold);
+            position: relative;
+            padding-bottom: 0.5rem;
         }
 
-        footer p {
-            color: rgba(255, 255, 255, 0.85);
-            font-size: 0.85rem;
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: var(--accent-red);
+            border-radius: 2px;
+        }
+
+        /* Footer About Section */
+        .footer-about .footer-logo {
+            width: 100px;
+            height: auto;
+            margin-bottom: 1rem;
+        }
+
+        .footer-tagline {
+            color: var(--accent-white);
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .footer-description {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9rem;
             line-height: 1.6;
         }
 
-        footer strong {
+        /* Footer Links Section */
+        .footer-menu {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-menu li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-menu a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .footer-menu a i {
+            font-size: 0.7rem;
+            transition: transform 0.3s;
+        }
+
+        .footer-menu a:hover {
+            color: var(--accent-gold);
+            transform: translateX(5px);
+        }
+
+        .footer-menu a:hover i {
+            transform: translateX(3px);
+        }
+
+        /* Footer Contact Section */
+        .contact-item {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+            align-items: flex-start;
+        }
+
+        .contact-item i {
+            color: var(--accent-white);
+            font-size: 1.2rem;
+            margin-top: 0.2rem;
+            min-width: 20px;
+        }
+
+        .contact-item strong {
+            display: block;
+            color: var(--accent-white);
+            font-size: 0.85rem;
+            margin-bottom: 0.3rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .contact-item p {
+            color: rgba(255, 255, 255, 0.75);
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .contact-item a {
+            color: rgba(255, 255, 255, 0.75);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
             color: var(--accent-gold);
         }
 
-        .footer-logo {
-            width: 80px;
-            height: auto;
-            display: block;
-            margin-bottom: 0.8rem;
+        /* Footer Bottom */
+        .footer-bottom {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 1.5rem 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-bottom-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-bottom p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 0.85rem;
+            margin: 0;
+        }
+
+        .footer-affiliation {
+            color: rgba(255, 255, 255, 0.5);
+            font-style: italic;
         }
 
         /* Philosophy Section with Core Values */
@@ -1129,26 +1282,19 @@
             }
 
             /* Footer */
-            footer {
-                padding: 2rem 1.5rem;
-                margin-top: 3rem;
+            /* Footer - Mobile */
+            .footer-main {
+                padding: 3rem 1.5rem 2rem;
             }
 
             .footer-content {
-                display: flex;
-                flex-direction: column;
-                gap: 1.5rem;
+                grid-template-columns: 1fr;
+                gap: 2.5rem;
             }
 
-            .footer-left,
-            .footer-center,
-            .footer-right {
-                text-align: center !important;
-            }
-
-            footer h3 {
-                font-size: 1.1rem;
-                margin-bottom: 0.75rem;
+            .footer-section h3 {
+                font-size: 1.2rem;
+                margin-bottom: 1.2rem;
             }
 
             footer p {
@@ -1341,20 +1487,27 @@
                 padding: 1.2rem;
             }
 
-            /* Footer */
-            footer {
-                padding: 1.5rem 1rem;
-                margin-top: 2.5rem;
+            /* Footer - Small Mobile */
+            .footer-main {
+                padding: 2.5rem 1rem 1.5rem;
             }
 
-            footer h3 {
-                font-size: 1rem;
-                margin-bottom: 0.5rem;
+            .footer-bottom-content {
+                flex-direction: column;
+                text-align: center;
+                gap: 0.5rem;
             }
 
-            footer p {
-                font-size: 0.75rem;
-                line-height: 1.4;
+            .footer-section h3 {
+                font-size: 1.1rem;
+            }
+
+            .footer-about .footer-logo {
+                width: 80px;
+            }
+
+            .contact-item {
+                font-size: 0.85rem;
             }
         }
 

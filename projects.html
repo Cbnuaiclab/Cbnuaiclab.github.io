@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Research Projects - AICLab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/homepage.css">
+    <style>
+        body {
+            padding-top: 80px;
+        }
+
+        .projects-header {
+            text-align: center;
+            max-width: 1200px;
+            margin: 3rem auto 4rem;
+            padding: 0 2rem;
+        }
+
+        .projects-header h1 {
+            font-size: 3rem;
+            color: var(--accent-red);
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .projects-header p {
+            font-size: 1.2rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto 6rem;
+            padding: 0 2rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent-red);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 3rem;
+            transition: color 0.3s;
+        }
+
+        .back-link:hover {
+            color: var(--accent-gold);
+        }
+
+        .back-link i {
+            transition: transform 0.3s;
+        }
+
+        .back-link:hover i {
+            transform: translateX(-5px);
+        }
+
+        .project-category {
+            margin-bottom: 4rem;
+        }
+
+        .category-title {
+            font-size: 2rem;
+            color: var(--accent-red);
+            font-weight: 700;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 3px solid var(--accent-red);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .category-title i {
+            font-size: 1.5rem;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo"><span></span></a>
+            <div>
+                <a href="index.html#team">TEAM</a>
+                <a href="index.html#publications">PUBLICATIONS</a>
+                <a href="index.html#projects">PROJECTS</a>
+                <a href="index.html#activities">ACTIVITIES</a>
+                <a href="index.html#contact">CONTACT</a>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="projects-header">
+            <h1><i class="fas fa-microscope"></i> Research Projects</h1>
+            <p>Innovative AI research initiatives bridging academic excellence with real-world applications</p>
+        </div>
+
+        <div class="projects-container">
+            <a href="index.html#projects" class="back-link">
+                <i class="fas fa-arrow-left"></i> Back to Home
+            </a>
+
+            <!-- Active Projects -->
+            <div class="project-category">
+                <h2 class="category-title">
+                    <i class="fas fa-rocket"></i>
+                    Active Projects
+                </h2>
+                <div class="research-grid">
+                    <div class="research-card">
+                        <div class="research-icon"><i class="fas fa-eye"></i></div>
+                        <h3>Arm Robot</h3>
+                        <p>The Arm Robot Project aims to develop an intelligent bin-picking system that enables robots to detect, localize, and grasp objects in cluttered, unstructured environments. By combining advanced vision techniques such as instance segmentation, graph-transformer reasoning, depth refinement, shape completion, and 6D pose estimation, the project seeks to overcome challenges like occlusion and sensor noise.</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 2px solid rgba(139, 40, 80, 0.1);">
+                            <p style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 0.5rem;">
+                                <strong style="color: var(--accent-red);">Key Technologies:</strong> Instance Segmentation, Graph Transformers, 6D Pose Estimation
+                            </p>
+                            <p style="font-size: 0.9rem; color: var(--text-gray);">
+                                <strong style="color: var(--accent-red);">Status:</strong> In Progress
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="research-card">
+                        <div class="research-icon"><i class="fas fa-lightbulb"></i></div>
+                        <h3>COCOON AI</h3>
+                        <p>Integrating Large Language Models (LLMs) with visual data for multimodal AI applications. This project focuses on developing advanced systems that can understand and process both text and images, enabling natural language processing combined with vision-language understanding for comprehensive AI solutions.</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 2px solid rgba(139, 40, 80, 0.1);">
+                            <p style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 0.5rem;">
+                                <strong style="color: var(--accent-red);">Key Technologies:</strong> LLMs, Vision-Language Models, Multimodal AI
+                            </p>
+                            <p style="font-size: 0.9rem; color: var(--text-gray);">
+                                <strong style="color: var(--accent-red);">Status:</strong> In Progress
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="research-card">
+                        <div class="research-icon"><i class="fas fa-language"></i></div>
+                        <h3>Low-Resource Language NLP</h3>
+                        <p>Advancing natural language processing capabilities for low-resource languages, with a focus on Southeast Asian languages. This includes work on tokenization, question answering systems, and language model fine-tuning to bridge the digital divide for underrepresented languages.</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 2px solid rgba(139, 40, 80, 0.1);">
+                            <p style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 0.5rem;">
+                                <strong style="color: var(--accent-red);">Key Technologies:</strong> NLP, Tokenization, Fine-tuning, Question Answering
+                            </p>
+                            <p style="font-size: 0.9rem; color: var(--text-gray);">
+                                <strong style="color: var(--accent-red);">Status:</strong> In Progress
+                            </p>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Future Directions -->
+            <div class="project-category">
+                <h2 class="category-title">
+                    <i class="fas fa-compass"></i>
+                    Future Directions
+                </h2>
+                <div class="research-grid">
+                    <div class="research-card">
+                        <div class="research-icon"><i class="fas fa-atom"></i></div>
+                        <h3>Quantum Machine Learning</h3>
+                        <p>Exploring the intersection of quantum computing and machine learning to develop next-generation AI algorithms that leverage quantum computational advantages for solving complex optimization and pattern recognition problems.</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 2px solid rgba(139, 40, 80, 0.1);">
+                            <p style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 0.5rem;">
+                                <strong style="color: var(--accent-red);">Key Technologies:</strong> Quantum Computing, Machine Learning
+                            </p>
+                            <p style="font-size: 0.9rem; color: var(--text-gray);">
+                                <strong style="color: var(--accent-red);">Status:</strong> Research Phase
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="research-card">
+                        <div class="research-icon"><i class="fas fa-shield-alt"></i></div>
+                        <h3>AI Security & Privacy</h3>
+                        <p>Investigating security challenges in AI systems and developing privacy-preserving machine learning techniques. Focus areas include adversarial robustness, federated learning, and secure multi-party computation for sensitive data applications.</p>
+                        <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 2px solid rgba(139, 40, 80, 0.1);">
+                            <p style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 0.5rem;">
+                                <strong style="color: var(--accent-red);">Key Technologies:</strong> Cybersecurity, Privacy-Preserving ML, Federated Learning
+                            </p>
+                            <p style="font-size: 0.9rem; color: var(--text-gray);">
+                                <strong style="color: var(--accent-red);">Status:</strong> Planning
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <div class="footer-main">
+            <div class="footer-content">
+                <div class="footer-section footer-about">
+                    <img src="assets/img/logo/aiclab_logo_red_short.PNG" alt="AICLab Logo" class="footer-logo">
+                    <h3>AI Convergence Lab</h3>
+                    <p class="footer-tagline">Pioneering Applied AI and Computer Vision Research</p>
+                    <p class="footer-description">
+                        Bridging academic excellence with industry needs through innovative AI solutions and collaborative research.
+                    </p>
+                </div>
+
+                <div class="footer-section footer-contact">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <a href="mailto:cbnuaiclab@gmail.com">cbnuaiclab@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Location</strong>
+                            <p>Room N13-216, Chungbuk National University<br>
+                            Chungdae-Ro 1, Seowon-Gu<br>
+                            Cheongju, Chungbuk, South Korea</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; 2025 AICLab - AI Convergence Lab. All rights reserved.</p>
+                <p class="footer-affiliation">Chungbuk National University</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

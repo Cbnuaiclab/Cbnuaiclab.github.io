@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Team Building Activities - AICLab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/profile.css">
+    <style>
+        .gallery-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .page-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 3rem 2rem;
+            background: white;
+            border: 3px solid var(--accent-red);
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(139, 40, 80, 0.15);
+        }
+
+        .page-header h1 {
+            font-size: 2.5rem;
+            color: var(--accent-red);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .page-header p {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* Activity Cards Grid */
+        .activities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .activity-card {
+            background: white;
+            border: 3px solid var(--accent-red);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(139, 40, 80, 0.15);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .activity-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(139, 40, 80, 0.25);
+            border-color: var(--accent-gold);
+        }
+
+        .activity-image {
+            width: 100%;
+            height: 300px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .activity-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .activity-card:hover .activity-image img {
+            transform: scale(1.1);
+        }
+
+        .activity-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(139, 40, 80, 0.1) 100%);
+        }
+
+        .activity-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .activity-content {
+            padding: 2rem;
+        }
+
+        .activity-content h2 {
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            margin-bottom: 1rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+
+        .activity-content p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-size: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .activity-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1.5rem;
+            border-bottom: 2px solid rgba(139, 40, 80, 0.1);
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+        }
+
+        .stat-item i {
+            color: var(--accent-red);
+            font-size: 1.1rem;
+        }
+
+        .view-gallery-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+
+        .activity-card:hover .view-gallery-btn {
+            background: var(--accent-gold);
+            transform: translateX(5px);
+        }
+
+        /* Gallery Modal */
+        .gallery-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10000;
+            overflow-y: auto;
+        }
+
+        .gallery-modal.active {
+            display: block;
+        }
+
+        .gallery-modal-content {
+            max-width: 1400px;
+            margin: 2rem auto;
+            padding: 2rem;
+            position: relative;
+        }
+
+        .gallery-close {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            background: var(--accent-red);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10001;
+        }
+
+        .gallery-close:hover {
+            background: var(--accent-gold);
+            transform: rotate(90deg);
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: white;
+            border: 3px solid var(--accent-red);
+            border-radius: 20px;
+        }
+
+        .gallery-header h2 {
+            font-size: 2rem;
+            color: var(--accent-red);
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.8rem;
+        }
+
+        .gallery-date {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
+            color: white;
+            padding: 0.5rem 1.2rem;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            margin-top: 1rem;
+        }
+
+        .gallery-description {
+            color: var(--text-gray);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-top: 1rem;
+        }
+
+        /* Photo Grid */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .photo-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 12px;
+            border: 3px solid var(--accent-red);
+            background: white;
+            box-shadow: 0 5px 20px rgba(139, 40, 80, 0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .photo-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(139, 40, 80, 0.25);
+            border-color: var(--accent-gold);
+        }
+
+        .photo-wrapper {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .photo-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .photo-item:hover .photo-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .photo-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(136, 33, 78, 0.9) 0%, transparent 100%);
+            color: white;
+            padding: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .photo-item:hover .photo-overlay {
+            opacity: 1;
+        }
+
+        .photo-overlay i {
+            font-size: 1.5rem;
+            display: block;
+            text-align: center;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            z-index: 10002;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            position: relative;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2.5rem;
+            color: white;
+            cursor: pointer;
+            background: var(--accent-red);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10003;
+        }
+
+        .lightbox-close:hover {
+            background: var(--accent-gold);
+            transform: rotate(90deg);
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3rem;
+            color: white;
+            cursor: pointer;
+            background: var(--accent-red);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+            z-index: 10003;
+        }
+
+        .lightbox-nav:hover {
+            background: var(--accent-gold);
+        }
+
+        .lightbox-prev {
+            left: 20px;
+        }
+
+        .lightbox-next {
+            right: 20px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .gallery-container {
+                padding: 1rem;
+            }
+
+            .page-header {
+                padding: 2rem 1rem;
+            }
+
+            .page-header h1 {
+                font-size: 1.8rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .activities-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .activity-content {
+                padding: 1.5rem;
+            }
+
+            .activity-content h2 {
+                font-size: 1.3rem;
+            }
+
+            .activity-stats {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .gallery-modal-content {
+                padding: 1rem;
+                margin: 1rem;
+            }
+
+            .gallery-header h2 {
+                font-size: 1.5rem;
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+
+            .photo-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+                gap: 1rem;
+            }
+
+            .photo-wrapper {
+                height: 200px;
+            }
+
+            .lightbox-nav {
+                font-size: 2rem;
+                width: 45px;
+                height: 45px;
+            }
+
+            .lightbox-close,
+            .gallery-close {
+                font-size: 2rem;
+                width: 40px;
+                height: 40px;
+                top: 10px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .activities-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .activity-image {
+                height: 250px;
+            }
+
+            .photo-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .photo-wrapper {
+                height: 250px;
+            }
+
+            .page-header h1 {
+                font-size: 1.5rem;
+            }
+
+            .activity-content h2 {
+                font-size: 1.2rem;
+            }
+
+            .lightbox-prev {
+                left: 10px;
+            }
+
+            .lightbox-next {
+                right: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo"><span></span></a>
+            <a href="index.html#activities" class="back-link"><i class="fas fa-arrow-left"></i> Back to Activities</a>
+        </nav>
+    </header>
+
+    <div class="gallery-container">
+        <div class="page-header">
+            <h1><i class="fas fa-users"></i> Team Building Activities</h1>
+            <p>Strengthening bonds and fostering collaboration through memorable team experiences - Building a stronger research community together</p>
+        </div>
+
+        <!-- Activity Cards -->
+        <div class="activities-grid">
+            <!-- Goesan Trail Hike Card -->
+            <div class="activity-card" onclick="openGalleryModal('goesan')">
+                <div class="activity-image">
+                    <div class="activity-badge">
+                        <i class="fas fa-calendar"></i>
+                        October 2025
+                    </div>
+                    <img src="assets/img/activity/goesan_trial_hike/01.jpg" alt="Goesan Trail Hike">
+                </div>
+                <div class="activity-content">
+                    <h2><i class="fas fa-hiking"></i> Hiking at Goesan Trail</h2>
+                    <p>Our team went on a day trip of hiking at the Goesan trail to build our stamina, train our mind and bodies, and re-envision our dream and commitment towards excellence.</p>
+                    <div class="activity-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-images"></i>
+                            <span>8 Photos</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-users"></i>
+                            <span>All Members</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Goesan</span>
+                        </div>
+                    </div>
+                    <div class="view-gallery-btn">
+                        <span>View Gallery</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mungyeong Trip Card -->
+            <div class="activity-card" onclick="openGalleryModal('mungyeong')">
+                <div class="activity-image">
+                    <div class="activity-badge">
+                        <i class="fas fa-calendar"></i>
+                        September 2025
+                    </div>
+                    <img src="assets/img/activity/mungyeong_trip/1.jpg" alt="Mungyeong Trip">
+                </div>
+                <div class="activity-content">
+                    <h2><i class="fas fa-mountain"></i> A Trip to Mungyeong</h2>
+                    <p>Our team went on our first trip together to Mungyeong to collectively and collaboratively set our goals, enjoy the food and nature, and refocus before the starting of the Fall semester at CBNU.</p>
+                    <div class="activity-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-images"></i>
+                            <span>7 Photos</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-users"></i>
+                            <span>Team Bonding</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Mungyeong</span>
+                        </div>
+                    </div>
+                    <div class="view-gallery-btn">
+                        <span>View Gallery</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Modal for Goesan -->
+    <div class="gallery-modal" id="goesan-modal">
+        <span class="gallery-close" onclick="closeGalleryModal('goesan')">×</span>
+        <div class="gallery-modal-content">
+            <div class="gallery-header">
+                <h2><i class="fas fa-hiking"></i> Hiking at Goesan Trail</h2>
+                <span class="gallery-date"><i class="fas fa-calendar"></i> October 2025</span>
+                <p class="gallery-description">Our team went on a day trip of hiking at the Goesan trail to build our stamina, train our mind and bodies, and re-envision our dream and commitment towards excellence. This challenging yet rewarding experience brought us closer together as we tackled the trail and enjoyed the beautiful natural scenery.</p>
+            </div>
+            <div class="photo-grid">
+                <div class="photo-item" onclick="openLightbox('goesan', 0)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/goesan_trial_hike/01.jpg" alt="Goesan Trail Hike 1">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('goesan', 1)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/goesan_trial_hike/02.JPG" alt="Goesan Trail Hike 2">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('goesan', 2)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/goesan_trial_hike/03.jpg" alt="Goesan Trail Hike 3">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('goesan', 3)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/goesan_trial_hike/04.JPG" alt="Goesan Trail Hike 4">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('goesan', 4)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/goesan_trial_hike/05.JPG" alt="Goesan Trail Hike 5">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('goesan', 5)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/goesan_trial_hike/06.JPG" alt="Goesan Trail Hike 6">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('goesan', 6)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/goesan_trial_hike/07.JPG" alt="Goesan Trail Hike 7">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('goesan', 7)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/goesan_trial_hike/08.JPG" alt="Goesan Trail Hike 8">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Modal for Mungyeong -->
+    <div class="gallery-modal" id="mungyeong-modal">
+        <span class="gallery-close" onclick="closeGalleryModal('mungyeong')">×</span>
+        <div class="gallery-modal-content">
+            <div class="gallery-header">
+                <h2><i class="fas fa-mountain"></i> A Trip to Mungyeong</h2>
+                <span class="gallery-date"><i class="fas fa-calendar"></i> September 2025</span>
+                <p class="gallery-description">Our team went on our first trip together to Mungyeong to collectively and collaboratively set our goals, enjoy the food and nature, and refocus before the starting of the Fall semester at CBNU. This memorable outing helped us bond as a team and prepare for the challenges ahead.</p>
+            </div>
+            <div class="photo-grid">
+                <div class="photo-item" onclick="openLightbox('mungyeong', 0)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/mungyeong_trip/1.jpg" alt="Mungyeong Trip 1">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('mungyeong', 1)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/mungyeong_trip/2.jpg" alt="Mungyeong Trip 2">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('mungyeong', 2)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/mungyeong_trip/3.jpg" alt="Mungyeong Trip 3">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('mungyeong', 3)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/mungyeong_trip/4.jpg" alt="Mungyeong Trip 4">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('mungyeong', 4)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/mungyeong_trip/5.jpg" alt="Mungyeong Trip 5">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('mungyeong', 5)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/mungyeong_trip/6.jpg" alt="Mungyeong Trip 6">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('mungyeong', 6)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/mungyeong_trip/7.JPG" alt="Mungyeong Trip 7">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+        <span class="lightbox-close" onclick="closeLightbox(event)">×</span>
+        <span class="lightbox-nav lightbox-prev" onclick="changeImage(-1, event)">‹</span>
+        <div class="lightbox-content">
+            <img id="lightbox-img" src="" alt="Gallery Image">
+        </div>
+        <span class="lightbox-nav lightbox-next" onclick="changeImage(1, event)">›</span>
+    </div>
+
+    <footer style="margin-top: 4rem; padding: 2rem; text-align: center; background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%); color: white;">
+        <p>© 2025 AICLab - AI Convergence Lab. All rights reserved.</p>
+    </footer>
+
+    <script>
+        const galleries = {
+            goesan: [
+                'assets/img/activity/goesan_trial_hike/01.jpg',
+                'assets/img/activity/goesan_trial_hike/02.JPG',
+                'assets/img/activity/goesan_trial_hike/03.jpg',
+                'assets/img/activity/goesan_trial_hike/04.JPG',
+                'assets/img/activity/goesan_trial_hike/05.JPG',
+                'assets/img/activity/goesan_trial_hike/06.JPG',
+                'assets/img/activity/goesan_trial_hike/07.JPG',
+                'assets/img/activity/goesan_trial_hike/08.JPG'
+            ],
+            mungyeong: [
+                'assets/img/activity/mungyeong_trip/1.jpg',
+                'assets/img/activity/mungyeong_trip/2.jpg',
+                'assets/img/activity/mungyeong_trip/3.jpg',
+                'assets/img/activity/mungyeong_trip/4.jpg',
+                'assets/img/activity/mungyeong_trip/5.jpg',
+                'assets/img/activity/mungyeong_trip/6.jpg',
+                'assets/img/activity/mungyeong_trip/7.JPG'
+            ]
+        };
+
+        let currentGallery = '';
+        let currentIndex = 0;
+
+        // Open Gallery Modal
+        function openGalleryModal(gallery) {
+            document.getElementById(gallery + '-modal').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        // Close Gallery Modal
+        function closeGalleryModal(gallery) {
+            document.getElementById(gallery + '-modal').classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Open Lightbox
+        function openLightbox(gallery, index) {
+            currentGallery = gallery;
+            currentIndex = index;
+            document.getElementById('lightbox').classList.add('active');
+            document.getElementById('lightbox-img').src = galleries[gallery][index];
+        }
+
+        // Close Lightbox
+        function closeLightbox(event) {
+            if (event.target.id === 'lightbox' || event.target.classList.contains('lightbox-close')) {
+                document.getElementById('lightbox').classList.remove('active');
+            }
+        }
+
+        // Change Image in Lightbox
+        function changeImage(direction, event) {
+            event.stopPropagation();
+            currentIndex += direction;
+            const galleryLength = galleries[currentGallery].length;
+
+            if (currentIndex < 0) {
+                currentIndex = galleryLength - 1;
+            } else if (currentIndex >= galleryLength) {
+                currentIndex = 0;
+            }
+
+            document.getElementById('lightbox-img').src = galleries[currentGallery][currentIndex];
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const lightbox = document.getElementById('lightbox');
+            if (lightbox.classList.contains('active')) {
+                if (event.key === 'Escape') {
+                    lightbox.classList.remove('active');
+                } else if (event.key === 'ArrowLeft') {
+                    changeImage(-1, event);
+                } else if (event.key === 'ArrowRight') {
+                    changeImage(1, event);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
