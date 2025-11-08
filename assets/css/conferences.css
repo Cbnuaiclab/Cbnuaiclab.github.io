@@ -1,0 +1,263 @@
+/* Conferences Page Specific Styles */
+
+.gallery-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Conference Section */
+.conference-section {
+    margin-bottom: 4rem;
+}
+
+.section-title {
+    font-size: 2rem;
+    color: var(--accent-red);
+    font-weight: 700;
+    margin-bottom: 2rem;
+    padding-bottom: 1rem;
+    border-bottom: 3px solid var(--accent-red);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.section-title i {
+    font-size: 1.5rem;
+}
+
+/* Conference Cards Grid */
+.conferences-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(450px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.conference-card {
+    background: white;
+    border: 3px solid var(--accent-red);
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(139, 40, 80, 0.15);
+    transition: all 0.3s ease;
+}
+
+.conference-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 40px rgba(139, 40, 80, 0.25);
+    border-color: var(--accent-gold);
+}
+
+/* Conference Image */
+.conference-image {
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+    position: relative;
+}
+
+.conference-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.conference-card:hover .conference-image img {
+    transform: scale(1.1);
+}
+
+.conference-image::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(to bottom, transparent 0%, rgba(139, 40, 80, 0.1) 100%);
+}
+
+/* Conference Badges */
+.conference-badge {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Conference Badge Types */
+.conference-badge.international {
+    background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+}
+
+.conference-badge.domestic {
+    background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
+}
+
+/* Conference Content */
+.conference-content {
+    padding: 2rem;
+}
+
+.conference-content h3 {
+    font-size: 1.4rem;
+    color: var(--accent-red);
+    margin-bottom: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    line-height: 1.4;
+}
+
+.conference-content h3 i {
+    margin-top: 0.2rem;
+    flex-shrink: 0;
+}
+
+.conference-info {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid rgba(139, 40, 80, 0.1);
+}
+
+.info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: var(--text-gray);
+    font-size: 0.95rem;
+}
+
+.info-item i {
+    color: var(--accent-red);
+    font-size: 1rem;
+    width: 20px;
+    text-align: center;
+}
+
+.conference-description {
+    color: var(--text-gray);
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Conference Links */
+.conference-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+}
+
+.link-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+}
+
+.link-btn i {
+    font-size: 1rem;
+}
+
+.slides-btn {
+    background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+    color: white;
+}
+
+.slides-btn:hover {
+    background: var(--accent-gold);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(217, 119, 6, 0.3);
+}
+
+.paper-btn {
+    background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
+    color: white;
+}
+
+.paper-btn:hover {
+    background: #a21e50;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 40, 80, 0.3);
+}
+
+.website-btn {
+    background: white;
+    color: var(--accent-red);
+    border: 2px solid var(--accent-red);
+}
+
+.website-btn:hover {
+    background: var(--accent-red);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(139, 40, 80, 0.3);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .gallery-container {
+        padding: 1rem;
+    }
+
+    .conferences-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .conference-content {
+        padding: 1.5rem;
+    }
+
+    .conference-content h3 {
+        font-size: 1.2rem;
+    }
+
+    .conference-links {
+        flex-direction: column;
+    }
+
+    .link-btn {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .section-title {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .conference-image {
+        height: 200px;
+    }
+
+    .conference-content h3 {
+        font-size: 1.1rem;
+    }
+
+    .info-item {
+        font-size: 0.9rem;
+    }
+}
