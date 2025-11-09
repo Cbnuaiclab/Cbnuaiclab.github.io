@@ -6,6 +6,7 @@
     max-width: 1400px;
     margin: 0 auto;
     padding: 2rem;
+    padding-top: 120px;
 }
 
 /* Page Header */
@@ -40,6 +41,7 @@
     .seminar-container,
     .gallery-container {
         padding: 1rem;
+        padding-top: 100px;
     }
 
     .page-header {
