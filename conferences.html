@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Conference Presentations - AICLab</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="./assets/css/profile.css">
+    <link rel="stylesheet" href="./assets/css/homepage.css">
     <link rel="stylesheet" href="./assets/css/activities-common.css">
     <link rel="stylesheet" href="./assets/css/conferences.css">
 </head>
@@ -14,8 +14,20 @@
 <body>
     <header>
         <nav>
-            <a href="index.html" class="logo"><span></span></a>
-            <a href="index.html#activities" class="back-link"><i class="fas fa-arrow-left"></i> Back to Activities</a>
+            <div class="logo"><span></span></div>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#team">Team</a></li>
+                <li><a href="index.html#publications">Publications</a></li>
+                <li><a href="index.html#projects">Research Projects</a></li>
+                <li><a href="index.html#activities">Member's Activities</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
         </nav>
     </header>
 
@@ -24,6 +36,10 @@
             <h1><i class="fas fa-chalkboard-teacher"></i> Conference Presentations</h1>
             <p>Showcasing our research and innovations at international and domestic conferences - Sharing knowledge and building academic networks worldwide</p>
         </div>
+
+        <a href="index.html#activities" class="back-link">
+            <i class="fas fa-arrow-left"></i> Back to Home
+        </a>
 
         <!-- International Conferences Section -->
         <div class="conference-section">
@@ -148,6 +164,7 @@
         <p>© 2025 AICLab - AI Convergence Lab. All rights reserved.</p>
     </footer>
 
+    <script src="./assets/js/homepage.js"></script>
     <script src="./assets/js/conferences.js"></script>
 </body>
 

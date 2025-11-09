@@ -86,11 +86,12 @@ nav {
 .profile-header {
     text-align: center;
     padding: 3rem;
-    background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%);
-    border-radius: 20px;
-    color: white;
+    background: white;
+    border-radius: 16px;
+    border: 2px solid #e5e5e5;
+    color: var(--text-dark);
     margin-bottom: 3rem;
-    box-shadow: 0 10px 40px rgba(139, 40, 80, 0.3);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
 }
 
 .profile-photo {
@@ -166,14 +167,14 @@ nav {
 
 .profile-header .position {
     font-size: 1.3rem;
-    color: var(--accent-gold);
+    color: var(--accent-red);
     font-weight: 600;
     margin-bottom: 1rem;
 }
 
 .profile-header .expertise {
     font-size: 1.1rem;
-    color: rgba(255, 255, 255, 0.9);
+    color: var(--text-gray);
 }
 
 .profile-section {
@@ -189,8 +190,6 @@ nav {
     color: var(--accent-red);
     font-size: 1.8rem;
     margin-bottom: 1.5rem;
-    padding-bottom: 1rem;
-    border-bottom: 3px solid var(--accent-red);
 }
 
 .profile-section h2 i.fas {
@@ -445,8 +444,6 @@ footer {
     .profile-section h2 {
         font-size: 1.4rem;
         margin-bottom: 1rem;
-        padding-bottom: 0.6rem;
-        border-bottom-width: 2px;
     }
 
     .profile-section p {
