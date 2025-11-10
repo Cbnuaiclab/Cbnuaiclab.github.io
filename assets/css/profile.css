@@ -27,13 +27,17 @@ body {
 header {
     background: #ffffff;
     border-bottom: 2px solid var(--accent-red);
-    padding: 1.5rem 2rem;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
     box-shadow: 0 2px 10px rgba(139, 40, 80, 0.15);
 }
 
 nav {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 1.5rem 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -62,6 +66,66 @@ nav {
     margin-right: 8px;
 }
 
+.logo span {
+    color: var(--accent-cyan);
+    font-weight: 600;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 2.5rem;
+    list-style: none;
+}
+
+.mobile-menu-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 1001;
+}
+
+.mobile-menu-toggle span {
+    width: 25px;
+    height: 3px;
+    background: var(--accent-red);
+    margin: 3px 0;
+    transition: all 0.3s ease;
+    border-radius: 3px;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--text-gray);
+    font-size: 1.05rem;
+    font-weight: 600;
+    transition: color 0.3s;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+nav a:hover {
+    color: var(--accent-red);
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--accent-red);
+    transition: width 0.3s;
+}
+
+nav a:hover::after {
+    width: 100%;
+}
+
 .back-link {
     color: var(--accent-red);
     text-decoration: none;
@@ -79,7 +143,7 @@ nav {
 
 .profile-container {
     max-width: 1000px;
-    margin: 4rem auto;
+    margin: 7rem auto 4rem;
     padding: 0 2rem;
 }
 
@@ -443,16 +507,38 @@ footer::before {
 /* Mobile and Small Tablets */
 @media (max-width: 768px) {
     header {
-        padding: 1rem 1.5rem;
+        padding: 0;
     }
 
     nav {
         flex-direction: row;
         justify-content: space-between;
+        padding: 1rem 1.5rem;
     }
 
     .logo {
         font-size: 1.2rem;
+    }
+
+    .mobile-menu-toggle {
+        display: flex;
+    }
+
+    .nav-menu {
+        position: fixed;
+        top: 80px;
+        left: -100%;
+        width: 100%;
+        flex-direction: column;
+        background: white;
+        padding: 2rem;
+        gap: 1.5rem;
+        transition: left 0.3s ease;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .nav-menu.active {
+        left: 0;
     }
 
     .back-link {
