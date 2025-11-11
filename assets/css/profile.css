@@ -47,6 +47,7 @@ nav {
     font-size: 1.3rem;
     font-weight: 700;
     color: var(--accent-red);
+    letter-spacing: -0.5px;
     text-decoration: none;
     display: flex;
     align-items: center;
@@ -64,6 +65,7 @@ nav {
     background-position: center;
     vertical-align: middle;
     margin-right: 8px;
+    font-size: 1.5rem;
 }
 
 .logo span {
@@ -143,7 +145,7 @@ nav a:hover::after {
 
 .profile-container {
     max-width: 1000px;
-    margin: 7rem auto 4rem;
+    margin: 9rem auto 4rem;
     padding: 0 2rem;
 }
 
@@ -500,7 +502,7 @@ footer::before {
 @media (max-width: 1024px) {
     .profile-container {
         padding: 0 2rem;
-        margin: 3rem auto;
+        margin: 8rem auto 3rem;
     }
 
     .profile-header {
@@ -537,11 +539,17 @@ footer::before {
 @media (max-width: 768px) {
     nav {
         padding: 1rem 1.5rem;
+        min-height: auto;
+    }
+
+    .logo {
+        line-height: 1;
     }
 
     .logo::before {
         width: 120px;
         height: 60px;
+        display: block;
     }
 
     .mobile-menu-toggle {
@@ -617,7 +625,7 @@ footer::before {
 
     .profile-container {
         padding: 0 1.5rem;
-        margin: 2rem auto;
+        margin: 7.5rem auto 2rem;
     }
 
     .profile-header {
@@ -740,7 +748,7 @@ footer::before {
 
     .profile-container {
         padding: 0 1rem;
-        margin: 1.5rem auto;
+        margin: 7rem auto 1.5rem;
     }
 
     .profile-header {
