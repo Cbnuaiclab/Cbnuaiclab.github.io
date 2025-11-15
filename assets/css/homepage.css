@@ -465,6 +465,7 @@ h2::after {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
   gap: 2rem;
+  align-items: stretch;
 }
 
 .research-card {
@@ -477,6 +478,11 @@ h2::after {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+
+.research-card p {
+  flex-grow: 1;
 }
 
 .research-card::before {
