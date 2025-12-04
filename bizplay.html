@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autonomous GRC Engine | AI Project Proposal</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 350px; }
+        }
+        .nav-active {
+            border-bottom: 2px solid #2563EB;
+            color: #1E40AF;
+            font-weight: 600;
+        }
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .timeline-connector {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: #E5E7EB;
+            z-index: 0;
+        }
+    </style>
+    <!-- Chosen Palette: Digital Trust - Deep Navy (#1E3A8A) for authority, Clean White for clarity, Slate Grey for structure, and Electric Blue (#3B82F6) for AI/Tech accents. -->
+    <!-- Application Structure Plan: The app is structured as an interactive pitch deck. 
+         1. 'Vision' (Executive Summary): Sets the stage - Automation vs. Autonomy.
+         2. 'The Engine' (Core Architecture): An interactive grid where users explore the 3 AI modules (R-BC, I-CC, D-PA). This is the core "product" showcase.
+         3. 'Tech Stack' (Implementation): Details the data and models powering the engine.
+         4. 'Roadmap' (Timeline): A phased rollout plan.
+         5. 'Impact' (Value Prop): Data visualization comparing current state vs. future state metrics.
+         This structure follows a logical sales narrative: Problem -> Solution -> How it works -> When we get it -> Why it matters. -->
+    <!-- Visualization & Content Choices:
+         - Impact Dashboard: Bar and Radar charts (Chart.js) to quantitatively show the "50% reduction in loss" and "80% audit efficiency".
+         - Module Interaction: Custom JS interactions (simulations) for each module (e.g., typing a receipt description to see the AI classify it) to make the abstract AI concepts concrete.
+         - Roadmap: Vertical styled HTML timeline for clarity.
+         - Tech Stack: Card grid for easy scanning of complex ML terms (GNN, LSTM, RL).
+         - CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-blue-900">A-GRC <span class="text-blue-500 font-light">Engine</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <button onclick="scrollToSection('vision')" class="nav-item text-slate-600 hover:text-blue-700 px-3 py-2 text-sm font-medium transition-colors">Vision</button>
+                    <button onclick="scrollToSection('modules')" class="nav-item text-slate-600 hover:text-blue-700 px-3 py-2 text-sm font-medium transition-colors">The Modules</button>
+                    <button onclick="scrollToSection('tech')" class="nav-item text-slate-600 hover:text-blue-700 px-3 py-2 text-sm font-medium transition-colors">Tech Stack</button>
+                    <button onclick="scrollToSection('roadmap')" class="nav-item text-slate-600 hover:text-blue-700 px-3 py-2 text-sm font-medium transition-colors">Roadmap</button>
+                    <button onclick="scrollToSection('impact')" class="nav-item text-slate-600 hover:text-blue-700 px-3 py-2 text-sm font-medium transition-colors">Impact</button>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-blue-700 focus:outline-none">
+                        ☰
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <button onclick="scrollToSection('vision')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:bg-slate-50">Vision</button>
+                <button onclick="scrollToSection('modules')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:bg-slate-50">The Modules</button>
+                <button onclick="scrollToSection('tech')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:bg-slate-50">Tech Stack</button>
+                <button onclick="scrollToSection('roadmap')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:bg-slate-50">Roadmap</button>
+                <button onclick="scrollToSection('impact')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:bg-slate-50">Impact</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section 1: Vision (Executive Summary) -->
+    <section id="vision" class="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==')] opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight">Beyond Automation to <span class="text-blue-400">Autonomy</span></h1>
+                <p class="text-xl text-blue-100 mb-10 leading-relaxed">
+                    Current e-Accounting solutions only automate data entry. The <strong>Autonomous GRC Engine</strong> shifts the paradigm to proactive, real-time risk mitigation and dynamic compliance adaptation. We don't just find errors; we prevent financial loss before it happens.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button onclick="scrollToSection('modules')" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition-all shadow-lg hover:shadow-blue-500/50">
+                        Explore the Engine
+                    </button>
+                    <button onclick="scrollToSection('impact')" class="bg-transparent border-2 border-blue-400 text-blue-100 hover:bg-blue-900/50 font-bold py-3 px-8 rounded-full transition-all">
+                        See the ROI
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Key Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 text-center">
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
+                    <div class="text-3xl font-bold text-blue-300">50%</div>
+                    <div class="text-sm text-blue-100 mt-2">Reduction in Financial Loss</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
+                    <div class="text-3xl font-bold text-blue-300">30%</div>
+                    <div class="text-sm text-blue-100 mt-2">Faster Approvals</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
+                    <div class="text-3xl font-bold text-blue-300">Zero</div>
+                    <div class="text-sm text-blue-100 mt-2">Tolerance for Structured Fraud</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: The Core Modules (Interactive Architecture) -->
+    <section id="modules" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl font-bold text-slate-900">Core Solution Architecture</h2>
+                <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+                    The A-GRC Engine consists of three integrated AI modules working in harmony. Select a module below to explore its capabilities and simulated workflow.
+                </p>
+            </div>
+
+            <!-- Module Selector Tabs -->
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6 mb-12">
+                <button onclick="switchModule('module1')" id="tab-module1" class="module-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm transition-all text-left w-full md:w-1/3 flex flex-col items-center md:items-start group ring-2 ring-blue-500">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold mb-3">Module 01</span>
+                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600">Real-Time Behavioral Compliance (R-BC)</h3>
+                    <p class="text-sm text-slate-500 mt-2 text-center md:text-left">Contextual Anomaly Detection & Digital Fingerprinting.</p>
+                </button>
+                <button onclick="switchModule('module2')" id="tab-module2" class="module-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm transition-all text-left w-full md:w-1/3 flex flex-col items-center md:items-start group">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-bold mb-3">Module 02</span>
+                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-indigo-600">Intent-Driven Cognitive Classification (I-CC)</h3>
+                    <p class="text-sm text-slate-500 mt-2 text-center md:text-left">Semantic Parsing & Multi-Modal OCR.</p>
+                </button>
+                <button onclick="switchModule('module3')" id="tab-module3" class="module-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm transition-all text-left w-full md:w-1/3 flex flex-col items-center md:items-start group">
+                    <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold mb-3">Module 03</span>
+                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-emerald-600">Dynamic Policy Adaptation (D-PA)</h3>
+                    <p class="text-sm text-slate-500 mt-2 text-center md:text-left">Regulatory Scanners & Reinforcement Learning.</p>
+                </button>
+            </div>
+
+            <!-- Module Details Container -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden min-h-[500px]">
+                
+                <!-- Content: Module 1 (R-BC) -->
+                <div id="content-module1" class="p-8 md:p-12 animate-fade-in block">
+                    <div class="flex flex-col lg:flex-row gap-12">
+                        <div class="lg:w-1/2">
+                            <h3 class="text-2xl font-bold text-blue-900 mb-4">Module 1: Real-Time Behavioral Compliance</h3>
+                            <p class="text-slate-600 mb-6">
+                                This module moves beyond simple rule checking. It uses <strong>Graph Neural Networks (GNN)</strong> and <strong>LSTMs</strong> to monitor employee behavior and expense context, identifying structured fraud rings and subtle anomalies that traditional systems miss.
+                            </p>
+                            <h4 class="font-bold text-slate-800 mb-3">Key Technologies:</h4>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">●</span><span><strong>Isolation Forests:</strong> Detects contextual anomalies (e.g., $500 dinner on a Tuesday).</span></li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">●</span><span><strong>Graph Neural Networks (GNN):</strong> Maps hidden relationships between employees and vendors to find collusion.</span></li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">●</span><span><strong>Policy Violation Scoring:</strong> Instantly scores receipt risk before workflow entry.</span></li>
+                            </ul>
+                        </div>
+                        <div class="lg:w-1/2 bg-slate-50 rounded-xl p-6 border border-slate-200">
+                            <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Simulation: Risk Scoring Engine</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Expense Scenario</label>
+                                    <select id="rbc-scenario" class="w-full bg-white border border-slate-300 rounded-md py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option value="low">Project Lunch ($45) - Weekday, Noon</option>
+                                        <option value="med">Late Night Taxi ($80) - Friday, 11PM</option>
+                                        <option value="high">Electronics Store ($1200) - Sunday, Different City</option>
+                                    </select>
+                                </div>
+                                <button onclick="simulateRisk()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors">Analyze Risk</button>
+                                
+                                <div id="rbc-result" class="hidden mt-4 pt-4 border-t border-slate-200">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-sm font-bold text-slate-700">Risk Score:</span>
+                                        <span id="risk-score-val" class="text-lg font-bold"></span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 rounded-full h-2.5 mb-4">
+                                        <div id="risk-bar" class="bg-green-500 h-2.5 rounded-full" style="width: 0%"></div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border border-slate-200 text-sm">
+                                        <strong class="block mb-1 text-slate-800">System Analysis:</strong>
+                                        <p id="risk-analysis" class="text-slate-600"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content: Module 2 (I-CC) -->
+                <div id="content-module2" class="p-8 md:p-12 animate-fade-in hidden">
+                    <div class="flex flex-col lg:flex-row gap-12">
+                        <div class="lg:w-1/2">
+                            <h3 class="text-2xl font-bold text-indigo-900 mb-4">Module 2: Intent-Driven Cognitive Classification</h3>
+                            <p class="text-slate-600 mb-6">
+                                Addresses manual entry errors by understanding the <em>intent</em> behind an expense. Using domain-specific <strong>LLMs</strong> and <strong>Gemini OCR</strong>, it automatically populates GL codes and validates data integrity.
+                            </p>
+                            <h4 class="font-bold text-slate-800 mb-3">Key Technologies:</h4>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">●</span><span><strong>Semantic Description Parsing:</strong> LLMs analyze text descriptions to infer business purpose.</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">●</span><span><strong>Few-Shot Learning:</strong> Learns from user corrections to improve future suggestions.</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">●</span><span><strong>Multi-Modal OCR:</strong> Cross-references text extraction with visual layout analysis.</span></li>
+                            </ul>
+                        </div>
+                        <div class="lg:w-1/2 bg-slate-50 rounded-xl p-6 border border-slate-200">
+                            <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Simulation: Semantic Classifier</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">User Description (Type something)</label>
+                                    <input type="text" id="icc-input" placeholder="e.g., 'Coffee with client to discuss Q4 strategy'" class="w-full bg-white border border-slate-300 rounded-md py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                </div>
+                                <button onclick="simulateClassify()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition-colors">Auto-Classify</button>
+                                
+                                <div id="icc-result" class="hidden mt-4 space-y-3">
+                                    <div class="bg-indigo-50 p-3 rounded border border-indigo-100">
+                                        <div class="text-xs text-indigo-500 font-bold uppercase">Recommended GL Account</div>
+                                        <div id="gl-result" class="text-lg font-bold text-indigo-900"></div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border border-slate-200 text-sm">
+                                        <strong class="block mb-1 text-slate-800">LLM Reasoning:</strong>
+                                        <p id="llm-reasoning" class="text-slate-600"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content: Module 3 (D-PA) -->
+                <div id="content-module3" class="p-8 md:p-12 animate-fade-in hidden">
+                    <div class="flex flex-col lg:flex-row gap-12">
+                        <div class="lg:w-1/2">
+                            <h3 class="text-2xl font-bold text-emerald-900 mb-4">Module 3: Dynamic Policy Adaptation</h3>
+                            <p class="text-slate-600 mb-6">
+                                The most innovative module, capable of learning from external regulations and internal exceptions. It uses <strong>Reinforcement Learning</strong> to suggest policy optimizations, reducing administrative burden while maintaining compliance.
+                            </p>
+                            <h4 class="font-bold text-slate-800 mb-3">Key Technologies:</h4>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start"><span class="text-emerald-500 mr-2">●</span><span><strong>Regulatory Change Scanners (NLP):</strong> Monitors tax authority feeds for rule updates.</span></li>
+                                <li class="flex items-start"><span class="text-emerald-500 mr-2">●</span><span><strong>Policy Gap Analysis (RL):</strong> Analyzes exception patterns to suggest rule relaxations or tightenings.</span></li>
+                                <li class="flex items-start"><span class="text-emerald-500 mr-2">●</span><span><strong>Adaptive Approval Routing:</strong> Adjusts workflow complexity based on risk score.</span></li>
+                            </ul>
+                        </div>
+                        <div class="lg:w-1/2 bg-slate-50 rounded-xl p-6 border border-slate-200">
+                            <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">Simulation: Policy Optimizer</h4>
+                            <div class="space-y-4">
+                                <div class="p-3 bg-white border border-slate-200 rounded text-sm">
+                                    <p class="font-medium text-slate-700">Observed Pattern:</p>
+                                    <p class="text-slate-600">Employee group 'Sales' frequently flags "Meal Limit Exceeded" ($30 vs $25 limit) in 'Seoul Gangnam' region. 99% are approved by managers.</p>
+                                </div>
+                                <button onclick="simulatePolicy()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded-md transition-colors">Run Optimization Agent</button>
+                                
+                                <div id="dpa-result" class="hidden mt-4 pt-4 border-t border-slate-200 animate-fade-in">
+                                    <div class="flex items-center text-emerald-600 font-bold mb-2">
+                                        <span class="text-xl mr-2">💡</span> Recommendation Found
+                                    </div>
+                                    <div class="bg-emerald-50 p-3 rounded border border-emerald-100 text-sm">
+                                        <p class="mb-2"><strong>Action:</strong> Increase Meal Per Diem for 'Seoul - Gangnam' Zone.</p>
+                                        <p class="mb-2"><strong>New Limit:</strong> $25 → $35</p>
+                                        <p class="text-emerald-800"><strong>Projected Impact:</strong> Reduce false positive alerts by 420/month. Save 35 manager hours.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Technical Implementation (Data & Models) -->
+    <section id="tech" class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Technical Implementation</h2>
+                <p class="mt-4 text-slate-600">The foundation of the A-GRC Engine relies on robust data pipelines and state-of-the-art machine learning models.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Data Strategy -->
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-center">
+                        <span class="bg-blue-100 p-2 rounded-lg mr-3 text-blue-600">📊</span> Data Strategy
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-slate-800 text-sm">Historical Transaction Data</h4>
+                            <p class="text-sm text-slate-600 mt-1">5+ years of ERP vouchers, GL codes, and approval logs. Used for training I-CC classification and R-BC base lines.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-slate-800 text-sm">Behavioral & Contextual Data</h4>
+                            <p class="text-sm text-slate-600 mt-1">HR profiles, travel logs, time cards, and corporate card metadata. Enables context-aware anomaly detection.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-slate-800 text-sm">External Regulatory Feeds</h4>
+                            <p class="text-sm text-slate-600 mt-1">Official tax authority APIs and compliance databases. Powers real-time policy updates.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ML Models -->
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-center">
+                        <span class="bg-indigo-100 p-2 rounded-lg mr-3 text-indigo-600">🧠</span> Core ML Models
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg border border-indigo-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="text-indigo-600 font-bold mb-2">Graph Neural Networks</div>
+                            <p class="text-xs text-slate-500">Models relationships (Nodes/Edges) between employees & vendors to find structured fraud rings.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-indigo-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="text-indigo-600 font-bold mb-2">Time-Series LSTM</div>
+                            <p class="text-xs text-slate-500">Predicts expected spending ranges based on historical sequential data per employee.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-indigo-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="text-indigo-600 font-bold mb-2">LLM (Gemini)</div>
+                            <p class="text-xs text-slate-500">Fine-tuned on voucher descriptions for 95%+ accurate GL coding and semantic parsing.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-indigo-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="text-indigo-600 font-bold mb-2">Reinforcement Learning</div>
+                            <p class="text-xs text-slate-500">Optimizes policy rules by balancing compliance risk against administrative workload.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Roadmap -->
+    <section id="roadmap" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold">9-Month Implementation Roadmap</h2>
+                <p class="mt-4 text-slate-400">A phased approach to ensure stability and effective learning.</p>
+            </div>
+
+            <div class="relative py-10">
+                <div class="timeline-connector bg-slate-700"></div>
+                
+                <!-- Phase 1 -->
+                <div class="relative z-10 mb-16">
+                    <div class="bg-slate-800 border border-slate-700 p-6 rounded-xl max-w-2xl mx-auto text-center relative hover:border-blue-500 transition-colors cursor-default">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Phase 1 • Month 1-3</div>
+                        <h3 class="text-xl font-bold mb-2">Foundation & Data Integration</h3>
+                        <p class="text-slate-400 text-sm">ETL Pipeline Setup, System Integration (ERP/HR), Data Security Sign-off, Data Lake creation.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="relative z-10 mb-16">
+                    <div class="bg-slate-800 border border-slate-700 p-6 rounded-xl max-w-2xl mx-auto text-center relative hover:border-indigo-500 transition-colors cursor-default">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Phase 2 • Month 4-7</div>
+                        <h3 class="text-xl font-bold mb-2">Core ML Model Development</h3>
+                        <p class="text-slate-400 text-sm">Training R-BC (Fraud) & I-CC (Classify) models. Backtesting against historical data. Finalizing Risk Scoring logic.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="relative z-10">
+                    <div class="bg-slate-800 border border-slate-700 p-6 rounded-xl max-w-2xl mx-auto text-center relative hover:border-emerald-500 transition-colors cursor-default">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Phase 3 • Month 8-9</div>
+                        <h3 class="text-xl font-bold mb-2">Pilot, Refinement & Rollout</h3>
+                        <p class="text-slate-400 text-sm">User Acceptance Testing (UAT), Pilot with Finance Dept, Live Deployment, User Training.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Benefits & Value Prop (Charts) -->
+    <section id="impact" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">Strategic Business Impact</h2>
+                <p class="mt-4 text-slate-600">Quantifiable improvements in efficiency, speed, and risk management.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <!-- Chart 1: Efficiency Gains -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 text-center">Operational Efficiency Gains</h3>
+                    <div class="chart-container">
+                        <canvas id="efficiencyChart"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-slate-500 mt-4">Comparison of Current Basic Automation vs. Proposed A-GRC Engine</p>
+                </div>
+
+                <!-- Chart 2: Loss Prevention -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 text-center">Financial Loss Prevention</h3>
+                    <div class="chart-container">
+                        <canvas id="lossChart"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-slate-500 mt-4">Reduction in Preventable Financial Loss</p>
+                </div>
+            </div>
+
+            <!-- Summary Table -->
+            <div class="mt-12 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <table class="min-w-full divide-y divide-slate-200">
+                    <thead class="bg-slate-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Metric</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">Current Approach</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-blue-600 uppercase tracking-wider">A-GRC Approach</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-slate-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">Approval Time</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">Standard cycles</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 font-bold text-green-600">30% Faster (Auto-approval)</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">Audit Efficiency</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">Manual Sampling</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 font-bold text-green-600">80% Less Time (Risk-based)</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">Compliance Logic</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">Static Rules</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 font-bold text-green-600">Dynamic & Self-Adapting</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-slate-400 text-sm">© 2025 AI Project Proposal. Generated for Review.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- Navigation Scroll Logic ---
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // --- Module Tab Logic ---
+        function switchModule(moduleId) {
+            // Reset Tabs
+            document.querySelectorAll('.module-card').forEach(card => {
+                card.classList.remove('ring-2', 'ring-blue-500', 'ring-indigo-500', 'ring-emerald-500');
+            });
+            
+            // Highlight Active Tab
+            const activeTab = document.getElementById('tab-' + moduleId);
+            if(moduleId === 'module1') activeTab.classList.add('ring-2', 'ring-blue-500');
+            if(moduleId === 'module2') activeTab.classList.add('ring-2', 'ring-indigo-500');
+            if(moduleId === 'module3') activeTab.classList.add('ring-2', 'ring-emerald-500');
+
+            // Hide all content
+            document.getElementById('content-module1').classList.add('hidden');
+            document.getElementById('content-module2').classList.add('hidden');
+            document.getElementById('content-module3').classList.add('hidden');
+
+            // Show selected content
+            const content = document.getElementById('content-' + moduleId);
+            content.classList.remove('hidden');
+            content.classList.add('animate-fade-in');
+        }
+
+        // --- Simulations Logic ---
+
+        // Module 1: Risk Simulation
+        function simulateRisk() {
+            const scenario = document.getElementById('rbc-scenario').value;
+            const resultDiv = document.getElementById('rbc-result');
+            const scoreEl = document.getElementById('risk-score-val');
+            const barEl = document.getElementById('risk-bar');
+            const analysisEl = document.getElementById('risk-analysis');
+            
+            resultDiv.classList.remove('hidden');
+            
+            let score, color, analysis, width;
+
+            if(scenario === 'low') {
+                score = "Low Risk (2%)";
+                width = "2%";
+                color = "bg-green-500";
+                analysis = "Transaction aligns with user history and project codes. Time and location are consistent with office hours.";
+            } else if (scenario === 'med') {
+                score = "Medium Risk (45%)";
+                width = "45%";
+                color = "bg-yellow-500";
+                analysis = "Out-of-policy time (11PM) detected. Requires justification. Context check: 'Late client deadline' noted in calendar? Yes -> Auto-approve.";
+            } else {
+                score = "High Risk (92%)";
+                width = "92%";
+                color = "bg-red-600";
+                analysis = "CRITICAL ANOMALY. Location mismatch (200km from office). Merchant category 'Electronics' flagged as high-fraud risk for this role. Blocked.";
+            }
+
+            scoreEl.innerText = score;
+            scoreEl.className = `text-lg font-bold ${color.replace('bg-', 'text-')}`;
+            barEl.style.width = width;
+            barEl.className = `h-2.5 rounded-full ${color}`;
+            analysisEl.innerText = analysis;
+        }
+
+        // Module 2: Classification Simulation
+        function simulateClassify() {
+            const input = document.getElementById('icc-input').value.toLowerCase();
+            const resultDiv = document.getElementById('icc-result');
+            const glEl = document.getElementById('gl-result');
+            const reasonEl = document.getElementById('llm-reasoning');
+
+            resultDiv.classList.remove('hidden');
+
+            // Simple keyword logic for demo purposes
+            if (input.includes('coffee') || input.includes('lunch') || input.includes('dinner') || input.includes('meal')) {
+                glEl.innerText = "52010 - Entertainment & Meals";
+                reasonEl.innerText = "Detected keywords indicating food/beverage. Entity 'client' suggests external entertainment rather than internal team welfare.";
+            } else if (input.includes('uber') || input.includes('taxi') || input.includes('flight') || input.includes('train')) {
+                glEl.innerText = "52020 - Local Transportation";
+                reasonEl.innerText = "Detected transport keywords. Validated against vendor context (if provided). Assigned to Travel/Transport code.";
+            } else if (input.includes('server') || input.includes('software') || input.includes('license') || input.includes('cloud')) {
+                glEl.innerText = "52055 - IT Software & Subscription";
+                reasonEl.innerText = "Technical terminology detected. Matched with 'IT Infrastructure' budget category.";
+            } else {
+                glEl.innerText = "59999 - Miscellaneous Expenses";
+                reasonEl.innerText = "Ambiguous description. LLM confidence score < 80%. Requesting user confirmation or more detail.";
+            }
+        }
+
+        // Module 3: Policy Simulation
+        function simulatePolicy() {
+            const resultDiv = document.getElementById('dpa-result');
+            resultDiv.classList.remove('hidden');
+        }
+
+        // --- Chart.js Initialization ---
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Efficiency Chart (Radar)
+            const ctxEfficiency = document.getElementById('efficiencyChart').getContext('2d');
+            new Chart(ctxEfficiency, {
+                type: 'radar',
+                data: {
+                    labels: ['Approval Speed', 'Audit Coverage', 'Data Accuracy', 'User Satisfaction', 'Fraud Detection'],
+                    datasets: [{
+                        label: 'Current System',
+                        data: [50, 20, 70, 60, 40],
+                        backgroundColor: 'rgba(148, 163, 184, 0.2)',
+                        borderColor: 'rgba(148, 163, 184, 1)',
+                        pointBackgroundColor: 'rgba(148, 163, 184, 1)',
+                    }, {
+                        label: 'A-GRC Engine',
+                        data: [90, 95, 98, 90, 95],
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#E2E8F0' },
+                            grid: { color: '#E2E8F0' },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Loss Chart (Bar)
+            const ctxLoss = document.getElementById('lossChart').getContext('2d');
+            new Chart(ctxLoss, {
+                type: 'bar',
+                data: {
+                    labels: ['Structured Fraud', 'Contextual Errors', 'Policy Misinterpretation'],
+                    datasets: [{
+                        label: 'Projected Loss Reduction (%)',
+                        data: [95, 80, 65],
+                        backgroundColor: [
+                            'rgba(37, 99, 235, 0.8)',
+                            'rgba(79, 70, 229, 0.8)',
+                            'rgba(16, 185, 129, 0.8)'
+                        ],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: { display: true, text: 'Reduction %' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y + '% Reduction';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</body>
+</html>
