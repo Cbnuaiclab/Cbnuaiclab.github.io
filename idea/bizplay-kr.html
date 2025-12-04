@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>자율 GRC 엔진 | AI 프로젝트 제안서</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(229, 231, 235, 0.5);
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 300px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container { height: 350px; }
+        }
+        .nav-active {
+            border-bottom: 2px solid #2563EB;
+            color: #1E40AF;
+            font-weight: 600;
+        }
+        .module-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .timeline-connector {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background-color: #E5E7EB;
+            z-index: 0;
+        }
+    </style>
+    <!-- Chosen Palette: Digital Trust - Deep Navy (#1E3A8A) for authority, Clean White for clarity, Slate Grey for structure, and Electric Blue (#3B82F6) for AI/Tech accents. -->
+    <!-- Application Structure Plan: 이 앱은 대화형 프레젠테이션 자료(pitch deck) 구조로 구성되었습니다. 
+         1. 'Vision' (요약): 자동화 vs. 자율의 비전을 제시합니다.
+         2. 'The Engine' (핵심 아키텍처): 3가지 AI 모듈 (R-BC, I-CC, D-PA)을 탐색할 수 있는 대화형 그리드입니다. 핵심 "제품" 시연 역할을 합니다.
+         3. 'Tech Stack' (구현): 엔진을 구동하는 데이터 및 모델 세부 정보입니다.
+         4. 'Roadmap' (타임라인): 단계별 출시 계획입니다.
+         5. 'Impact' (가치 제안): 현재 상태 대 미래 상태 메트릭을 비교하는 데이터 시각화입니다.
+         이 구조는 문제 -> 해결책 -> 작동 방식 -> 구현 시점 -> 중요한 이유라는 논리적인 세일즈 흐름을 따릅니다. -->
+    <!-- Visualization & Content Choices:
+         - Impact Dashboard: 막대형 및 레이더 차트 (Chart.js)를 사용하여 "손실 50% 감소" 및 "감사 효율성 80%"를 정량적으로 보여줍니다.
+         - Module Interaction: 각 모듈에 대한 맞춤형 JS 상호 작용 (시뮬레이션, 예: 영수증 설명을 입력하여 AI가 분류하는 방식)을 통해 추상적인 AI 개념을 구체화합니다.
+         - Roadmap: 명확성을 위해 세로로 스타일링된 HTML 타임라인을 사용합니다.
+         - Tech Stack: 복잡한 ML 용어(GNN, LSTM, RL)를 쉽게 스캔할 수 있도록 카드 그리드를 사용합니다.
+         - CONFIRMATION: SVG 그래픽을 사용하지 않았습니다. Mermaid JS를 사용하지 않았습니다. -->
+</head>
+<body class="bg-slate-50 text-slate-800">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-white border-b border-slate-200 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16">
+                <div class="flex items-center">
+                    <span class="text-2xl font-bold text-blue-900">A-GRC <span class="text-blue-500 font-light">엔진</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <button onclick="scrollToSection('vision')" class="nav-item text-slate-600 hover:text-blue-700 px-3 py-2 text-sm font-medium transition-colors">비전</button>
+                    <button onclick="scrollToSection('modules')" class="nav-item text-slate-600 hover:text-blue-700 px-3 py-2 text-sm font-medium transition-colors">모듈</button>
+                    <button onclick="scrollToSection('tech')" class="nav-item text-slate-600 hover:text-blue-700 px-3 py-2 text-sm font-medium transition-colors">기술 스택</button>
+                    <button onclick="scrollToSection('roadmap')" class="nav-item text-slate-600 hover:text-blue-700 px-3 py-2 text-sm font-medium transition-colors">로드맵</button>
+                    <button onclick="scrollToSection('impact')" class="nav-item text-slate-600 hover:text-blue-700 px-3 py-2 text-sm font-medium transition-colors">영향</button>
+                </div>
+                <div class="flex items-center md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-blue-700 focus:outline-none">
+                        ☰
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <button onclick="scrollToSection('vision')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:bg-slate-50">비전</button>
+                <button onclick="scrollToSection('modules')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:bg-slate-50">모듈</button>
+                <button onclick="scrollToSection('tech')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:bg-slate-50">기술 스택</button>
+                <button onclick="scrollToSection('roadmap')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:bg-slate-50">로드맵</button>
+                <button onclick="scrollToSection('impact')" class="block w-full text-left px-3 py-2 text-base font-medium text-slate-600 hover:bg-slate-50">영향</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section 1: Vision (Executive Summary) -->
+    <section id="vision" class="py-20 bg-gradient-to-br from-slate-900 to-blue-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-[url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVR42mNk+M9QDwADhgGAWjR9awAAAABJRU5ErkJggg==')] opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6 tracking-tight">자동화를 넘어 <span class="text-blue-400">자율</span>로</h1>
+                <p class="text-xl text-blue-100 mb-10 leading-relaxed">
+                    현재의 e-회계 솔루션은 단순히 데이터 입력을 자동화하는 데 그치고 있습니다. <strong>자율 GRC 엔진</strong>은 패러다임을 전환하여 선제적이고 실시간적인 리스크 완화 및 동적 규정 준수 적응을 통해 재무 손실을 사전에 방지합니다.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4">
+                    <button onclick="scrollToSection('modules')" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-8 rounded-full transition-all shadow-lg hover:shadow-blue-500/50">
+                        엔진 탐색하기
+                    </button>
+                    <button onclick="scrollToSection('impact')" class="bg-transparent border-2 border-blue-400 text-blue-100 hover:bg-blue-900/50 font-bold py-3 px-8 rounded-full transition-all">
+                        투자 수익률 (ROI) 확인하기
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Key Stats Cards -->
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mt-16 text-center">
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
+                    <div class="text-3xl font-bold text-blue-300">50%</div>
+                    <div class="text-sm text-blue-100 mt-2">재무 손실 감소</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
+                    <div class="text-3xl font-bold text-blue-300">30%</div>
+                    <div class="text-sm text-blue-100 mt-2">더 빠른 승인</div>
+                </div>
+                <div class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/20">
+                    <div class="text-3xl font-bold text-blue-300">0</div>
+                    <div class="text-sm text-blue-100 mt-2">조직적 사기에 대한 무관용</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 2: The Core Modules (Interactive Architecture) -->
+    <section id="modules" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="mb-12 text-center">
+                <h2 class="text-3xl font-bold text-slate-900">핵심 솔루션 아키텍처</h2>
+                <p class="mt-4 text-lg text-slate-600 max-w-2xl mx-auto">
+                    A-GRC 엔진은 조화롭게 작동하는 세 가지 통합 AI 모듈로 구성됩니다. 아래에서 모듈을 선택하여 기능 및 시뮬레이션된 워크플로우를 살펴보세요.
+                </p>
+            </div>
+
+            <!-- Module Selector Tabs -->
+            <div class="flex flex-col md:flex-row justify-center space-y-4 md:space-y-0 md:space-x-6 mb-12">
+                <button onclick="switchModule('module1')" id="tab-module1" class="module-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm transition-all text-left w-full md:w-1/3 flex flex-col items-center md:items-start group ring-2 ring-blue-500">
+                    <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-bold mb-3">모듈 01</span>
+                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-blue-600">실시간 행동 기반 규정 준수 (R-BC)</h3>
+                    <p class="text-sm text-slate-500 mt-2 text-center md:text-left">상황적 이상 징후 감지 및 디지털 지문 인식.</p>
+                </button>
+                <button onclick="switchModule('module2')" id="tab-module2" class="module-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm transition-all text-left w-full md:w-1/3 flex flex-col items-center md:items-start group">
+                    <span class="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full text-xs font-bold mb-3">모듈 02</span>
+                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-indigo-600">의도 기반 인지 분류 (I-CC)</h3>
+                    <p class="text-sm text-slate-500 mt-2 text-center md:text-left">의미론적 분석 및 다중 모달 OCR.</p>
+                </button>
+                <button onclick="switchModule('module3')" id="tab-module3" class="module-card bg-white p-6 rounded-xl border border-slate-200 shadow-sm transition-all text-left w-full md:w-1/3 flex flex-col items-center md:items-start group">
+                    <span class="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-xs font-bold mb-3">모듈 03</span>
+                    <h3 class="text-xl font-bold text-slate-800 group-hover:text-emerald-600">동적 정책 적응 (D-PA)</h3>
+                    <p class="text-sm text-slate-500 mt-2 text-center md:text-left">규제 변경 스캐너 및 강화 학습.</p>
+                </button>
+            </div>
+
+            <!-- Module Details Container -->
+            <div class="bg-white rounded-2xl shadow-xl border border-slate-200 overflow-hidden min-h-[500px]">
+                
+                <!-- Content: Module 1 (R-BC) -->
+                <div id="content-module1" class="p-8 md:p-12 animate-fade-in block">
+                    <div class="flex flex-col lg:flex-row gap-12">
+                        <div class="lg:w-1/2">
+                            <h3 class="text-2xl font-bold text-blue-900 mb-4">모듈 1: 실시간 행동 기반 규정 준수</h3>
+                            <p class="text-slate-600 mb-6">
+                                이 모듈은 단순한 규칙 확인을 넘어섭니다. <strong>그래프 신경망 (GNN)</strong> 및 <strong>LSTM</strong>을 사용하여 직원 행동과 비용 상황을 모니터링하여, 기존 시스템이 놓치는 조직적 사기 집단 및 미묘한 이상 징후를 식별합니다.
+                            </p>
+                            <h4 class="font-bold text-slate-800 mb-3">핵심 기술:</h4>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">●</span><span><strong>Isolation Forests:</strong> 상황적 이상 징후 (예: 화요일에 500달러 저녁 식사)를 감지합니다.</span></li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">●</span><span><strong>그래프 신경망 (GNN):</strong> 직원과 공급업체 간의 숨겨진 관계를 매핑하여 공모를 찾아냅니다.</span></li>
+                                <li class="flex items-start"><span class="text-blue-500 mr-2">●</span><span><strong>정책 위반 점수화:</strong> 워크플로우 진입 전에 영수증 위험도를 즉시 점수화합니다.</span></li>
+                            </ul>
+                        </div>
+                        <div class="lg:w-1/2 bg-slate-50 rounded-xl p-6 border border-slate-200">
+                            <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">시뮬레이션: 리스크 점수화 엔진</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">비용 시나리오</label>
+                                    <select id="rbc-scenario" class="w-full bg-white border border-slate-300 rounded-md py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option value="low">프로젝트 점심 식사 (45달러) - 평일, 정오</option>
+                                        <option value="med">심야 택시 (80달러) - 금요일, 오후 11시</option>
+                                        <option value="high">전자제품 매장 (1,200달러) - 일요일, 다른 도시</option>
+                                    </select>
+                                </div>
+                                <button onclick="simulateRisk()" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded-md transition-colors">리스크 분석</button>
+                                
+                                <div id="rbc-result" class="hidden mt-4 pt-4 border-t border-slate-200">
+                                    <div class="flex justify-between items-center mb-2">
+                                        <span class="text-sm font-bold text-slate-700">리스크 점수:</span>
+                                        <span id="risk-score-val" class="text-lg font-bold"></span>
+                                    </div>
+                                    <div class="w-full bg-slate-200 rounded-full h-2.5 mb-4">
+                                        <div id="risk-bar" class="bg-green-500 h-2.5 rounded-full" style="width: 0%"></div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border border-slate-200 text-sm">
+                                        <strong class="block mb-1 text-slate-800">시스템 분석:</strong>
+                                        <p id="risk-analysis" class="text-slate-600"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content: Module 2 (I-CC) -->
+                <div id="content-module2" class="p-8 md:p-12 animate-fade-in hidden">
+                    <div class="flex flex-col lg:flex-row gap-12">
+                        <div class="lg:w-1/2">
+                            <h3 class="text-2xl font-bold text-indigo-900 mb-4">모듈 2: 의도 기반 인지 분류</h3>
+                            <p class="text-slate-600 mb-6">
+                                비용의 <em>의도</em>를 이해하여 수동 입력 오류를 해결합니다. 도메인별 <strong>LLM</strong> 및 <strong>Gemini OCR</strong>을 사용하여 GL 코드를 자동으로 채우고 데이터 무결성을 검증합니다.
+                            </p>
+                            <h4 class="font-bold text-slate-800 mb-3">핵심 기술:</h4>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">●</span><span><strong>의미론적 설명 분석:</strong> LLM이 텍스트 설명을 분석하여 비즈니스 목적을 추론합니다.</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">●</span><span><strong>Few-Shot Learning:</strong> 사용자 수정 사항을 학습하여 향후 제안을 개선합니다.</span></li>
+                                <li class="flex items-start"><span class="text-indigo-500 mr-2">●</span><span><strong>다중 모달 OCR:</strong> 텍스트 추출과 시각적 레이아웃 분석을 교차 참조합니다.</span></li>
+                            </ul>
+                        </div>
+                        <div class="lg:w-1/2 bg-slate-50 rounded-xl p-6 border border-slate-200">
+                            <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">시뮬레이션: 의미론적 분류기</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">사용자 설명 (입력하세요)</label>
+                                    <input type="text" id="icc-input" placeholder="예: 'Q4 전략 논의를 위한 클라이언트와의 커피 미팅'" class="w-full bg-white border border-slate-300 rounded-md py-2 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500">
+                                </div>
+                                <button onclick="simulateClassify()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-md transition-colors">자동 분류</button>
+                                
+                                <div id="icc-result" class="hidden mt-4 space-y-3">
+                                    <div class="bg-indigo-50 p-3 rounded border border-indigo-100">
+                                        <div class="text-xs text-indigo-500 font-bold uppercase">권장 GL 계정</div>
+                                        <div id="gl-result" class="text-lg font-bold text-indigo-900"></div>
+                                    </div>
+                                    <div class="bg-white p-3 rounded border border-slate-200 text-sm">
+                                        <strong class="block mb-1 text-slate-800">LLM 추론:</strong>
+                                        <p id="llm-reasoning" class="text-slate-600"></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Content: Module 3 (D-PA) -->
+                <div id="content-module3" class="p-8 md:p-12 animate-fade-in hidden">
+                    <div class="flex flex-col lg:flex-row gap-12">
+                        <div class="lg:w-1/2">
+                            <h3 class="text-2xl font-bold text-emerald-900 mb-4">모듈 3: 동적 정책 적응</h3>
+                            <p class="text-slate-600 mb-6">
+                                외부 규제 및 내부 예외 사항으로부터 학습할 수 있는 가장 혁신적인 모듈입니다. <strong>강화 학습</strong>을 사용하여 정책 최적화를 제안하고, 규정 준수를 유지하면서 관리 부담을 줄입니다.
+                            </p>
+                            <h4 class="font-bold text-slate-800 mb-3">핵심 기술:</h4>
+                            <ul class="space-y-3 mb-8">
+                                <li class="flex items-start"><span class="text-emerald-500 mr-2">●</span><span><strong>규제 변경 스캐너 (NLP):</strong> 세무 당국 피드를 모니터링하여 규칙 업데이트를 확인합니다.</span></li>
+                                <li class="flex items-start"><span class="text-emerald-500 mr-2">●</span><span><strong>정책 격차 분석 (RL):</strong> 예외 패턴을 분석하여 규칙 완화 또는 강화를 제안합니다.</span></li>
+                                <li class="flex items-start"><span class="text-emerald-500 mr-2">●</span><span><strong>적응형 승인 라우팅:</strong> 리스크 점수를 기반으로 워크플로우 복잡성을 동적으로 조정합니다.</span></li>
+                            </ul>
+                        </div>
+                        <div class="lg:w-1/2 bg-slate-50 rounded-xl p-6 border border-slate-200">
+                            <h4 class="text-sm font-bold text-slate-400 uppercase tracking-wider mb-4">시뮬레이션: 정책 최적화 에이전트</h4>
+                            <div class="space-y-4">
+                                <div class="p-3 bg-white border border-slate-200 rounded text-sm">
+                                    <p class="font-medium text-slate-700">관찰된 패턴:</p>
+                                    <p class="text-slate-600">'영업' 직원 그룹이 '서울 강남' 지역에서 "식사 한도 초과" (25달러 vs 30달러 한도) 플래그가 자주 발생하며, 99%는 관리자에 의해 승인됩니다.</p>
+                                </div>
+                                <button onclick="simulatePolicy()" class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-medium py-2 px-4 rounded-md transition-colors">최적화 에이전트 실행</button>
+                                
+                                <div id="dpa-result" class="hidden mt-4 pt-4 border-t border-slate-200 animate-fade-in">
+                                    <div class="flex items-center text-emerald-600 font-bold mb-2">
+                                        <span class="text-xl mr-2">💡</span> 권장 사항 발견
+                                    </div>
+                                    <div class="bg-emerald-50 p-3 rounded border border-emerald-100 text-sm">
+                                        <p class="mb-2"><strong>조치:</strong> '서울 강남' 지역의 식사 일당 한도 증액.</p>
+                                        <p class="mb-2"><strong>새로운 한도:</strong> 25달러 → 35달러</p>
+                                        <p class="text-emerald-800"><strong>예상 영향:</strong> 월 420건의 오탐지 경고 감소. 관리자 업무 시간 35시간 절약.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: Technical Implementation (Data & Models) -->
+    <section id="tech" class="py-20 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">기술 구현 상세</h2>
+                <p class="mt-4 text-slate-600">A-GRC 엔진의 기반은 강력한 데이터 파이프라인과 최첨단 기계 학습 모델에 있습니다.</p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <!-- Data Strategy -->
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-center">
+                        <span class="bg-blue-100 p-2 rounded-lg mr-3 text-blue-600">📊</span> 데이터 전략
+                    </h3>
+                    <div class="space-y-4">
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-slate-800 text-sm">과거 거래 데이터</h4>
+                            <p class="text-sm text-slate-600 mt-1">5년 이상의 ERP 전표, GL 코드, 승인 로그. I-CC 분류 및 R-BC 기준선 교육에 사용됩니다.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-slate-800 text-sm">행동 및 상황적 데이터</h4>
+                            <p class="text-sm text-slate-600 mt-1">HR 프로필, 출장 기록, 타임 카드, 법인 카드 메타데이터. 상황 인식 이상 징후 감지를 가능하게 합니다.</p>
+                        </div>
+                        <div class="bg-slate-50 p-4 rounded-lg border border-slate-200">
+                            <h4 class="font-bold text-slate-800 text-sm">외부 규제 피드</h4>
+                            <p class="text-sm text-slate-600 mt-1">공식 세무 당국 API 및 규정 준수 데이터베이스. 실시간 정책 업데이트를 지원합니다.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ML Models -->
+                <div>
+                    <h3 class="text-xl font-bold text-slate-800 mb-6 flex items-center">
+                        <span class="bg-indigo-100 p-2 rounded-lg mr-3 text-indigo-600">🧠</span> 핵심 ML 모델
+                    </h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-white p-4 rounded-lg border border-indigo-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="text-indigo-600 font-bold mb-2">그래프 신경망 (GNN)</div>
+                            <p class="text-xs text-slate-500">직원 및 공급업체 간의 관계를 모델링하여 조직적 사기 집단을 찾아냅니다.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-indigo-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="text-indigo-600 font-bold mb-2">시계열 LSTM</div>
+                            <p class="text-xs text-slate-500">직원별 과거 순차적 데이터를 기반으로 예상 지출 범위를 예측합니다.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-indigo-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="text-indigo-600 font-bold mb-2">LLM (Gemini)</div>
+                            <p class="text-xs text-slate-500">전표 설명에 맞게 미세 조정되어 95% 이상의 정확도로 GL 코드 지정 및 의미 분석을 수행합니다.</p>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg border border-indigo-100 shadow-sm hover:shadow-md transition-shadow">
+                            <div class="text-indigo-600 font-bold mb-2">강화 학습</div>
+                            <p class="text-xs text-slate-500">규정 준수 위험과 관리 부담 간의 균형을 유지하여 정책 규칙을 최적화합니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Roadmap -->
+    <section id="roadmap" class="py-20 bg-slate-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold">9개월 구현 로드맵</h2>
+                <p class="mt-4 text-slate-400">안정성과 효과적인 학습을 보장하기 위한 단계별 접근 방식입니다.</p>
+            </div>
+
+            <div class="relative py-10">
+                <div class="timeline-connector bg-slate-700"></div>
+                
+                <!-- Phase 1 -->
+                <div class="relative z-10 mb-16">
+                    <div class="bg-slate-800 border border-slate-700 p-6 rounded-xl max-w-2xl mx-auto text-center relative hover:border-blue-500 transition-colors cursor-default">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-blue-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">단계 1 • 1-3개월</div>
+                        <h3 class="text-xl font-bold mb-2">기반 구축 및 데이터 통합</h3>
+                        <p class="text-slate-400 text-sm">ETL 파이프라인 설정, 시스템 통합 (ERP/HR), 데이터 보안 승인, 데이터 레이크 생성.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 2 -->
+                <div class="relative z-10 mb-16">
+                    <div class="bg-slate-800 border border-slate-700 p-6 rounded-xl max-w-2xl mx-auto text-center relative hover:border-indigo-500 transition-colors cursor-default">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-indigo-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">단계 2 • 4-7개월</div>
+                        <h3 class="text-xl font-bold mb-2">핵심 ML 모델 개발</h3>
+                        <p class="text-slate-400 text-sm">R-BC (사기) 및 I-CC (분류) 모델 교육. 과거 데이터에 대한 백테스팅. 리스크 점수화 로직 최종 확정.</p>
+                    </div>
+                </div>
+
+                <!-- Phase 3 -->
+                <div class="relative z-10">
+                    <div class="bg-slate-800 border border-slate-700 p-6 rounded-xl max-w-2xl mx-auto text-center relative hover:border-emerald-500 transition-colors cursor-default">
+                        <div class="absolute top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">단계 3 • 8-9개월</div>
+                        <h3 class="text-xl font-bold mb-2">파일럿, 개선 및 출시</h3>
+                        <p class="text-slate-400 text-sm">사용자 인수 테스트 (UAT), 재무 부서 및 1-2개 핵심 사업부 대상 파일럿 프로그램, 실시간 배포, 사용자 교육.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Benefits & Value Prop (Charts) -->
+    <section id="impact" class="py-20 bg-slate-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-slate-900">전략적 비즈니스 영향</h2>
+                <p class="mt-4 text-slate-600">효율성, 속도 및 리스크 관리 측면에서 정량화 가능한 개선.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                <!-- Chart 1: Efficiency Gains -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 text-center">운영 효율성 증대</h3>
+                    <div class="chart-container">
+                        <canvas id="efficiencyChart"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-slate-500 mt-4">기존 기본 자동화 대비 제안된 A-GRC 엔진 비교</p>
+                </div>
+
+                <!-- Chart 2: Loss Prevention -->
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-slate-200">
+                    <h3 class="text-lg font-bold text-slate-800 mb-4 text-center">재무 손실 방지</h3>
+                    <div class="chart-container">
+                        <canvas id="lossChart"></canvas>
+                    </div>
+                    <p class="text-center text-xs text-slate-500 mt-4">예방 가능한 재무 손실 감소</p>
+                </div>
+            </div>
+
+            <!-- Summary Table -->
+            <div class="mt-12 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden">
+                <table class="min-w-full divide-y divide-slate-200">
+                    <thead class="bg-slate-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">메트릭</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">현재 방식</th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-bold text-blue-600 uppercase tracking-wider">A-GRC 방식</th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-slate-200">
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">승인 시간</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">표준 주기</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 font-bold text-green-600">30% 더 빠름 (자동 승인)</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">감사 효율성</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">수동 샘플링</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 font-bold text-green-600">80% 시간 절약 (리스크 기반)</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">규정 준수 로직</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">정적 규칙</td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900 font-bold text-green-600">동적 및 자율 적응</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="text-slate-400 text-sm">© 2025 AI 프로젝트 제안서. 검토용으로 생성되었습니다.</p>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- Navigation Scroll Logic ---
+        function scrollToSection(id) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth' });
+            }
+            // Close mobile menu if open
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (!mobileMenu.classList.contains('hidden')) {
+                mobileMenu.classList.add('hidden');
+            }
+        }
+
+        // Mobile Menu Toggle
+        document.getElementById('mobile-menu-btn').addEventListener('click', function() {
+            const menu = document.getElementById('mobile-menu');
+            menu.classList.toggle('hidden');
+        });
+
+        // --- Module Tab Logic ---
+        function switchModule(moduleId) {
+            // Reset Tabs
+            document.querySelectorAll('.module-card').forEach(card => {
+                card.classList.remove('ring-2', 'ring-blue-500', 'ring-indigo-500', 'ring-emerald-500');
+            });
+            
+            // Highlight Active Tab
+            const activeTab = document.getElementById('tab-' + moduleId);
+            if(moduleId === 'module1') activeTab.classList.add('ring-2', 'ring-blue-500');
+            if(moduleId === 'module2') activeTab.classList.add('ring-2', 'ring-indigo-500');
+            if(moduleId === 'module3') activeTab.classList.add('ring-2', 'ring-emerald-500');
+
+            // Hide all content
+            document.getElementById('content-module1').classList.add('hidden');
+            document.getElementById('content-module2').classList.add('hidden');
+            document.getElementById('content-module3').classList.add('hidden');
+
+            // Show selected content
+            const content = document.getElementById('content-' + moduleId);
+            content.classList.remove('hidden');
+            content.classList.add('animate-fade-in');
+        }
+
+        // --- Simulations Logic ---
+
+        // Module 1: Risk Simulation
+        function simulateRisk() {
+            const scenario = document.getElementById('rbc-scenario').value;
+            const resultDiv = document.getElementById('rbc-result');
+            const scoreEl = document.getElementById('risk-score-val');
+            const barEl = document.getElementById('risk-bar');
+            const analysisEl = document.getElementById('risk-analysis');
+            
+            resultDiv.classList.remove('hidden');
+            
+            let score, color, analysis, width;
+
+            if(scenario === 'low') {
+                score = "저위험 (2%)";
+                width = "2%";
+                color = "bg-green-500";
+                analysis = "거래가 사용자 기록 및 프로젝트 코드와 일치합니다. 시간과 위치가 근무 시간과 일치합니다.";
+            } else if (scenario === 'med') {
+                score = "중위험 (45%)";
+                width = "45%";
+                color = "bg-yellow-500";
+                analysis = "정책 외 시간 (오후 11시) 감지됨. 정당화 필요. 상황 확인: 캘린더에 '늦은 클라이언트 마감'이 기록되어 있나요? 예 -> 자동 승인.";
+            } else {
+                score = "고위험 (92%)";
+                width = "92%";
+                color = "bg-red-600";
+                analysis = "치명적인 이상 징후. 위치 불일치 (사무실에서 200km 떨어진 곳). '전자 제품' 가맹점 카테고리가 해당 역할에 대해 높은 사기 위험으로 플래그 지정됨. 차단됨.";
+            }
+
+            scoreEl.innerText = score;
+            scoreEl.className = `text-lg font-bold ${color.replace('bg-', 'text-')}`;
+            barEl.style.width = width;
+            barEl.className = `h-2.5 rounded-full ${color}`;
+            analysisEl.innerText = analysis;
+        }
+
+        // Module 2: Classification Simulation
+        function simulateClassify() {
+            const input = document.getElementById('icc-input').value.toLowerCase();
+            const resultDiv = document.getElementById('icc-result');
+            const glEl = document.getElementById('gl-result');
+            const reasonEl = document.getElementById('llm-reasoning');
+
+            resultDiv.classList.remove('hidden');
+
+            // Simple keyword logic for demo purposes
+            if (input.includes('커피') || input.includes('점심') || input.includes('저녁') || input.includes('식사') || input.includes('미팅')) {
+                glEl.innerText = "52010 - 접대 및 식사비";
+                reasonEl.innerText = "음식/음료를 나타내는 키워드가 감지되었습니다. '클라이언트'라는 단어는 내부 팀 복지보다는 외부 접대를 시사합니다.";
+            } else if (input.includes('택시') || input.includes('우버') || input.includes('항공') || input.includes('기차') || input.includes('출장')) {
+                glEl.innerText = "52020 - 국내외 교통비";
+                reasonEl.innerText = "교통 키워드가 감지되었습니다. 공급업체 상황 (제공된 경우)에 대해 검증되었습니다. 출장/교통 코드로 할당되었습니다.";
+            } else if (input.includes('서버') || input.includes('소프트웨어') || input.includes('라이선스') || input.includes('클라우드')) {
+                glEl.innerText = "52055 - IT 소프트웨어 및 구독료";
+                reasonEl.innerText = "기술 용어가 감지되었습니다. 'IT 인프라' 예산 범주와 일치합니다.";
+            } else {
+                glEl.innerText = "59999 - 기타 잡비";
+                reasonEl.innerText = "모호한 설명입니다. LLM 신뢰도 점수 < 80%. 사용자 확인 또는 추가 세부 정보를 요청합니다.";
+            }
+        }
+
+        // Module 3: Policy Simulation
+        function simulatePolicy() {
+            const resultDiv = document.getElementById('dpa-result');
+            resultDiv.classList.remove('hidden');
+        }
+
+        // --- Chart.js Initialization ---
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Efficiency Chart (Radar)
+            const ctxEfficiency = document.getElementById('efficiencyChart').getContext('2d');
+            new Chart(ctxEfficiency, {
+                type: 'radar',
+                data: {
+                    labels: ['승인 속도', '감사 범위', '데이터 정확도', '사용자 만족도', '사기 감지'],
+                    datasets: [{
+                        label: '현재 시스템',
+                        data: [50, 20, 70, 60, 40],
+                        backgroundColor: 'rgba(148, 163, 184, 0.2)',
+                        borderColor: 'rgba(148, 163, 184, 1)',
+                        pointBackgroundColor: 'rgba(148, 163, 184, 1)',
+                    }, {
+                        label: 'A-GRC 엔진',
+                        data: [90, 95, 98, 90, 95],
+                        backgroundColor: 'rgba(59, 130, 246, 0.2)',
+                        borderColor: 'rgba(59, 130, 246, 1)',
+                        pointBackgroundColor: 'rgba(59, 130, 246, 1)',
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        r: {
+                            angleLines: { color: '#E2E8F0' },
+                            grid: { color: '#E2E8F0' },
+                            suggestedMin: 0,
+                            suggestedMax: 100
+                        }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Loss Chart (Bar)
+            const ctxLoss = document.getElementById('lossChart').getContext('2d');
+            new Chart(ctxLoss, {
+                type: 'bar',
+                data: {
+                    labels: ['조직적 사기', '상황적 오류', '정책 오해석'],
+                    datasets: [{
+                        label: '예상 손실 감소 (%)',
+                        data: [95, 80, 65],
+                        backgroundColor: [
+                            'rgba(37, 99, 235, 0.8)',
+                            'rgba(79, 70, 229, 0.8)',
+                            'rgba(16, 185, 129, 0.8)'
+                        ],
+                        borderRadius: 6
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: true,
+                            max: 100,
+                            title: { display: true, text: '감소율 %' }
+                        },
+                        x: {
+                            grid: { display: false }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    return context.parsed.y + '% 감소';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+    <style>
+        .animate-fade-in {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+</body>
+</html>
