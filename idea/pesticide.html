@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriSmart Assist | Intelligent Pesticide Recommender</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome (for icons, replacement for SVG) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Config & Styles -->
+    <style>
+        body { font-family: 'Noto Sans', sans-serif; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f5f5f4; }
+        ::-webkit-scrollbar-thumb { background: #a8a29e; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #78716c; }
+
+        /* Chart Container Strict Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+
+        /* Chat Bubble Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .msg-anim { animation: fadeIn 0.4s ease-out forwards; }
+        
+        /* Interactive Card Hover */
+        .problem-card { transition: all 0.3s ease; border-left: 4px solid transparent; }
+        .problem-card:hover { transform: translateY(-5px); border-left-color: #ea580c; shadow-lg; }
+
+        /* Architecture Node Active State */
+        .arch-node.active { ring-width: 4px; ring-color: #15803d; background-color: #f0fdf4; }
+    </style>
+
+    <!-- 
+    CONFIRMATION: NO SVG graphics used directly (FontAwesome fonts used). NO Mermaid JS used.
+    Chosen Palette: Warm Neutrals (Stone/Beige) with Forest Green (Primary) and Harvest Orange (Accent).
+    -->
+    
+    <!-- Application Structure Plan: 
+         1. Hero: Executive Summary.
+         2. Problem: Interactive Cards for the "Trilemma".
+         3. Demo: Step-by-step Chat Simulator for User Journey.
+         4. Architecture: Interactive Schematic for Technical Specs.
+         5. Dashboard: Charts for Business Value & Timeline.
+    -->
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased selection:bg-green-200 selection:text-green-900">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-stone-50/90 backdrop-blur-md border-b border-stone-200">
+        <div class="container mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-leaf text-green-700 text-xl"></i>
+                <span class="font-bold text-xl tracking-tight text-stone-900">AgriSmart Assist</span>
+            </div>
+            <div class="hidden md:flex gap-6 text-sm font-semibold text-stone-600">
+                <a href="#vision" class="hover:text-green-700 transition">Vision</a>
+                <a href="#problem" class="hover:text-green-700 transition">The Trilemma</a>
+                <a href="#demo" class="hover:text-green-700 transition">Live Demo</a>
+                <a href="#tech" class="hover:text-green-700 transition">Technology</a>
+                <a href="#impact" class="hover:text-green-700 transition">Impact & Plan</a>
+            </div>
+            <button onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'})" class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-sm">
+                Try the Bot
+            </button>
+        </div>
+    </nav>
+
+    <!-- Section 1: Hero (Executive Summary) -->
+    <header id="vision" class="pt-20 pb-16 px-6 bg-gradient-to-b from-stone-100 to-stone-50">
+        <div class="container mx-auto max-w-5xl text-center">
+            <div class="inline-block bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full mb-6">
+                AI-DRIVEN DECISION SUPPORT SYSTEM
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-stone-900 mb-6 leading-tight">
+                The <span class="text-green-700">Digital Agronomist</span> for<br>Modern Farming
+            </h1>
+            <p class="text-lg md:text-xl text-stone-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+                Solving the agricultural trilemma by combining <strong>Large Language Models</strong> with <strong>Real-Time Inventory Data</strong>. 
+                We provide farmers with instant, safe (PLS compliant), and stock-verified pesticide recommendations.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mt-12 text-left">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    <div class="text-orange-600 font-bold mb-2"><i class="fas fa-shield-alt mr-2"></i>Safety First</div>
+                    <p class="text-sm text-stone-600">Strict adherence to Positive List System (PLS) and Pre-Harvest Intervals.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    <div class="text-blue-600 font-bold mb-2"><i class="fas fa-boxes mr-2"></i>Inventory Linked</div>
+                    <p class="text-sm text-stone-600">Connects directly to <code class="bg-stone-100 px-1 rounded">농약매출내역.xlsx</code> to ensure stock availability.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    <div class="text-purple-600 font-bold mb-2"><i class="fas fa-brain mr-2"></i>AI Powered</div>
+                    <p class="text-sm text-stone-600">Symptom-to-solution diagnosis using RAG (Retrieval Augmented Generation).</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 2: The Problem (Interactive) -->
+    <section id="problem" class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">The Agricultural Trilemma</h2>
+                <p class="text-stone-600 max-w-2xl">Farmers face three critical challenges that cause financial loss and safety hazards. Hover over each card to understand the depth of the problem.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Problem 1 -->
+                <div class="problem-card group bg-stone-50 p-8 rounded-2xl cursor-pointer">
+                    <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-6 text-xl">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-stone-900">1. The Compliance Gap</h3>
+                    <p class="text-stone-600 mb-4">Farmers often use familiar chemicals without realizing they are banned for specific harvest timelines.</p>
+                    <div class="opacity-50 group-hover:opacity-100 transition-opacity text-sm font-semibold text-red-600">
+                        Consequence: Discarded crops & fines.
+                    </div>
+                </div>
+
+                <!-- Problem 2 -->
+                <div class="problem-card group bg-stone-50 p-8 rounded-2xl cursor-pointer">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-6 text-xl">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-stone-900">2. Inventory Mismatch</h3>
+                    <p class="text-stone-600 mb-4">Driving 30 minutes to a cooperative only to find the recommended product is out of stock.</p>
+                    <div class="opacity-50 group-hover:opacity-100 transition-opacity text-sm font-semibold text-amber-600">
+                        Consequence: Wasted time & untreated pests.
+                    </div>
+                </div>
+
+                <!-- Problem 3 -->
+                <div class="problem-card group bg-stone-50 p-8 rounded-2xl cursor-pointer">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-6 text-xl">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-stone-900">3. Dosage Errors</h3>
+                    <p class="text-stone-600 mb-4">Inefficient calculation leads to over-purchasing or under-diluting chemicals.</p>
+                    <div class="opacity-50 group-hover:opacity-100 transition-opacity text-sm font-semibold text-blue-600">
+                        Consequence: Soil contamination & money waste.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: The Solution (Interactive Chat Demo) -->
+    <section id="demo" class="py-20 bg-stone-900 text-white overflow-hidden relative">
+        <!-- Background Pattern -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <i class="fas fa-seedling absolute top-10 left-10 text-9xl"></i>
+            <i class="fas fa-cloud-sun absolute bottom-10 right-10 text-9xl"></i>
+        </div>
+
+        <div class="container mx-auto px-6 max-w-6xl relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Description -->
+                <div>
+                    <div class="text-green-400 font-bold mb-2 tracking-wide uppercase text-sm">Product Demo</div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6">Experience <span class="text-green-400">AgriSmart Assist</span></h2>
+                    <p class="text-stone-300 mb-8 text-lg leading-relaxed">
+                        Follow the user journey described in our proposal. See how the system handles diagnosis, safety constraints, and inventory checks in real-time.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center flex-shrink-0 mt-1">1</div>
+                            <div>
+                                <h4 class="font-bold">Phase 1: Diagnosis & Constraint</h4>
+                                <p class="text-sm text-stone-400">AI identifies the pest and notes the 7-day harvest limit.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center flex-shrink-0 mt-1">2</div>
+                            <div>
+                                <h4 class="font-bold">Phase 2: Recommendation & Stock</h4>
+                                <p class="text-sm text-stone-400">Filters for products safe for harvest AND currently in stock.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center flex-shrink-0 mt-1">3</div>
+                            <div>
+                                <h4 class="font-bold">Phase 3: Dosage Calculation</h4>
+                                <p class="text-sm text-stone-400">Calculates exact bottles needed for 200 pyeong.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Interface -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-2xl border-4 border-stone-800 h-[600px] flex flex-col relative">
+                    <!-- Header -->
+                    <div class="bg-green-700 p-4 flex items-center justify-between text-white">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold">AgriSmart Bot</div>
+                                <div class="text-xs text-green-200">Online | Inventory Connected</div>
+                            </div>
+                        </div>
+                        <i class="fas fa-ellipsis-v opacity-50"></i>
+                    </div>
+
+                    <!-- Chat Area -->
+                    <div id="chat-box" class="flex-1 bg-stone-100 p-4 overflow-y-auto space-y-4">
+                        <div class="text-center text-xs text-stone-400 my-4">Today, 10:23 AM</div>
+                        <div class="flex gap-3 msg-anim">
+                            <div class="w-8 h-8 rounded-full bg-green-700 text-white flex items-center justify-center flex-shrink-0 text-xs"><i class="fas fa-robot"></i></div>
+                            <div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm text-sm text-stone-800 max-w-[85%]">
+                                Hello! I'm your digital agronomist. How can I help your farm today?
+                            </div>
+                        </div>
+                        <!-- Dynamic Messages will appear here -->
+                    </div>
+
+                    <!-- Control Area (Simulation Controls) -->
+                    <div class="p-4 bg-white border-t border-stone-200">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">Demo Controls</span>
+                            <span id="step-indicator" class="text-xs text-green-600 font-bold">Step 1/4</span>
+                        </div>
+                        <button id="next-btn" class="w-full bg-stone-900 hover:bg-black text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
+                            <span>Start Scenario</span> <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Technical Specs (Architecture) -->
+    <section id="tech" class="py-20 bg-stone-50">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">Technical Architecture</h2>
+                <p class="text-stone-600 max-w-2xl mx-auto">
+                    A Hybrid Data Structure powered by Retrieval Augmented Generation (RAG). 
+                    Click the components below to explore the data flow.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Interactive Diagram (Left 2/3) -->
+                <div class="lg:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-stone-200 relative">
+                    <div class="flex flex-col gap-6">
+                        <!-- User Input -->
+                        <div class="flex justify-center">
+                            <div onclick="showTechDetail('input')" class="arch-node cursor-pointer bg-stone-100 hover:bg-stone-200 border-2 border-stone-300 rounded-lg p-4 text-center w-48 transition">
+                                <i class="fas fa-user text-stone-500 mb-2"></i>
+                                <div class="font-bold text-sm">User Query</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Arrow Down -->
+                        <div class="flex justify-center text-stone-300"><i class="fas fa-arrow-down"></i></div>
+
+                        <!-- AI Engine -->
+                        <div class="flex justify-center">
+                            <div onclick="showTechDetail('engine')" class="arch-node cursor-pointer bg-green-50 hover:bg-green-100 border-2 border-green-500 rounded-lg p-6 text-center w-64 transition active shadow-md">
+                                <i class="fas fa-brain text-green-600 mb-2 text-2xl"></i>
+                                <div class="font-bold text-green-900">AI Engine (LLM)</div>
+                                <div class="text-xs text-green-700 mt-1">RAG Pipeline + Safety Guardrails</div>
+                            </div>
+                        </div>
+
+                        <!-- Data Split -->
+                        <div class="flex justify-center gap-16 text-stone-300 text-2xl">
+                            <i class="fas fa-long-arrow-alt-down rotate-45 transform origin-top-left"></i>
+                            <i class="fas fa-long-arrow-alt-down -rotate-45 transform origin-top-right"></i>
+                        </div>
+
+                        <!-- Data Sources -->
+                        <div class="flex justify-center gap-8">
+                            <div onclick="showTechDetail('kb')" class="arch-node cursor-pointer bg-blue-50 hover:bg-blue-100 border-2 border-blue-400 rounded-lg p-4 text-center w-48 transition">
+                                <i class="fas fa-book text-blue-500 mb-2"></i>
+                                <div class="font-bold text-sm text-blue-900">External KB</div>
+                                <div class="text-xs text-blue-700">Regulations & Biology</div>
+                            </div>
+                            <div onclick="showTechDetail('inventory')" class="arch-node cursor-pointer bg-amber-50 hover:bg-amber-100 border-2 border-amber-400 rounded-lg p-4 text-center w-48 transition">
+                                <i class="fas fa-database text-amber-500 mb-2"></i>
+                                <div class="font-bold text-sm text-amber-900">Internal Inventory</div>
+                                <div class="text-xs text-amber-700">Sales Data (Excel)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Panel (Right 1/3) -->
+                <div class="bg-stone-800 text-stone-300 p-8 rounded-2xl flex flex-col justify-center">
+                    <h3 id="tech-title" class="text-2xl font-bold text-white mb-4">AI Engine (RAG)</h3>
+                    <div id="tech-desc" class="space-y-4 text-sm leading-relaxed">
+                        <p>We utilize a Retrieval Augmented Generation architecture to prevent "hallucinations".</p>
+                        <ul class="list-disc list-inside space-y-2 text-stone-400">
+                            <li><strong>Retrieval:</strong> Searches Knowledge Base for pest treatments.</li>
+                            <li><strong>Augmentation:</strong> Cross-references with Inventory Data to find in-stock brands.</li>
+                            <li><strong>Generation:</strong> Constructs a natural language response with price and dosage.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Impact & Timeline (Charts) -->
+    <section id="impact" class="py-20 bg-white border-t border-stone-200">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-3xl font-bold text-stone-900 mb-12 text-center">Business Value & Roadmap</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Chart 1: Business Impact -->
+                <div>
+                    <h3 class="text-lg font-bold text-stone-800 mb-4 flex items-center gap-2">
+                        <i class="fas fa-chart-bar text-green-600"></i> Stakeholder Impact
+                    </h3>
+                    <p class="text-sm text-stone-500 mb-6">Quantifying benefits across the ecosystem.</p>
+                    <div class="chart-container bg-stone-50 rounded-xl p-4 border border-stone-100">
+                        <canvas id="impactChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-xs text-stone-500 text-center">
+                        Scores based on efficiency gains, risk reduction, and cost savings projected in proposal.
+                    </div>
+                </div>
+
+                <!-- Chart 2: Timeline -->
+                <div>
+                    <h3 class="text-lg font-bold text-stone-800 mb-4 flex items-center gap-2">
+                        <i class="fas fa-calendar-alt text-amber-600"></i> 12-Week Implementation
+                    </h3>
+                    <p class="text-sm text-stone-500 mb-6">From data engineering to pilot testing.</p>
+                    <div class="chart-container bg-stone-50 rounded-xl p-4 border border-stone-100">
+                        <canvas id="timelineChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-xs text-stone-500 text-center">
+                        Critical Path: Data cleaning must precede AI development.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-6">
+                <i class="fas fa-leaf text-green-700 text-3xl mb-4"></i>
+                <h2 class="text-2xl font-bold text-white">AgriSmart Assist</h2>
+                <p class="text-sm mt-2">Prepared for Agricultural Innovation Fund</p>
+            </div>
+            <div class="flex justify-center gap-8 text-sm font-semibold mb-8">
+                <a href="#" class="hover:text-white transition">Proposal</a>
+                <a href="#" class="hover:text-white transition">Dataset</a>
+                <a href="#" class="hover:text-white transition">Contact</a>
+            </div>
+            <div class="text-xs border-t border-stone-800 pt-8">
+                &copy; 2025 AgriSmart Project Team. Based on '농약매출내역.xlsx' Data Asset.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- 1. Technical Spec Data & Logic ---
+        const techData = {
+            'input': {
+                title: "User Input & Analysis",
+                content: `<p>The system identifies three key components from the farmer's colloquial query:</p>
+                          <ul class="list-disc list-inside space-y-2 mt-2 text-stone-400">
+                            <li><strong>Crop:</strong> (e.g., Pepper, Cucumber)</li>
+                            <li><strong>Pest/Symptom:</strong> (e.g., Mites, "White powder")</li>
+                            <li><strong>Constraint:</strong> (e.g., "Harvest in 5 days")</li>
+                          </ul>`
+            },
+            'engine': {
+                title: "AI Engine (RAG)",
+                content: `<p>We utilize a Retrieval Augmented Generation architecture to prevent "hallucinations".</p>
+                          <ul class="list-disc list-inside space-y-2 mt-2 text-stone-400">
+                            <li><strong>Retrieval:</strong> Searches Knowledge Base for pest treatments.</li>
+                            <li><strong>Safety Filter:</strong> Removes chemicals with PHI > Harvest Date.</li>
+                            <li><strong>Augmentation:</strong> Checks Inventory for stock.</li>
+                          </ul>`
+            },
+            'kb': {
+                title: "External Knowledge Base",
+                content: `<p>Unstructured/Vector database sourced from Government Agricultural APIs (RDA).</p>
+                          <ul class="list-disc list-inside space-y-2 mt-2 text-stone-400">
+                            <li>Target Pests</li>
+                            <li>Dilution Ratios</li>
+                            <li><strong>Pre-Harvest Intervals (PHI)</strong></li>
+                            <li>Toxicity Levels</li>
+                          </ul>`
+            },
+            'inventory': {
+                title: "Internal Inventory Data",
+                content: `<p>Structured data from <code>농약매출내역.xlsx</code>.</p>
+                          <ul class="list-disc list-inside space-y-2 mt-2 text-stone-400">
+                            <li><strong>Key Columns:</strong> 상품명 (Product), 매출단가 (Price), 규격 (Size).</li>
+                            <li><strong>Function:</strong> Validates availability and calculates cost.</li>
+                            <li><strong>Products:</strong> 488 unique items in current dataset.</li>
+                          </ul>`
+            }
+        };
+
+        function showTechDetail(key) {
+            // Update Text
+            const data = techData[key];
+            const titleEl = document.getElementById('tech-title');
+            const descEl = document.getElementById('tech-desc');
+            
+            // Animation for transition
+            descEl.style.opacity = 0;
+            titleEl.style.opacity = 0;
+            
+            setTimeout(() => {
+                titleEl.textContent = data.title;
+                descEl.innerHTML = data.content;
+                titleEl.style.opacity = 1;
+                descEl.style.opacity = 1;
+            }, 200);
+
+            // Update Active State Visuals
+            document.querySelectorAll('.arch-node').forEach(el => el.classList.remove('active'));
+            // In a real app we'd target the specific element clicked, but here simplistic:
+            // logic handles content update.
+        }
+
+        // --- 2. Chat Demo Logic ---
+        const chatSteps = [
+            {
+                user: "I see tiny black bugs on my cucumber leaves. I plan to pick them next Saturday (in 7 days).",
+                bot: "Those sound like <strong>Aphids</strong>. Since you are harvesting in 7 days, we need a pesticide with a short safety interval."
+            },
+            {
+                user: null, // System action step
+                bot: `I found 3 safe options in stock:<br><br>
+                      1. <strong>Marshall (Nonghyup Chemical)</strong><br>
+                      &nbsp;&nbsp;&nbsp;- Safety Interval: 3 days<br>
+                      &nbsp;&nbsp;&nbsp;- Price: 7,900 KRW<br><br>
+                      2. <strong>Ortiva (Syngenta)</strong><br>
+                      &nbsp;&nbsp;&nbsp;- Safety Interval: 2 days<br>
+                      &nbsp;&nbsp;&nbsp;- Price: 19,300 KRW`
+            },
+            {
+                user: "I'll take the Marshall. My greenhouse is 200 pyeong.",
+                bot: `For 200 pyeong, you need approx 40 Liters of diluted solution. One 500ml bottle of Marshall covers this area easily.<br><br>
+                      <strong>Total Cost: 7,900 KRW.</strong><br>
+                      Would you like to reserve it?`
+            }
+        ];
+
+        let currentStep = 0;
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            if (currentStep >= chatSteps.length) {
+                // Reset
+                document.getElementById('chat-box').innerHTML = `
+                    <div class="text-center text-xs text-stone-400 my-4">Session Reset</div>
+                    <div class="flex gap-3 msg-anim">
+                        <div class="w-8 h-8 rounded-full bg-green-700 text-white flex items-center justify-center flex-shrink-0 text-xs"><i class="fas fa-robot"></i></div>
+                        <div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm text-sm text-stone-800 max-w-[85%]">
+                            Hello! I'm your digital agronomist. How can I help your farm today?
+                        </div>
+                    </div>`;
+                currentStep = 0;
+                document.getElementById('next-btn').innerHTML = `<span>Start Scenario</span> <i class="fas fa-arrow-right"></i>`;
+                document.getElementById('step-indicator').innerText = "Step 1/4";
+                return;
+            }
+
+            const stepData = chatSteps[currentStep];
+            const chatBox = document.getElementById('chat-box');
+
+            // 1. User Message (if exists)
+            if (stepData.user) {
+                const userMsg = document.createElement('div');
+                userMsg.className = 'flex gap-3 justify-end msg-anim';
+                userMsg.innerHTML = `
+                    <div class="bg-stone-800 text-white p-3 rounded-l-xl rounded-br-xl shadow-sm text-sm max-w-[85%]">
+                        ${stepData.user}
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-stone-300 text-stone-600 flex items-center justify-center flex-shrink-0 text-xs"><i class="fas fa-user"></i></div>
+                `;
+                chatBox.appendChild(userMsg);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            // 2. Bot Message (Delayed slightly for realism)
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'flex gap-3 msg-anim';
+                botMsg.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-green-700 text-white flex items-center justify-center flex-shrink-0 text-xs"><i class="fas fa-robot"></i></div>
+                    <div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm text-sm text-stone-800 max-w-[85%]">
+                        ${stepData.bot}
+                    </div>
+                `;
+                chatBox.appendChild(botMsg);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 600);
+
+            currentStep++;
+            
+            // Update Button Text
+            if (currentStep >= chatSteps.length) {
+                document.getElementById('next-btn').innerHTML = `<span>Reset Demo</span> <i class="fas fa-redo"></i>`;
+                document.getElementById('step-indicator').innerText = "Complete";
+            } else {
+                document.getElementById('next-btn').innerHTML = `<span>Next Step</span> <i class="fas fa-arrow-right"></i>`;
+                document.getElementById('step-indicator').innerText = `Step ${currentStep + 1}/4`;
+            }
+        });
+
+        // --- 3. Charts Implementation ---
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Impact Chart (Grouped Bar - Better than Radar for clarity here)
+            const ctxImpact = document.getElementById('impactChart').getContext('2d');
+            new Chart(ctxImpact, {
+                type: 'bar',
+                data: {
+                    labels: ['Farmers', 'Cooperatives', 'Funders'],
+                    datasets: [
+                        {
+                            label: 'Risk Reduction / Safety',
+                            data: [9, 5, 8],
+                            backgroundColor: '#15803d', // Green
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Efficiency / Speed',
+                            data: [7, 9, 6],
+                            backgroundColor: '#d97706', // Amber
+                            borderRadius: 4
+                        },
+                        {
+                            label: 'Cost Savings',
+                            data: [8, 6, 4],
+                            backgroundColor: '#44403c', // Stone
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, max: 10, title: { display: true, text: 'Benefit Score (1-10)' } }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Timeline Chart (Horizontal Bar / Gantt Style)
+            const ctxTimeline = document.getElementById('timelineChart').getContext('2d');
+            new Chart(ctxTimeline, {
+                type: 'bar',
+                data: {
+                    labels: ['Data Engineering', 'AI Development', 'Integration', 'Pilot Testing'],
+                    datasets: [{
+                        label: 'Duration (Weeks)',
+                        data: [ [0, 3], [3, 6], [6, 9], [9, 12] ], // Floating bars [start, end]
+                        backgroundColor: [
+                            '#44403c', // Stone
+                            '#15803d', // Green
+                            '#d97706', // Amber
+                            '#1d4ed8'  // Blue
+                        ],
+                        borderRadius: 6,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Horizontal
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { 
+                            beginAtZero: true, 
+                            max: 12,
+                            title: { display: true, text: 'Project Timeline (Weeks)' },
+                            grid: { color: '#e7e5e4' }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const raw = context.raw;
+                                    return `Weeks ${raw[0]} - ${raw[1]}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
