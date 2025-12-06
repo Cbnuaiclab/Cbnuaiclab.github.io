@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AgriSmart Assist | 지능형 농약 추천 시스템</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome (for icons, replacement for SVG) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Config & Styles -->
+    <style>
+        body { font-family: 'Noto Sans KR', sans-serif; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f5f5f4; }
+        ::-webkit-scrollbar-thumb { background: #a8a29e; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #78716c; }
+
+        /* Chart Container Strict Styling */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+
+        /* Chat Bubble Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .msg-anim { animation: fadeIn 0.4s ease-out forwards; }
+        
+        /* Interactive Card Hover */
+        .problem-card { transition: all 0.3s ease; border-left: 4px solid transparent; }
+        .problem-card:hover { transform: translateY(-5px); border-left-color: #ea580c; shadow-lg; }
+
+        /* Architecture Node Active State */
+        .arch-node.active { ring-width: 4px; ring-color: #15803d; background-color: #f0fdf4; }
+    </style>
+
+    <!-- 
+    CONFIRMATION: NO SVG graphics used directly (FontAwesome fonts used). NO Mermaid JS used.
+    Chosen Palette: Warm Neutrals (Stone/Beige) with Forest Green (Primary) and Harvest Orange (Accent).
+    -->
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased selection:bg-green-200 selection:text-green-900">
+
+    <!-- Navigation -->
+    <nav class="sticky top-0 z-50 bg-stone-50/90 backdrop-blur-md border-b border-stone-200">
+        <div class="container mx-auto px-6 h-16 flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i class="fas fa-leaf text-green-700 text-xl"></i>
+                <span class="font-bold text-xl tracking-tight text-stone-900">AgriSmart Assist</span>
+            </div>
+            <div class="hidden md:flex gap-6 text-sm font-semibold text-stone-600">
+                <a href="#vision" class="hover:text-green-700 transition">비전</a>
+                <a href="#problem" class="hover:text-green-700 transition">농업의 삼중고</a>
+                <a href="#demo" class="hover:text-green-700 transition">라이브 데모</a>
+                <a href="#tech" class="hover:text-green-700 transition">기술 소개</a>
+                <a href="#impact" class="hover:text-green-700 transition">기대 효과 및 계획</a>
+            </div>
+            <button onclick="document.getElementById('demo').scrollIntoView({behavior: 'smooth'})" class="bg-green-700 hover:bg-green-800 text-white px-4 py-2 rounded-lg text-sm font-semibold transition shadow-sm">
+                봇 체험하기
+            </button>
+        </div>
+    </nav>
+
+    <!-- Section 1: Hero (Executive Summary) -->
+    <header id="vision" class="pt-20 pb-16 px-6 bg-gradient-to-b from-stone-100 to-stone-50">
+        <div class="container mx-auto max-w-5xl text-center">
+            <div class="inline-block bg-green-100 text-green-800 text-xs font-bold px-3 py-1 rounded-full mb-6">
+                AI 기반 의사 결정 지원 시스템
+            </div>
+            <h1 class="text-4xl md:text-6xl font-bold text-stone-900 mb-6 leading-tight">
+                현대 농업을 위한 <br><span class="text-green-700">디지털 농업 전문가</span>
+            </h1>
+            <p class="text-lg md:text-xl text-stone-600 mb-10 max-w-3xl mx-auto leading-relaxed">
+                <strong>거대 언어 모델(LLM)</strong>과 <strong>실시간 재고 데이터</strong>를 결합하여 농업의 삼중고를 해결합니다. 
+                농부들에게 즉각적이고 안전하며(PLS 준수), 재고가 확인된 농약 추천을 제공합니다.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl mx-auto mt-12 text-left">
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    <div class="text-orange-600 font-bold mb-2"><i class="fas fa-shield-alt mr-2"></i>안전 제일 (Safety First)</div>
+                    <p class="text-sm text-stone-600">농약 허용물질목록관리제도(PLS) 및 수확 전 안전 사용 기준을 철저히 준수합니다.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    <div class="text-blue-600 font-bold mb-2"><i class="fas fa-boxes mr-2"></i>재고 연동</div>
+                    <p class="text-sm text-stone-600"><code class="bg-stone-100 px-1 rounded">농약매출내역.xlsx</code>와 직접 연동하여 실시간 재고를 확인합니다.</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-sm border border-stone-100">
+                    <div class="text-purple-600 font-bold mb-2"><i class="fas fa-brain mr-2"></i>AI 기반</div>
+                    <p class="text-sm text-stone-600">RAG(검색 증강 생성) 기술을 활용한 증상 기반 병해충 진단 시스템입니다.</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section 2: The Problem (Interactive) -->
+    <section id="problem" class="py-20 bg-white">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">농업 현장의 삼중고 (Trilemma)</h2>
+                <p class="text-stone-600 max-w-2xl">농부들은 금전적 손실과 안전 문제를 야기하는 세 가지 중대한 문제에 직면해 있습니다. 카드 위에 마우스를 올려 자세한 내용을 확인하세요.</p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Problem 1 -->
+                <div class="problem-card group bg-stone-50 p-8 rounded-2xl cursor-pointer">
+                    <div class="w-12 h-12 bg-red-100 text-red-600 rounded-full flex items-center justify-center mb-6 text-xl">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-stone-900">1. 규제 준수의 어려움</h3>
+                    <p class="text-stone-600 mb-4">익숙한 농약을 사용하다가 특정 수확 시기에 금지된 약품임을 인지하지 못하는 경우가 많습니다.</p>
+                    <div class="opacity-50 group-hover:opacity-100 transition-opacity text-sm font-semibold text-red-600">
+                        결과: 농산물 폐기 및 과태료 부과.
+                    </div>
+                </div>
+
+                <!-- Problem 2 -->
+                <div class="problem-card group bg-stone-50 p-8 rounded-2xl cursor-pointer">
+                    <div class="w-12 h-12 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center mb-6 text-xl">
+                        <i class="fas fa-warehouse"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-stone-900">2. 재고 불일치</h3>
+                    <p class="text-stone-600 mb-4">추천받은 농약을 사러 차로 30분을 이동했지만, 재고가 없어 헛걸음하는 경우가 빈번합니다.</p>
+                    <div class="opacity-50 group-hover:opacity-100 transition-opacity text-sm font-semibold text-amber-600">
+                        결과: 시간 낭비 및 방제 시기 놓침.
+                    </div>
+                </div>
+
+                <!-- Problem 3 -->
+                <div class="problem-card group bg-stone-50 p-8 rounded-2xl cursor-pointer">
+                    <div class="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-6 text-xl">
+                        <i class="fas fa-flask"></i>
+                    </div>
+                    <h3 class="text-xl font-bold mb-3 text-stone-900">3. 희석 배수 오류</h3>
+                    <p class="text-stone-600 mb-4">정확하지 않은 계산으로 인해 농약을 과다 구매하거나 희석 비율을 틀리는 경우가 많습니다.</p>
+                    <div class="opacity-50 group-hover:opacity-100 transition-opacity text-sm font-semibold text-blue-600">
+                        결과: 토양 오염 및 비용 낭비.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: The Solution (Interactive Chat Demo) -->
+    <section id="demo" class="py-20 bg-stone-900 text-white overflow-hidden relative">
+        <!-- Background Pattern -->
+        <div class="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
+            <i class="fas fa-seedling absolute top-10 left-10 text-9xl"></i>
+            <i class="fas fa-cloud-sun absolute bottom-10 right-10 text-9xl"></i>
+        </div>
+
+        <div class="container mx-auto px-6 max-w-6xl relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                
+                <!-- Description -->
+                <div>
+                    <div class="text-green-400 font-bold mb-2 tracking-wide uppercase text-sm">제품 데모</div>
+                    <h2 class="text-3xl md:text-4xl font-bold mb-6"><span class="text-green-400">AgriSmart Assist</span> 체험하기</h2>
+                    <p class="text-stone-300 mb-8 text-lg leading-relaxed">
+                        제안서에 설명된 사용자 여정을 따라가 보세요. 시스템이 실시간으로 진단, 안전성 검토, 재고 확인을 어떻게 처리하는지 확인하실 수 있습니다.
+                    </p>
+                    
+                    <div class="space-y-4">
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center flex-shrink-0 mt-1">1</div>
+                            <div>
+                                <h4 class="font-bold">1단계: 진단 및 제약 조건 확인</h4>
+                                <p class="text-sm text-stone-400">AI가 해충을 식별하고 '수확 7일 전'이라는 제약 조건을 인식합니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center flex-shrink-0 mt-1">2</div>
+                            <div>
+                                <h4 class="font-bold">2단계: 추천 및 재고 확인</h4>
+                                <p class="text-sm text-stone-400">수확 전 사용이 안전하고 현재 '재고가 있는' 제품만 필터링합니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start gap-4">
+                            <div class="w-8 h-8 rounded-full bg-green-500/20 text-green-400 flex items-center justify-center flex-shrink-0 mt-1">3</div>
+                            <div>
+                                <h4 class="font-bold">3단계: 소요량 계산</h4>
+                                <p class="text-sm text-stone-400">200평 기준으로 필요한 정확한 병 수를 계산합니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Chat Interface -->
+                <div class="bg-white rounded-3xl overflow-hidden shadow-2xl border-4 border-stone-800 h-[600px] flex flex-col relative">
+                    <!-- Header -->
+                    <div class="bg-green-700 p-4 flex items-center justify-between text-white">
+                        <div class="flex items-center gap-3">
+                            <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <div>
+                                <div class="font-bold">AgriSmart Bot</div>
+                                <div class="text-xs text-green-200">온라인 | 재고 시스템 연동됨</div>
+                            </div>
+                        </div>
+                        <i class="fas fa-ellipsis-v opacity-50"></i>
+                    </div>
+
+                    <!-- Chat Area -->
+                    <div id="chat-box" class="flex-1 bg-stone-100 p-4 overflow-y-auto space-y-4">
+                        <div class="text-center text-xs text-stone-400 my-4">오늘, 오전 10:23</div>
+                        <div class="flex gap-3 msg-anim">
+                            <div class="w-8 h-8 rounded-full bg-green-700 text-white flex items-center justify-center flex-shrink-0 text-xs"><i class="fas fa-robot"></i></div>
+                            <div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm text-sm text-stone-800 max-w-[85%]">
+                                안녕하세요! 디지털 농업 전문가입니다. 무엇을 도와드릴까요?
+                            </div>
+                        </div>
+                        <!-- Dynamic Messages will appear here -->
+                    </div>
+
+                    <!-- Control Area (Simulation Controls) -->
+                    <div class="p-4 bg-white border-t border-stone-200">
+                        <div class="flex justify-between items-center mb-2">
+                            <span class="text-xs font-bold text-stone-500 uppercase tracking-wider">데모 컨트롤</span>
+                            <span id="step-indicator" class="text-xs text-green-600 font-bold">단계 1/4</span>
+                        </div>
+                        <button id="next-btn" class="w-full bg-stone-900 hover:bg-black text-white py-3 rounded-xl font-semibold transition flex items-center justify-center gap-2">
+                            <span>시나리오 시작</span> <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: Technical Specs (Architecture) -->
+    <section id="tech" class="py-20 bg-stone-50">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-stone-900 mb-4">기술 아키텍처</h2>
+                <p class="text-stone-600 max-w-2xl mx-auto">
+                    검색 증강 생성(RAG)을 활용한 하이브리드 데이터 구조입니다. 
+                    아래 구성 요소를 클릭하여 데이터 흐름을 확인하세요.
+                </p>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-8">
+                <!-- Interactive Diagram (Left 2/3) -->
+                <div class="lg:col-span-2 bg-white p-8 rounded-2xl shadow-sm border border-stone-200 relative">
+                    <div class="flex flex-col gap-6">
+                        <!-- User Input -->
+                        <div class="flex justify-center">
+                            <div onclick="showTechDetail('input')" class="arch-node cursor-pointer bg-stone-100 hover:bg-stone-200 border-2 border-stone-300 rounded-lg p-4 text-center w-48 transition">
+                                <i class="fas fa-user text-stone-500 mb-2"></i>
+                                <div class="font-bold text-sm">사용자 질문</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Arrow Down -->
+                        <div class="flex justify-center text-stone-300"><i class="fas fa-arrow-down"></i></div>
+
+                        <!-- AI Engine -->
+                        <div class="flex justify-center">
+                            <div onclick="showTechDetail('engine')" class="arch-node cursor-pointer bg-green-50 hover:bg-green-100 border-2 border-green-500 rounded-lg p-6 text-center w-64 transition active shadow-md">
+                                <i class="fas fa-brain text-green-600 mb-2 text-2xl"></i>
+                                <div class="font-bold text-green-900">AI 엔진 (LLM)</div>
+                                <div class="text-xs text-green-700 mt-1">RAG 파이프라인 + 안전 필터</div>
+                            </div>
+                        </div>
+
+                        <!-- Data Split -->
+                        <div class="flex justify-center gap-16 text-stone-300 text-2xl">
+                            <i class="fas fa-long-arrow-alt-down rotate-45 transform origin-top-left"></i>
+                            <i class="fas fa-long-arrow-alt-down -rotate-45 transform origin-top-right"></i>
+                        </div>
+
+                        <!-- Data Sources -->
+                        <div class="flex justify-center gap-8">
+                            <div onclick="showTechDetail('kb')" class="arch-node cursor-pointer bg-blue-50 hover:bg-blue-100 border-2 border-blue-400 rounded-lg p-4 text-center w-48 transition">
+                                <i class="fas fa-book text-blue-500 mb-2"></i>
+                                <div class="font-bold text-sm text-blue-900">외부 지식 베이스</div>
+                                <div class="text-xs text-blue-700">규정 및 생물학 정보</div>
+                            </div>
+                            <div onclick="showTechDetail('inventory')" class="arch-node cursor-pointer bg-amber-50 hover:bg-amber-100 border-2 border-amber-400 rounded-lg p-4 text-center w-48 transition">
+                                <i class="fas fa-database text-amber-500 mb-2"></i>
+                                <div class="font-bold text-sm text-amber-900">내부 재고 데이터</div>
+                                <div class="text-xs text-amber-700">매출 데이터 (Excel)</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Info Panel (Right 1/3) -->
+                <div class="bg-stone-800 text-stone-300 p-8 rounded-2xl flex flex-col justify-center">
+                    <h3 id="tech-title" class="text-2xl font-bold text-white mb-4">AI 엔진 (RAG)</h3>
+                    <div id="tech-desc" class="space-y-4 text-sm leading-relaxed">
+                        <p>"환각 현상(Hallucination)"을 방지하기 위해 RAG 아키텍처를 사용합니다.</p>
+                        <ul class="list-disc list-inside space-y-2 text-stone-400">
+                            <li><strong>검색(Retrieval):</strong> 지식 베이스에서 병해충 치료법을 검색합니다.</li>
+                            <li><strong>증강(Augmentation):</strong> 재고 데이터와 교차 검증하여 재고가 있는 브랜드를 찾습니다.</li>
+                            <li><strong>생성(Generation):</strong> 가격과 용량을 포함한 자연어 답변을 생성합니다.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Impact & Timeline (Charts) -->
+    <section id="impact" class="py-20 bg-white border-t border-stone-200">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-3xl font-bold text-stone-900 mb-12 text-center">비즈니스 가치 및 로드맵</h2>
+            
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Chart 1: Business Impact -->
+                <div>
+                    <h3 class="text-lg font-bold text-stone-800 mb-4 flex items-center gap-2">
+                        <i class="fas fa-chart-bar text-green-600"></i> 이해관계자별 기대 효과
+                    </h3>
+                    <p class="text-sm text-stone-500 mb-6">생태계 전반에 걸친 이점을 정량화했습니다.</p>
+                    <div class="chart-container bg-stone-50 rounded-xl p-4 border border-stone-100">
+                        <canvas id="impactChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-xs text-stone-500 text-center">
+                        효율성 증대, 위험 감소, 비용 절감 효과를 바탕으로 산출된 점수입니다.
+                    </div>
+                </div>
+
+                <!-- Chart 2: Timeline -->
+                <div>
+                    <h3 class="text-lg font-bold text-stone-800 mb-4 flex items-center gap-2">
+                        <i class="fas fa-calendar-alt text-amber-600"></i> 12주 실행 계획
+                    </h3>
+                    <p class="text-sm text-stone-500 mb-6">데이터 엔지니어링부터 파일럿 테스트까지.</p>
+                    <div class="chart-container bg-stone-50 rounded-xl p-4 border border-stone-100">
+                        <canvas id="timelineChart"></canvas>
+                    </div>
+                    <div class="mt-4 text-xs text-stone-500 text-center">
+                        핵심 경로(Critical Path): 데이터 정제 작업이 AI 개발보다 선행되어야 합니다.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-stone-900 text-stone-400 py-12">
+        <div class="container mx-auto px-6 text-center">
+            <div class="mb-6">
+                <i class="fas fa-leaf text-green-700 text-3xl mb-4"></i>
+                <h2 class="text-2xl font-bold text-white">AgriSmart Assist</h2>
+                <p class="text-sm mt-2">농업 혁신 펀드(Agricultural Innovation Fund) 제안용</p>
+            </div>
+            <div class="flex justify-center gap-8 text-sm font-semibold mb-8">
+                <a href="#" class="hover:text-white transition">제안서</a>
+                <a href="#" class="hover:text-white transition">데이터셋</a>
+                <a href="#" class="hover:text-white transition">문의하기</a>
+            </div>
+            <div class="text-xs border-t border-stone-800 pt-8">
+                &copy; 2025 AgriSmart Project Team. Based on '농약매출내역.xlsx' Data Asset.
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // --- 1. Technical Spec Data & Logic ---
+        const techData = {
+            'input': {
+                title: "사용자 질문 분석",
+                content: `<p>시스템은 농부의 일상적인 질문에서 세 가지 핵심 요소를 식별합니다:</p>
+                          <ul class="list-disc list-inside space-y-2 mt-2 text-stone-400">
+                            <li><strong>작물:</strong> (예: 고추, 오이)</li>
+                            <li><strong>해충/증상:</strong> (예: 진딧물, "흰 가루")</li>
+                            <li><strong>제약 조건:</strong> (예: "5일 후 수확")</li>
+                          </ul>`
+            },
+            'engine': {
+                title: "AI 엔진 (RAG)",
+                content: `<p>환각 현상(Hallucination) 방지를 위해 RAG 아키텍처를 활용합니다.</p>
+                          <ul class="list-disc list-inside space-y-2 mt-2 text-stone-400">
+                            <li><strong>검색(Retrieval):</strong> 지식 베이스에서 치료법 검색</li>
+                            <li><strong>안전 필터:</strong> 수확 예정일보다 긴 안전 사용 기준(PHI)을 가진 농약 제외</li>
+                            <li><strong>증강(Augmentation):</strong> 재고 데이터 확인</li>
+                          </ul>`
+            },
+            'kb': {
+                title: "외부 지식 베이스",
+                content: `<p>정부 농업 API(농촌진흥청) 등에서 수집된 비정형/벡터 데이터베이스입니다.</p>
+                          <ul class="list-disc list-inside space-y-2 mt-2 text-stone-400">
+                            <li>대상 해충 정보</li>
+                            <li>희석 배수</li>
+                            <li><strong>수확 전 안전 사용 기준(PHI)</strong></li>
+                            <li>독성 등급</li>
+                          </ul>`
+            },
+            'inventory': {
+                title: "내부 재고 데이터",
+                content: `<p><code>농약매출내역.xlsx</code> 기반의 정형 데이터입니다.</p>
+                          <ul class="list-disc list-inside space-y-2 mt-2 text-stone-400">
+                            <li><strong>주요 컬럼:</strong> 상품명, 매출단가, 규격</li>
+                            <li><strong>기능:</strong> 구매 가능 여부 확인 및 비용 계산</li>
+                            <li><strong>품목:</strong> 현재 데이터셋 기준 488개 품목</li>
+                          </ul>`
+            }
+        };
+
+        function showTechDetail(key) {
+            // Update Text
+            const data = techData[key];
+            const titleEl = document.getElementById('tech-title');
+            const descEl = document.getElementById('tech-desc');
+            
+            // Animation for transition
+            descEl.style.opacity = 0;
+            titleEl.style.opacity = 0;
+            
+            setTimeout(() => {
+                titleEl.textContent = data.title;
+                descEl.innerHTML = data.content;
+                titleEl.style.opacity = 1;
+                descEl.style.opacity = 1;
+            }, 200);
+
+            // Update Active State Visuals
+            document.querySelectorAll('.arch-node').forEach(el => el.classList.remove('active'));
+            // In a real app we'd target the specific element clicked, but here simplistic:
+            // logic handles content update.
+        }
+
+        // --- 2. Chat Demo Logic ---
+        const chatSteps = [
+            {
+                user: "오이 잎에 검은 벌레가 보여요. 다음 주 토요일(7일 후)에 수확할 예정입니다.",
+                bot: "말씀하신 증상은 <strong>진딧물</strong>로 보입니다. 7일 후에 수확하시므로, 안전 사용 기준이 짧은 농약이 필요합니다."
+            },
+            {
+                user: null, // System action step
+                bot: `재고가 있는 안전한 제품 3가지를 찾았습니다:<br><br>
+                      1. <strong>마샬 (농협케미컬)</strong><br>
+                      &nbsp;&nbsp;&nbsp;- 안전 사용 기준: 3일<br>
+                      &nbsp;&nbsp;&nbsp;- 가격: 7,900원<br><br>
+                      2. <strong>오티바 (신젠타)</strong><br>
+                      &nbsp;&nbsp;&nbsp;- 안전 사용 기준: 2일<br>
+                      &nbsp;&nbsp;&nbsp;- 가격: 19,300원`
+            },
+            {
+                user: "마샬로 할게요. 하우스가 200평입니다.",
+                bot: `200평에는 약 40리터의 희석액이 필요합니다. 마샬 500ml 한 병이면 충분합니다.<br><br>
+                      <strong>총 금액: 7,900원.</strong><br>
+                      예약하시겠습니까?`
+            }
+        ];
+
+        let currentStep = 0;
+
+        document.getElementById('next-btn').addEventListener('click', () => {
+            if (currentStep >= chatSteps.length) {
+                // Reset
+                document.getElementById('chat-box').innerHTML = `
+                    <div class="text-center text-xs text-stone-400 my-4">세션 초기화됨</div>
+                    <div class="flex gap-3 msg-anim">
+                        <div class="w-8 h-8 rounded-full bg-green-700 text-white flex items-center justify-center flex-shrink-0 text-xs"><i class="fas fa-robot"></i></div>
+                        <div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm text-sm text-stone-800 max-w-[85%]">
+                            안녕하세요! 디지털 농업 전문가입니다. 무엇을 도와드릴까요?
+                        </div>
+                    </div>`;
+                currentStep = 0;
+                document.getElementById('next-btn').innerHTML = `<span>시나리오 시작</span> <i class="fas fa-arrow-right"></i>`;
+                document.getElementById('step-indicator').innerText = "단계 1/4";
+                return;
+            }
+
+            const stepData = chatSteps[currentStep];
+            const chatBox = document.getElementById('chat-box');
+
+            // 1. User Message (if exists)
+            if (stepData.user) {
+                const userMsg = document.createElement('div');
+                userMsg.className = 'flex gap-3 justify-end msg-anim';
+                userMsg.innerHTML = `
+                    <div class="bg-stone-800 text-white p-3 rounded-l-xl rounded-br-xl shadow-sm text-sm max-w-[85%]">
+                        ${stepData.user}
+                    </div>
+                    <div class="w-8 h-8 rounded-full bg-stone-300 text-stone-600 flex items-center justify-center flex-shrink-0 text-xs"><i class="fas fa-user"></i></div>
+                `;
+                chatBox.appendChild(userMsg);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }
+
+            // 2. Bot Message (Delayed slightly for realism)
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'flex gap-3 msg-anim';
+                botMsg.innerHTML = `
+                    <div class="w-8 h-8 rounded-full bg-green-700 text-white flex items-center justify-center flex-shrink-0 text-xs"><i class="fas fa-robot"></i></div>
+                    <div class="bg-white p-3 rounded-r-xl rounded-bl-xl shadow-sm text-sm text-stone-800 max-w-[85%]">
+                        ${stepData.bot}
+                    </div>
+                `;
+                chatBox.appendChild(botMsg);
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 600);
+
+            currentStep++;
+            
+            // Update Button Text
+            if (currentStep >= chatSteps.length) {
+                document.getElementById('next-btn').innerHTML = `<span>데모 초기화</span> <i class="fas fa-redo"></i>`;
+                document.getElementById('step-indicator').innerText = "완료";
+            } else {
+                document.getElementById('next-btn').innerHTML = `<span>다음 단계</span> <i class="fas fa-arrow-right"></i>`;
+                document.getElementById('step-indicator').innerText = `단계 ${currentStep + 1}/4`;
+            }
+        });
+
+        // --- 3. Charts Implementation ---
+        document.addEventListener('DOMContentLoaded', () => {
+            
+            // Impact Chart (Grouped Bar - Better than Radar for clarity here)
+            const ctxImpact = document.getElementById('impactChart').getContext('2d');
+            new Chart(ctxImpact, {
+                type: 'bar',
+                data: {
+                    labels: ['농업인', '농협/판매처', '투자자/정부'],
+                    datasets: [
+                        {
+                            label: '위험 감소 / 안전성',
+                            data: [9, 5, 8],
+                            backgroundColor: '#15803d', // Green
+                            borderRadius: 4
+                        },
+                        {
+                            label: '효율성 / 속도',
+                            data: [7, 9, 6],
+                            backgroundColor: '#d97706', // Amber
+                            borderRadius: 4
+                        },
+                        {
+                            label: '비용 절감',
+                            data: [8, 6, 4],
+                            backgroundColor: '#44403c', // Stone
+                            borderRadius: 4
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: { beginAtZero: true, max: 10, title: { display: true, text: '기대 효과 점수 (1-10)' } }
+                    },
+                    plugins: {
+                        legend: { position: 'bottom' }
+                    }
+                }
+            });
+
+            // Timeline Chart (Horizontal Bar / Gantt Style)
+            const ctxTimeline = document.getElementById('timelineChart').getContext('2d');
+            new Chart(ctxTimeline, {
+                type: 'bar',
+                data: {
+                    labels: ['데이터 엔지니어링', 'AI 개발', '시스템 통합', '파일럿 테스트'],
+                    datasets: [{
+                        label: '기간 (주 단위)',
+                        data: [ [0, 3], [3, 6], [6, 9], [9, 12] ], // Floating bars [start, end]
+                        backgroundColor: [
+                            '#44403c', // Stone
+                            '#15803d', // Green
+                            '#d97706', // Amber
+                            '#1d4ed8'  // Blue
+                        ],
+                        borderRadius: 6,
+                        barPercentage: 0.6
+                    }]
+                },
+                options: {
+                    indexAxis: 'y', // Horizontal
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: { 
+                            beginAtZero: true, 
+                            max: 12,
+                            title: { display: true, text: '프로젝트 일정 (주)' },
+                            grid: { color: '#e7e5e4' }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            callbacks: {
+                                label: function(context) {
+                                    const raw = context.raw;
+                                    return `${raw[0]}주 - ${raw[1]}주`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>
