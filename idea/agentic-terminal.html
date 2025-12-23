@@ -1,334 +1,662 @@
-/* jshint -W107 */
-var moduleVersion = "25.10.10.1";
-var moduleName = "MinWon_로그인";
-console.log(moduleName + " 스크립트 호출됨.");
-console.log("Version: " + moduleVersion);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>COOCON Agentic Terminal (CAT) Demo - Light Theme</title>
+    <style>
+        /* --- VS Code Light Theme (Modern) --- */
+        :root {
+            --vscode-bg: #ffffff;
+            --vscode-sidebar-bg: #f3f3f3;
+            --vscode-sidebar-border: #e7e7e7;
+            --vscode-editor-bg: #ffffff;
+            --vscode-terminal-bg: #ffffff;
+            --vscode-text: #333333;
+            --vscode-muted: #888888;
+            --vscode-blue: #007acc;
+            --vscode-green: #0097fb;
+            --vscode-accent: #005fb8;
+            --vscode-highlight: #e4e6f1;
+            --border-color: #e7e7e7;
+            --font-ui: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            --font-mono: 'Consolas', 'Courier New', monospace;
+        }
 
-function iSASObject() {
-    console.log("iSASObject 생성자 호출");
-    this.iSASInOut = {};
+        body, html {
+            margin: 0; padding: 0; height: 100%;
+            font-family: var(--font-ui);
+            background-color: var(--vscode-bg);
+            color: var(--vscode-text);
+            overflow: hidden;
+        }
+        .main-container { display: flex; height: 100vh; }
 
-    this.UID = '';
-    this.AESKey = '';
-    this.EncKey = '';
-    this.KeyValue = '';
-    this.KeyStr = '';
+        /* Activity Bar */
+        .activity-bar {
+            width: 48px;
+            background-color: #2c2c2c;
+            display: flex; flex-direction: column; align-items: center; padding-top: 10px;
+            color: #9d9d9d;
+        }
+        .activity-icon { width: 24px; height: 24px; margin-bottom: 25px; cursor: pointer; display: flex; justify-content: center; align-items: center; }
+        .activity-icon svg { fill: currentColor; width: 24px; height: 24px; }
+        .activity-icon.active { color: #ffffff; border-left: 2px solid #ffffff; }
 
-    this.LowerTempStr = '';
-    this.imgBase64 = '';
+        /* Sidebar */
+        .sidebar {
+            width: 250px; background-color: var(--vscode-sidebar-bg);
+            border-right: 1px solid var(--vscode-sidebar-border);
+            display: flex; flex-direction: column; font-size: 13px;
+        }
+        .sidebar-header {
+            padding: 10px 15px; font-weight: 600; text-transform: uppercase; font-size: 11px; color: var(--vscode-muted);
+            display: flex; justify-content: space-between; align-items: center;
+        }
+        .file-tree { padding-left: 10px; }
+        .file-item {
+            padding: 4px 5px; cursor: pointer; display: flex; align-items: center;
+            border-radius: 3px; color: var(--vscode-text);
+        }
+        .file-item:hover { background-color: #e8e8e8; }
+        .file-item.selected { background-color: var(--vscode-highlight); color: var(--vscode-accent); }
+        .file-icon { margin-right: 6px; width: 16px; text-align: center; }
+
+        /* Editor Area */
+        .editor-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background-color: var(--vscode-editor-bg);
+            min-height: 0;
+            overflow: hidden;
+        }
+        .editor-tabs {
+            background-color: var(--vscode-sidebar-bg); display: flex; height: 35px;
+            border-bottom: 1px solid var(--vscode-sidebar-border);
+        }
+        .tab {
+            background-color: var(--vscode-editor-bg); padding: 0 10px 0 15px; display: flex; align-items: center;
+            font-size: 13px; border-top: 2px solid var(--vscode-blue); border-right: 1px solid var(--vscode-sidebar-border);
+            color: var(--vscode-text);
+        }
+        .tab-close { margin-left: 8px; cursor: pointer; color: var(--vscode-muted); }
+        .editor-content {
+            flex-grow: 1; padding: 10px 20px; font-family: var(--font-mono); font-size: 14px;
+            white-space: pre; overflow: auto; line-height: 1.5;
+        }
+
+        /* Terminal Area */
+        .panel-container {
+            height: 45%; border-top: 1px solid var(--vscode-sidebar-border);
+            background-color: var(--vscode-terminal-bg); display: flex; flex-direction: column;
+            position: relative;
+        }
+        .panel-header {
+            display: flex; padding: 8px 15px; background-color: var(--vscode-sidebar-bg);
+            border-bottom: 1px solid var(--vscode-sidebar-border); font-size: 11px; color: var(--vscode-text);
+            flex-shrink: 0;
+        }
+        .panel-tab { margin-right: 20px; cursor: pointer; color: var(--vscode-muted); text-transform: uppercase; }
+        .panel-tab.active { color: var(--vscode-text); border-bottom: 1px solid var(--vscode-accent); font-weight: 600; }
+        .terminal-content {
+            flex: 1; padding: 10px 15px; font-family: var(--font-mono); font-size: 13px;
+            overflow-y: auto; color: var(--vscode-text);
+            overflow-x: hidden;
+            min-height: 0;
+            white-space: pre;
+        }
+        .terminal-line {
+            margin-bottom: 2px;
+            line-height: 1.2;
+            white-space: pre;
+            max-width: 100%;
+        }
+        .prompt-path { color: var(--vscode-blue); font-weight: bold; }
+        .prompt-arrow { color: #b6b6b6; margin: 0 8px; font-weight: bold;}
+        .command-input {
+            background: transparent; border: none; color: var(--vscode-text);
+            font-family: var(--font-mono); font-size: 13px; outline: none; width: 80%;
+            cursor: default;
+        }
+        .command-input::placeholder {
+            color: var(--vscode-muted);
+            font-style: italic;
+        }
+        .ai-response {
+            color: var(--vscode-accent);
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        .terminal-input-line {
+            display: flex;
+            align-items: center;
+            flex-wrap: nowrap;
+        }
+        .tab-hint {
+            color: var(--vscode-muted);
+            font-size: 11px;
+            margin-left: 10px;
+            opacity: 0.7;
+        }
+        .typing-indicator::after { content: '█'; animation: blink 1s step-end infinite; opacity: 0.6; }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* Status Bar */
+        .status-bar {
+            height: 22px; background-color: var(--vscode-blue); color: white;
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 0 10px; font-size: 12px;
+        }
+
+        /* JS Syntax Highlighting (Light Theme) */
+        .hl-comment { color: #008000; }
+        .hl-keyword { color: #0000ff; }
+        .hl-string { color: #a31515; }
+        .hl-function { color: #795e26; }
+        .hl-number { color: #098658; }
+        .hl-type { color: #267f99; }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <div class="activity-bar">
+        <div class="activity-icon active" title="Explorer">
+            <svg viewBox="0 0 24 24"><path d="M20 6h-8l-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm0 12H4V8h16v10z"/></svg>
+        </div>
+    </div>
+
+    <div class="sidebar">
+        <div class="sidebar-header">
+            <span>Explorer</span>
+            <span>...</span>
+        </div>
+        <div class="file-tree">
+            <div class="file-item" style="font-weight: bold;"><span class="file-icon">v</span> MINWON_PROJECT</div>
+            <div class="file-tree" style="padding-left: 15px;">
+                <div class="file-item"><span class="file-icon" style="color:#dcb67a">☐</span> common_utils.js</div>
+                <div class="file-item selected"><span class="file-icon" style="color:#cbcb41">JS</span> minwon_login.js</div>
+                <div class="file-item"><span class="file-icon" style="color:#dcb67a">☐</span> package.json</div>
+            </div>
+        </div>
+    </div>
+
+    <div style="display: flex; flex-direction: column; flex: 1; min-width: 0; overflow: hidden;">
+
+        <div class="editor-container">
+            <div class="editor-tabs">
+                <div class="tab">
+                    <span class="file-icon" style="color:#cbcb41; margin-right: 5px;">JS</span>
+                    minwon_login.js
+                    <span class="tab-close">×</span>
+                </div>
+            </div>
+            <div class="editor-content" id="codeEditor">
+<span class="hl-comment">// File is empty.</span>
+<span class="hl-comment">// Use the terminal below to generate the Minwon login module.</span>
+<span class="hl-comment">// Press Tab in terminal to autocomplete, then Enter to run</span>
+            </div>
+        </div>
+
+        <div class="panel-container">
+            <div class="panel-header">
+                <div class="panel-tab">PROBLEMS</div>
+                <div class="panel-tab">OUTPUT</div>
+                <div class="panel-tab">DEBUG CONSOLE</div>
+                <div class="panel-tab active">TERMINAL</div>
+                <div style="flex-grow:1"></div>
+                <div>+ v ^ x</div>
+            </div>
+            <div class="terminal-content" id="terminalOutput"><div class="terminal-line" style="color: var(--vscode-muted);">Microsoft Windows [Version 10.0.19045.4651]</div><div class="terminal-line" style="color: var(--vscode-muted); margin-bottom: 10px;">(c) Microsoft Corporation. All rights reserved.</div><div id="terminalInteractionArea"><div class="terminal-input-line" style="display: flex;"><span class="prompt-path">C:\Projects\MINWON_PROJECT</span><span class="prompt-arrow">❯</span><input type="text" id="commandInput" class="command-input" autocomplete="off" spellcheck="false" autofocus><span class="tab-hint">⇥ Tab</span></div></div>
+            </div>
+        </div>
+
+        <div class="status-bar">
+            <div style="display:flex;"><div style="margin-right:15px">main*</div> <div>ⓧ 0 ⚠ 0</div></div>
+            <div style="display:flex;"><div style="margin-right:15px">Ln 1, Col 1</div> <div>UTF-8</div> <div style="margin-left:15px">JavaScript</div></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // --- Demo State & Data ---
+    const terminalOutput = document.getElementById('terminalOutput');
+    const interactionArea = document.getElementById('terminalInteractionArea');
+    const commandInput = document.getElementById('commandInput');
+    const codeEditor = document.getElementById('codeEditor');
+
+    // Step commands
+    const stepCommands = [
+        { cmd: 'coocon-agent init minwon_login', desc: 'Initialize COOCON Agent for MinWon module' },
+        { cmd: 'coocon-agent implement-hardcoded', desc: 'Implement hardcoded authentication flow' },
+        { cmd: 'coocon-agent detect-dynamic-query', desc: 'Detect dynamic query parameters' },
+        { cmd: 'coocon-agent implement-empty-function', desc: 'Replace hardcoded values with functions' },
+        { cmd: 'coocon-agent add-dynamic-function', desc: 'Add dynamicSignedVals function' },
+        { cmd: 'coocon-agent add-function-details', desc: 'Add implementation comments' },
+        { cmd: 'coocon-agent show-isas-library', desc: 'Show top iSAS library functions' }
+    ];
+
+    // Code states
+    const initCode = `<span class="hl-comment">/* jshint -W107 */</span>
+<span class="hl-keyword">var</span> moduleVersion = <span class="hl-string">"25.10.10.1"</span>;
+<span class="hl-keyword">var</span> moduleName = <span class="hl-string">"MinWon_로그인"</span>;
+
+<span class="hl-keyword">function</span> <span class="hl-function">iSASObject</span>() {
+    <span class="hl-keyword">this</span>.iSASInOut = {};
+    <span class="hl-keyword">this</span>.UID = <span class="hl-string">''</span>;
+    <span class="hl-keyword">this</span>.AESKey = <span class="hl-string">''</span>;
 }
 
-iSASObject.prototype.log = function(logMsg) {
-    try {
-        SASLog("iSASObject.Log(" + logMsg + "\")");
-    } catch (e) {
-        console.log("iSASObject.Log(" + logMsg + "\")");
+<span class="hl-keyword">var</span> 민원신청조회 = <span class="hl-keyword">function</span>() {
+    <span class="hl-keyword">this</span>.host = <span class="hl-string">"https://plus.gov.kr"</span>;
+    <span class="hl-keyword">this</span>.url = <span class="hl-string">""</span>;
+    <span class="hl-keyword">this</span>.bLogIn = <span class="hl-keyword">false</span>;
+};
+
+민원신청조회.prototype = Object.<span class="hl-function">create</span>(iSASObject.prototype);`;
+
+    const hardcodedCode = initCode + `
+
+iSASObject.prototype.<span class="hl-function">log</span> = <span class="hl-keyword">function</span>(logMsg) {
+    <span class="hl-keyword">try</span> {
+        <span class="hl-function">SASLog</span>(<span class="hl-string">"iSASObject.Log("</span> + logMsg + <span class="hl-string">"\")"</span>);
+    } <span class="hl-keyword">catch</span> (e) {
+        console.<span class="hl-function">log</span>(<span class="hl-string">"iSASObject.Log("</span> + logMsg + <span class="hl-string">"\")"</span>);
     }
 };
 
-iSASObject.prototype.setError = function(errcode) {
-    this.iSASInOut.Output = {};
-    this.iSASInOut.Output.ErrorCode = errcode.toString(16).toUpperCase();
-    //에러 메시지 가져오는 부분
-    this.iSASInOut.Output.ErrorMessage = getCooconErrMsg(errcode.toString(16).toUpperCase());
+iSASObject.prototype.<span class="hl-function">setError</span> = <span class="hl-keyword">function</span>(errcode) {
+    <span class="hl-keyword">this</span>.iSASInOut.Output = {};
+    <span class="hl-keyword">this</span>.iSASInOut.Output.ErrorCode = errcode.<span class="hl-function">toString</span>(<span class="hl-number">16</span>).<span class="hl-function">toUpperCase</span>();
+    <span class="hl-keyword">this</span>.iSASInOut.Output.ErrorMessage = <span class="hl-function">getCooconErrMsg</span>(errcode.<span class="hl-function">toString</span>(<span class="hl-number">16</span>).<span class="hl-function">toUpperCase</span>());
 };
 
-///////////////////////////////////////////////////////////////////////////////
+민원신청조회.prototype.로그인 = <span class="hl-keyword">function</span>(aInput) {
+    <span class="hl-keyword">this</span>.<span class="hl-function">log</span>(moduleName + <span class="hl-string">" 민원신청조회 로그인 호출 ["</span> + aInput + <span class="hl-string">"]["</span> + moduleVersion + <span class="hl-string">"]"</span>);
+    <span class="hl-keyword">var</span> input = <span class="hl-function">dec</span>(aInput.Input);
 
-var 민원신청조회 = function() {
-    // [Metadata & Header Code Generation Here]
-    console.log(moduleName + " 민원신청조회 생성자 호출");
-        this.errorMsg = "";
-    this.host = "https://plus.gov.kr";
-    this.url = "";
-    this.postData = "";
-    this.userAgent = "";
+    <span class="hl-keyword">try</span> {
+        <span class="hl-comment">// Step 1: Page capture: 로그인 | 정부24</span>
+        <span class="hl-keyword">this</span>.<span class="hl-function">log</span>(<span class="hl-string">"Step 1: Page capture: 로그인 | 정부24"</span>);
+        <span class="hl-keyword">this</span>.url = <span class="hl-string">"/login"</span>;
 
-    
-    this.xgate_addr = "";
-    this.bLogIn = false;
-    console.log(moduleName + " TEST 생성자 호출");
-};
-
-민원신청조회.prototype = Object.create(iSASObject.prototype);
-
-민원신청조회.prototype.로그인 = function(aInput) {
-    this.log(moduleName + " 민원신청조회 로그인 호출 [" + aInput + "][" + moduleVersion + "]");
-    
-    // Initialize variables
-    var result = "";
-    var errCode = 0;
-    // Parse input
-    var input = dec(aInput.Input);
-    
-    try {
-        
-        
-        if (!input.로그인방식 || input.로그인방식 !== "CERT") {
-            this.setError(E_IBX_LOGIN_TYPE_ERROR);
-            return E_IBX_LOGIN_TYPE_ERROR;
-        }
-        if (!input.로그인방식) {
-            this.setError(E_IBX_CERTIFY_NOT_FOUND);
-            return EE_IBX_CERTIFY_NOT_FOUND;
-        }
-        // Handle type mismatch and empty string
-        if (typeof input.로그인방식 !== 'string' || input.로그인방식.length === 0) {
-            this.setError(E_IBX_CERT_TYPE_MISMATCH);
-            return E_IBX_CERT_TYPE_MISMATCH;
-        }
-        
-
-        if (!input.인증서 || !input.인증서.이름) {
-            this.setError(E_IBX_KEY_ACCOUNT_INFO_1_NOTENTER);
-            return E_IBX_KEY_ACCOUNT_INFO_1_NOTENTER;
-        }
-        //  empty_field & type_mismatch: Check if the field is a non-empty string
-        if (typeof input.인증서.이름 !== 'string' || input.인증서.이름.trim().length === 0) {
-            this.setError(E_IBX_KEY_ACCOUNT_INFO_1_NOTENTER);
-            return E_IBX_KEY_ACCOUNT_INFO_1_NOTENTER;
-        }
-        // 2. length_short / length_exceeded: Check for a reasonable length (e.g., 5 to 100 chars)
-        if (input.인증서.이름.length < 5 || input.인증서.이름.length > 100) {
-            this.setError(E_IBX_KEY_ACCOUNT_INFO_1_INVALID);
-            return E_IBX_KEY_ACCOUNT_INFO_1_INVALID;
-        }
-        // not_found: Placeholder for a function that would check if the certificate exists
-        if (!certManager.findCert(JSON.stringify(input.인증서))){
-            this.setError(E_IBX_CERTIFY_NOT_FOUND);
-            return E_IBX_CERTIFY_NOT_FOUND;
-        }
-        else {
-            this.log("인증서 찾음.");
-        }
-        //constraint_violation (e.g., expired): Placeholder for checking certificate status
-        
-
-        if (input.인증서 && input.인증서.비밀번호) {
-            this.iSASInOut.Input.인증서.비밀번호 = input.인증서.비밀번호.replace(/./g, '*');
-        }
-        if (!input.인증서.비밀번호) {
-            this.setError(E_IBX_KEY_ACCOUNT_PASSWORD_1_NOTENTER);
-            return E_IBX_KEY_ACCOUNT_PASSWORD_1_NOTENTER;
-        }
-        
-        if (!certManager.verifyPassword(input.인증서.비밀번호)) {
-            this.setError(E_IBX_KEY_ACCOUNT_PASSWORD_1_INVALID);
-            return E_IBX_KEY_ACCOUNT_PASSWORD_1_INVALID;
-        }
-        else {
-            this.log("인증서 검증 성공.");
-        }
-        // empty_field & type_mismatch: Check if the field is a non-empty string
-        if (typeof (input.인증서.비밀번호) !== 'string' || (input.인증서.비밀번호).trim().length === 0) {
-            this.setError(E_IBX_KEY_ACCOUNT_PASSWORD_1_INVALID);
-            return E_IBX_KEY_ACCOUNT_PASSWORD_1_INVALID;
-        }
-        
-        
-        
-        // Implement the main functionality here
-        
-        // [Encryption Param URL REQUEST Code Generation Here]
-
-        // [MAIN URL REQUEST Code Generation Here]
-
-        this.log("Starting 4-step authentication flow");
-
-        var ResultStr = "";
-        
-
-        // Step 1: Page capture: 로그인 | 정부24
-        this.log("Step 1: Page capture: 로그인 | 정부24");
-
-        this.url = "/login";
-
-        var agent_header = {};
-
-        if (httpRequest.getWithUserAgent(JSON.stringify(agent_header), this.host + this.url) == false) {
-            this.log("Step 1 failed: HTTP GET request failed");
-            this.setError(E_IBX_FAILTOGETPAGE);
-            return E_IBX_FAILTOGETPAGE;
+        <span class="hl-keyword">if</span> (httpRequest.<span class="hl-function">getWithUserAgent</span>(<span class="hl-function">JSON.stringify</span>({}), <span class="hl-keyword">this</span>.host + <span class="hl-keyword">this</span>.url) == <span class="hl-keyword">false</span>) {
+            <span class="hl-keyword">this</span>.<span class="hl-function">setError</span>(E_IBX_FAILTOGETPAGE);
+            <span class="hl-keyword">return</span> E_IBX_FAILTOGETPAGE;
         }
 
-        ResultStr = httpRequest.result;
+        <span class="hl-comment">// Step 2: API: certCertificate</span>
+        <span class="hl-keyword">this</span>.<span class="hl-function">log</span>(<span class="hl-string">"Step 2: API: certcertficate"</span>);
+        <span class="hl-keyword">this</span>.url = <span class="hl-string">"/api/user/v1.0/cert/certCertificate"</span>;
 
-        if (ResultStr) {
-            this.log("Step 1 response received (length: " + ResultStr.length + ")");
-        } else {
-            this.log("Step 1 failed: No response received");
-            this.setError(E_IBX_FAILTOGETPAGE);
-            return E_IBX_FAILTOGETPAGE;
-        }
-
-        // Step 2: API: certcertficate
-        this.log("Step 2: API: certcertficate");
-
-        this.url = "/api/user/v1.0/cert/certCertficate";
-        
-        // JSON POST request
-        var requestBody = {
-            "unityLgnUseYn": "N",
-            "lgnTypeCd": "03",
-            "signedVals": "308207a206092a864886f70d010702a08207933082078f020101310f300d06096086480165030402010500303306092a864886f70d010701a0260424ec9db420eb82b4ec9aa9ec9db420eca084ec9e90ec849cebaa85eb90a9eb8b88eb8ba42ea08205b9308205b53082049da00302010202043614e5d8300d06092a864886f70d01010b05003052310b3009060355040613026b723110300e060355040a0c077965737369676e31153013060355040b0c0c416363726564697465644341311a301806035504030c117965737369676e434120436c6173732033301e170d3235303932383135303030305a170d3236303932393134353935395a3077310b3009060355040613026b723110300e060355040a0c077965737369676e31143012060355040b0c0b706572736f6e616c344942310c300a060355040b0c034b4d423132303006035504030c29eab980ed839ceab2bd284b494d20544145204b59554e4729303030343034364830333330353135343030820122300d06092a864886f70d01010105000382010f003082010a0282010100b65819812d26d6e1f0b95ec93da3ccc345111cf6c9b3d006631518310666cef1f872e3519c9b5cf027531ccda21f9adbb468bfc551071fbabd1fd6e02686910528b39fc236b62fdbe480869f5a70f5065550651e3c0cbc6a54ff15e0b96e071b61fd85efb9587c177c0a1847b47c28b9dc2b639af852e0b38daf2a6d06d737b7e4929404d5c262c19508ae12326965554ed1f62f61a9f509be64b72de9e3116afee65ff1a09b2a69939c0acaa38f25fc175a62253d744b17a98d611273830278c9d584cf4bff84051433bbe6076b7fce1a2dfd0e322894dd30334d843c17dbecd81447e97f786b2b4801c5d29a7a1771b1b927df281a6d7433122ee6243dc27b0203010001a382026c3082026830818f0603551d230481873081848014f287a3e6d95e1616724ed8c2bc853903375990c4a168a4663064310b3009060355040613024b52310d300b060355040a0c044b495341312e302c060355040b0c254b6f7265612043657274696669636174696f6e20417574686f726974792043656e7472616c3116301406035504030c0d4b49534120526f6f744341203482021028301d0603551d0e0416041490b2531a2fb514093bcd3b40d7c16b5fa4cbd547300e0603551d0f0101ff0404030206c030818c0603551d200101ff048181307f307d06092a831a8c9a450101043070304006082b0601050507020230341e32c7740020c778c99dc11cb2940020ae08c735acb0c81cc6d0c5d0c11c0020bc1cae09d55c0020c778c99dc11cc785b2c8b2e4302c06082b060105050702011620687474703a2f2f7777772e7965737369676e2e6f722e6b722f6370732e68746d30680603551d110461305fa05d06092a831a8c9a440a0101a050304e0c09eab980ed839ceab2bd3041303f060a2a831a8c9a440a0101013031300b0609608648016503040201a02204207b733a98e9385c34a4c1f35d1c0673e9200329e8f17b7ec8be67ddc4e465797430720603551d1f046b30693067a065a06386616c6461703a2f2f64732e7965737369676e2e6f722e6b723a3338392f6f753d6470367034313032392c6f753d4163637265646974656443412c6f3d7965737369676e2c633d6b723f63657274696669636174655265766f636174696f6e4c697374303806082b06010505070101042c302a302806082b06010505073001861c687474703a2f2f6f6373702e7965737369676e2e6f72673a34363132300d06092a864886f70d01010b050003820101009f0da745d449a6e5829a1cea0f51f48718d920455b2db37eb789d56415cb949684fbaa7f91e183441c4cc5e279de6be0865da86b5873b8737f5c1ca58e62792dbdd49e54fa7e395b845d07bbb0a40cf0d51819cccc8751305d415007f8e1acab4029b4d87b44f03df8df76db8674fe2e387de3a97cd68182363f8c677d18404928f443e2cee8be53984ae56703c37bd9508d110347b3fb7465425a1f11785ef9c944c0dc3c003033aac9e00c9dcd958e7dfebac0c4ef43b3c1f853b8774245dc7e52e8f96e5630f57117fafa07a377876cadbc1cffe56f5fa72138953e3abe07c086d55580346d571772d11506e04b3e6800d016b7816b321d406c469df23bb23182018530820181020101305a3052310b3009060355040613026b723110300e060355040a0c077965737369676e31153013060355040b0c0c416363726564697465644341311a301806035504030c117965737369676e434120436c617373203302043614e5d8300d06096086480165030402010500300d06092a864886f70d0101010500048201001b04cc081273b7698164e8220140fe38a87d15ce74859d6a94345bd87f7dc8662943e5680771526ba81d715ad411a9c6b2935ebd6961b0e5bdbfeff99853c615d59fa45cf3ce01c24af98d5ec9b96eaeaacbbfe553e1f2a54fcffd0e77bb64e8b34fb15391b9356282b01837cc57bdf46d1753f823cfdbc4a1677cf0098fa922a57dd12aef27f730ae0f98536c7f2344b33c92603e9faa19fd3e829543042c3b78ec30daf6a1672f8b88650cc47159ba82768080e79456ad5fff89e623fa10a7fdac8b8e559ab373c8dce4976e7f4f15439c4159432ebf9a4c5469949672163b53a2d52a38f214e4b3baba192d8b613154b03c290b2f1237dcf95bdbe617661f",
-            "awqf": "!2a"
+        <span class="hl-keyword">var</span> requestBody = {
+            <span class="hl-string">"unityLgnUseYn"</span>: <span class="hl-string">"N"</span>,
+            <span class="hl-string">"lgnTypeCd"</span>: <span class="hl-string">"03"</span>,
+            <span class="hl-string">"signedVals"</span>: <span class="hl-string">"308207a206092a864886f70d010702a08207933082078f..."</span>,
+            <span class="hl-string">"awqf"</span>: <span class="hl-string">"!2a"</span>
         };
-        this.postData = JSON.stringify(requestBody);
 
-        var agent_header = {
-        "Referer": "https://plus.gov.kr/login",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
-        "accept": "application/json",
-        "content-type": "application/json",
-        "sec-ch-ua": "\"Chromium\";v=\"140\", \"Not=A?Brand\";v=\"24\", \"Google Chrome\";v=\"140\"",
-        "sec-ch-ua-mobile": "?0",
-        "sec-ch-ua-platform": "\"Windows\""
-};
-
-        if (httpRequest.postWithUserAgent(JSON.stringify(agent_header), this.host + this.url, this.postData) == false) {
-            this.log("Step 2 failed: HTTP POST request failed");
-            this.setError(E_IBX_FAILTOGETPAGE);
-            return E_IBX_FAILTOGETPAGE;
+        <span class="hl-keyword">if</span> (httpRequest.<span class="hl-function">postWithUserAgent</span>(<span class="hl-function">JSON.stringify</span>(headers), <span class="hl-keyword">this</span>.host + <span class="hl-keyword">this</span>.url, <span class="hl-function">JSON.stringify</span>(requestBody)) == <span class="hl-keyword">false</span>) {
+            <span class="hl-keyword">this</span>.<span class="hl-function">setError</span>(E_IBX_FAILTOGETPAGE);
+            <span class="hl-keyword">return</span> E_IBX_FAILTOGETPAGE;
         }
 
-        ResultStr = httpRequest.result;
+        <span class="hl-comment">// Step 3: Verify user session</span>
+        <span class="hl-keyword">this</span>.<span class="hl-function">log</span>(<span class="hl-string">"Step 3: Verify user session after login"</span>);
+        <span class="hl-keyword">this</span>.url = <span class="hl-string">"/api/member/v1.0/nlogin/checkUserSession"</span>;
 
-        if (ResultStr) {
-            this.log("Step 2 response received (length: " + ResultStr.length + ")");
-        } else {
-            this.log("Step 2 failed: No response received");
-            this.setError(E_IBX_FAILTOGETPAGE);
-            return E_IBX_FAILTOGETPAGE;
+        <span class="hl-keyword">if</span> (httpRequest.<span class="hl-function">postWithUserAgent</span>(<span class="hl-function">JSON.stringify</span>(headers), <span class="hl-keyword">this</span>.host + <span class="hl-keyword">this</span>.url, <span class="hl-keyword">this</span>.postData) == <span class="hl-keyword">false</span>) {
+            <span class="hl-keyword">this</span>.<span class="hl-function">setError</span>(E_IBX_FAILTOGETPAGE);
+            <span class="hl-keyword">return</span> E_IBX_FAILTOGETPAGE;
         }
 
-        // Step 3: Verify user session after login
-        this.log("Step 3: Verify user session after login");
+        <span class="hl-comment">// Step 4: Post-login page</span>
+        <span class="hl-keyword">this</span>.<span class="hl-function">log</span>(<span class="hl-string">"Step 4: Post-login page: 메인 | 정부24"</span>);
+        <span class="hl-keyword">this</span>.url = <span class="hl-string">"/"</span>;
 
-        this.url = "/api/member/v1.0/nlogin/checkUserSession";
-        
-
-        var agent_header = {
-        "Referer": "https://plus.gov.kr/login",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
-        "content-type": "application/json",
-        "sec-ch-ua": "\"Chromium\";v=\"140\", \"Not=A?Brand\";v=\"24\", \"Google Chrome\";v=\"140\"",
-        "sec-ch-ua-mobile": "?0",
-        "sec-ch-ua-platform": "\"Windows\""
-};
-
-        if (httpRequest.postWithUserAgent(JSON.stringify(agent_header), this.host + this.url, this.postData) == false) {
-            this.log("Step 3 failed: HTTP POST request failed");
-            this.setError(E_IBX_FAILTOGETPAGE);
-            return E_IBX_FAILTOGETPAGE;
+        <span class="hl-keyword">if</span> (httpRequest.<span class="hl-function">getWithUserAgent</span>(<span class="hl-function">JSON.stringify</span>({}), <span class="hl-keyword">this</span>.host + <span class="hl-keyword">this</span>.url) == <span class="hl-keyword">false</span>) {
+            <span class="hl-keyword">this</span>.<span class="hl-function">setError</span>(E_IBX_FAILTOGETPAGE);
+            <span class="hl-keyword">return</span> E_IBX_FAILTOGETPAGE;
         }
 
-        ResultStr = httpRequest.result;
-
-        if (ResultStr) {
-            this.log("Step 3 response received (length: " + ResultStr.length + ")");
-        } else {
-            this.log("Step 3 failed: No response received");
-            this.setError(E_IBX_FAILTOGETPAGE);
-            return E_IBX_FAILTOGETPAGE;
-        }
-
-        // Step 4: Post-login page: 메인 | 정부24
-        this.log("Step 4: Post-login page: 메인 | 정부24");
-
-        this.url = "/";
-
-        var agent_header = {};
-
-        if (httpRequest.getWithUserAgent(JSON.stringify(agent_header), this.host + this.url) == false) {
-            this.log("Step 4 failed: HTTP GET request failed");
-            this.setError(E_IBX_FAILTOGETPAGE);
-            return E_IBX_FAILTOGETPAGE;
-        }
-
-        ResultStr = httpRequest.result;
-
-        if (ResultStr) {
-            this.log("Step 4 response received (length: " + ResultStr.length + ")");
-        } else {
-            this.log("Step 4 failed: No response received");
-            this.setError(E_IBX_FAILTOGETPAGE);
-            return E_IBX_FAILTOGETPAGE;
-        }
-        
-        // Set success output
-        // 결과 처리
-        this.iSASInOut.Output = {};
-        this.iSASInOut.Output.ErrorCode = "00000000";
-        this.iSASInOut.Output.ErrorMessage = "";
-        this.iSASInOut.Output.Result = {};
-        this.iSASInOut.Output.Result.ResultStr = ResultStr;
-
-        
-        // Add additional output fields based on the job type
-
-
-
-        return S_IBX_OK;
-    } catch (e) {
-        // Handle errors
-        this.log("exception " + e.message);
-        this.setError(E_IBX_UNKNOWN);
-        return E_IBX_UNKNOWN;
-    } finally {
-        system.setStatus(IBXSTATE_DONE, 100);
-        this.log("민원신청조회.NHIS 로그인 호출 finally");
+        <span class="hl-keyword">this</span>.iSASInOut.Output = {};
+        <span class="hl-keyword">this</span>.iSASInOut.Output.ErrorCode = <span class="hl-string">"00000000"</span>;
+        <span class="hl-keyword">return</span> S_IBX_OK;
+    } <span class="hl-keyword">catch</span> (e) {
+        <span class="hl-keyword">this</span>.<span class="hl-function">log</span>(<span class="hl-string">"exception "</span> + e.message);
+        <span class="hl-keyword">this</span>.<span class="hl-function">setError</span>(E_IBX_UNKNOWN);
+        <span class="hl-keyword">return</span> E_IBX_UNKNOWN;
+    } <span class="hl-keyword">finally</span> {
+        system.<span class="hl-function">setStatus</span>(IBXSTATE_DONE, <span class="hl-number">100</span>);
     }
+};`;
+
+    const codeStates = {
+        init: initCode,
+        hardcoded: hardcodedCode,
+        detectQuery: hardcodedCode.replace(
+            '<span class="hl-string">"signedVals"</span>: <span class="hl-string">"308207a2',
+            '<span class="hl-type">// DYNAMIC PARAMETER ↓</span>\n            <span class="hl-string">"signedVals"</span>: <span class="hl-string">"308207a2'
+        ),
+        emptyFunction: hardcodedCode.replace(
+            '<span class="hl-string">"308207a206092a864886f70d010702a08207933082078f..."</span>',
+            '<span class="hl-keyword">this</span>.<span class="hl-function">dynamicSignedVals</span>(input.인증서)'
+        ),
+        addFunction: hardcodedCode.replace(
+            '<span class="hl-string">"308207a206092a864886f70d010702a08207933082078f..."</span>',
+            '<span class="hl-keyword">this</span>.<span class="hl-function">dynamicSignedVals</span>(input.인증서)'
+        ) + `
+
+<span class="hl-comment">// Added at bottom of file:</span>
+민원신청조회.prototype.<span class="hl-function">dynamicSignedVals</span> = <span class="hl-keyword">function</span>(cert) {
+    <span class="hl-comment">// Empty function to generate signed values</span>
+    <span class="hl-keyword">return</span> <span class="hl-string">""</span>;
+};`,
+        functionDetails: hardcodedCode.replace(
+            '<span class="hl-string">"308207a206092a864886f70d010702a08207933082078f..."</span>',
+            '<span class="hl-keyword">this</span>.<span class="hl-function">dynamicSignedVals</span>(input.인증서)'
+        ) + `
+
+<span class="hl-comment">// Added at bottom of file:</span>
+민원신청조회.prototype.<span class="hl-function">dynamicSignedVals</span> = <span class="hl-keyword">function</span>(cert) {
+    <span class="hl-comment">/**
+     * Implementation steps:
+     * 1. Extract certificate data
+     * 2. Create PKCS#7 SignedData structure
+     * 3. Encode to Base64/Hex format
+     * 4. Return the signed value string
+     */</span>
+    <span class="hl-keyword">var</span> signedData = certManager.<span class="hl-function">createSignedData</span>(cert);
+    <span class="hl-keyword">return</span> signedData.<span class="hl-function">toHexString</span>();
+};`,
+        isasLibrary: `<span class="hl-comment">/**
+ * Top 3 iSAS Library Functions
+ */</span>
+
+<span class="hl-comment">// 1. certManager - Certificate management</span>
+certManager.<span class="hl-function">findCert</span>(certJSON)
+certManager.<span class="hl-function">signData</span>(cert, data)
+certManager.<span class="hl-function">verifyPassword</span>(pwd)
+
+<span class="hl-comment">// 2. httpRequest - HTTP communication</span>
+httpRequest.<span class="hl-function">getWithUserAgent</span>(headers, url)
+httpRequest.<span class="hl-function">postWithUserAgent</span>(headers, url, data)
+httpRequest.result
+
+<span class="hl-comment">// 3. system - System utilities</span>
+system.<span class="hl-function">include</span>(moduleName)
+system.<span class="hl-function">setStatus</span>(state, progress)
+<span class="hl-function">dec</span>(encodedData)
+
+<span class="hl-comment">// ═════════════════════════════════════</span>
+<span class="hl-comment">// COMPLETE IMPLEMENTATION WITH ALL VALIDATION</span>
+
+` + hardcodedCode.replace(
+            '<span class="hl-string">"308207a206092a864886f70d010702a08207933082078f..."</span>',
+            '<span class="hl-keyword">this</span>.<span class="hl-function">dynamicSignedVals</span>(input.인증서)'
+        ).replace(
+            '<span class="hl-keyword">var</span> input = <span class="hl-function">dec</span>(aInput.Input);',
+            `<span class="hl-keyword">var</span> result = <span class="hl-string">""</span>;
+    <span class="hl-keyword">var</span> errCode = <span class="hl-number">0</span>;
+    <span class="hl-keyword">var</span> input = <span class="hl-function">dec</span>(aInput.Input);
+
+    <span class="hl-comment">// Input validation</span>
+    <span class="hl-keyword">if</span> (!input.로그인방식 || input.로그인방식 !== <span class="hl-string">"CERT"</span>) {
+        <span class="hl-keyword">this</span>.<span class="hl-function">setError</span>(E_IBX_LOGIN_TYPE_ERROR);
+        <span class="hl-keyword">return</span> E_IBX_LOGIN_TYPE_ERROR;
+    }
+
+    <span class="hl-keyword">if</span> (!input.인증서 || !input.인증서.이름) {
+        <span class="hl-keyword">this</span>.<span class="hl-function">setError</span>(E_IBX_KEY_ACCOUNT_INFO_1_NOTENTER);
+        <span class="hl-keyword">return</span> E_IBX_KEY_ACCOUNT_INFO_1_NOTENTER;
+    }
+
+    <span class="hl-keyword">if</span> (!certManager.<span class="hl-function">findCert</span>(<span class="hl-function">JSON.stringify</span>(input.인증서))) {
+        <span class="hl-keyword">this</span>.<span class="hl-function">setError</span>(E_IBX_CERTIFY_NOT_FOUND);
+        <span class="hl-keyword">return</span> E_IBX_CERTIFY_NOT_FOUND;
+    }
+
+    <span class="hl-keyword">if</span> (!certManager.<span class="hl-function">verifyPassword</span>(input.인증서.비밀번호)) {
+        <span class="hl-keyword">this</span>.<span class="hl-function">setError</span>(E_IBX_KEY_ACCOUNT_PASSWORD_1_INVALID);
+        <span class="hl-keyword">return</span> E_IBX_KEY_ACCOUNT_PASSWORD_1_INVALID;
+    }`
+        ) + `
+
+<span class="hl-comment">// Added dynamic function:</span>
+민원신청조회.prototype.<span class="hl-function">dynamicSignedVals</span> = <span class="hl-keyword">function</span>(cert) {
+    <span class="hl-comment">// Create PKCS#7 SignedData from certificate</span>
+    <span class="hl-keyword">var</span> signedData = certManager.<span class="hl-function">createSignedData</span>(cert);
+    <span class="hl-keyword">return</span> signedData.<span class="hl-function">toHexString</span>();
 };
 
-
-///////////////////////////////////////////////////////////////////////////////////////////
-//include 등등 필요한거 설정.
-function OnInit() {
-    console.log("OnInit()");
-    try {
-        //필요한거 로드
-        system.include("iSASTypes");
-        system.include("sas/sas");
-        system.include("sas/encoding");
-        system.include("common/common");
-        system.setStatus(IBXSTATE_BEGIN, 0);
-    } catch (e) {
-        console.log("Exception OnInit:[" + e.message + "]");
-    } finally {
-    }
+<span class="hl-comment">// Module initialization functions</span>
+<span class="hl-keyword">function</span> <span class="hl-function">OnInit</span>() {
+    system.<span class="hl-function">include</span>(<span class="hl-string">"iSASTypes"</span>);
+    system.<span class="hl-function">include</span>(<span class="hl-string">"sas/sas"</span>);
+    system.<span class="hl-function">include</span>(<span class="hl-string">"common/common"</span>);
+    system.<span class="hl-function">setStatus</span>(IBXSTATE_BEGIN, <span class="hl-number">0</span>);
 }
 
-function Execute(aInput) {
-
-    console.log("Execute[" + aInput + "]");
-    try {
-        console.log("Init Default Error");
-        iSASObj = JSON.parse(aInput);
-        iSASObj.Output = {};
-        iSASObj.Output.ErrorCode = '8000F110';
-        iSASObj.Output.ErrorMessage = "해당 모듈을 실행하는데 실패 했습니다.";
-
-        OnInit();
-
-        iSASObj = JSON.parse(aInput);
-        var ClassName = iSASObj.Class;
-        var ModuleName = iSASObj.Module;
-        if (Failed(SetClassName(ClassName, ModuleName))) {
-            iSASObj.Output = {};
-            iSASObj.Output.ErrorCode = '8000F111';
-            iSASObj.Output.ErrorMessage = "Class명과 Job명을 확인해주시기 바랍니다.";
-        } else {
-            obj.iSASInOut = "";
-            OnExcute(0, JSON.stringify(iSASObj));
-
-            console.log("결과 테스트 [" + obj.iSASInOut + "]");
-
-            if (obj.iSASInOut != "")
-                iSASObj = obj.iSASInOut;
-        }
-    } catch (e) {
-        console.log("exception:[" + e.message + "]");
-    } finally {
-        return JSON.stringify(iSASObj);
+<span class="hl-keyword">function</span> <span class="hl-function">Execute</span>(aInput) {
+    <span class="hl-keyword">try</span> {
+        <span class="hl-function">OnInit</span>();
+        iSASObj = <span class="hl-function">JSON.parse</span>(aInput);
+        <span class="hl-keyword">var</span> ClassName = iSASObj.Class;
+        <span class="hl-keyword">var</span> ModuleName = iSASObj.Module;
+        <span class="hl-keyword">return</span> <span class="hl-function">JSON.stringify</span>(iSASObj);
+    } <span class="hl-keyword">catch</span> (e) {
+        <span class="hl-keyword">return</span> <span class="hl-function">JSON.stringify</span>({ErrorCode: <span class="hl-string">"8000F110"</span>});
     }
-}
+}`
+    };
+
+    // Terminal Logic
+    let commandHistory = [];
+    let currentStep = 0;
+
+    async function typeTerminalLine(text, isAI = false) {
+        const line = document.createElement('div');
+        line.className = 'terminal-line' + (isAI ? ' ai-response typing-indicator' : '');
+        interactionArea.parentNode.insertBefore(line, interactionArea);
+
+        for (let i = 0; i < text.length; i++) {
+            line.textContent += text[i];
+            if (i % 3 === 0) {
+                await new Promise(r => setTimeout(r, 10));
+                terminalOutput.scrollTop = terminalOutput.scrollHeight;
+            }
+        }
+        line.classList.remove('typing-indicator');
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+    }
+
+    function updateEditor(htmlContent) {
+        codeEditor.style.opacity = 0.5;
+        setTimeout(() => {
+            codeEditor.innerHTML = htmlContent;
+            codeEditor.style.opacity = 1;
+        }, 200);
+    }
+
+    function addCommandToHistory(cmd) {
+        const prevCmdLine = document.createElement('div');
+        prevCmdLine.className = 'terminal-line';
+        prevCmdLine.style.display = 'flex';
+        prevCmdLine.innerHTML = `<span class="prompt-path">C:\\Projects\\MINWON_PROJECT</span><span class="prompt-arrow">❯</span> <span>${cmd}</span>`;
+        interactionArea.parentNode.insertBefore(prevCmdLine, interactionArea);
+        commandHistory.push(cmd);
+        terminalOutput.scrollTop = terminalOutput.scrollHeight;
+    }
+
+    // Command handlers
+    async function handleCommand(cmd) {
+        addCommandToHistory(cmd);
+        commandInput.value = '';
+        commandInput.disabled = true;
+
+        if (cmd.trim() === 'coocon-agent init minwon_login' && currentStep === 0) {
+            await typeTerminalLine('🤖 CAT Agent v1.2.0 initializing...', true);
+            await typeTerminalLine('► Target: MinWon (민원24) Login Module', true);
+            updateEditor(codeStates.init);
+            await new Promise(r => setTimeout(r, 500));
+            await typeTerminalLine(`✔ Init complete. Run: ${stepCommands[1].cmd}`, true);
+            currentStep = 1;
+            commandInput.disabled = false;
+            commandInput.placeholder = "Press Tab for next command, then Enter";
+            commandInput.focus();
+
+        } else if (cmd.trim() === 'coocon-agent implement-hardcoded' && currentStep === 1) {
+            await typeTerminalLine('► Implementing hardcoded authentication flow...', true);
+            updateEditor(codeStates.hardcoded);
+            await new Promise(r => setTimeout(r, 500));
+            await typeTerminalLine(`✔ Hardcoded complete. Run: ${stepCommands[2].cmd}`, true);
+            currentStep = 2;
+            commandInput.disabled = false;
+            commandInput.placeholder = "Press Tab for next command, then Enter";
+            commandInput.focus();
+
+        } else if (cmd.trim() === 'coocon-agent detect-dynamic-query' && currentStep === 2) {
+            await typeTerminalLine('► Detecting dynamic query parameters...', true);
+            await typeTerminalLine('', true);
+            await typeTerminalLine('╔═════════════════╦═════════╦═══════════════════════════╗', true);
+            await typeTerminalLine('║ Parameter       ║ Type    ║ Description               ║', true);
+            await typeTerminalLine('╠═════════════════╬═════════╬═══════════════════════════╣', true);
+            await typeTerminalLine('║ signedVals      ║ DYNAMIC ║ PKCS#7 signed cert data   ║', true);
+            await typeTerminalLine('╚═════════════════╩═════════╩═══════════════════════════╝', true);
+            await typeTerminalLine('', true);
+            updateEditor(codeStates.detectQuery);
+            await new Promise(r => setTimeout(r, 500));
+            await typeTerminalLine(`✔ Detection complete. Run: ${stepCommands[3].cmd}`, true);
+            currentStep = 3;
+            commandInput.disabled = false;
+            commandInput.placeholder = "Press Tab for next command, then Enter";
+            commandInput.focus();
+
+        } else if (cmd.trim() === 'coocon-agent implement-empty-function' && currentStep === 3) {
+            await typeTerminalLine('► Replacing hardcoded values with functions...', true);
+            updateEditor(codeStates.emptyFunction);
+            await new Promise(r => setTimeout(r, 500));
+            await typeTerminalLine(`✔ Replacement complete. Run: ${stepCommands[4].cmd}`, true);
+            currentStep = 4;
+            commandInput.disabled = false;
+            commandInput.placeholder = "Press Tab for next command, then Enter";
+            commandInput.focus();
+
+        } else if (cmd.trim() === 'coocon-agent add-dynamic-function' && currentStep === 4) {
+            await typeTerminalLine('► Adding dynamicSignedVals function...', true);
+            updateEditor(codeStates.addFunction);
+            await new Promise(r => setTimeout(r, 500));
+            await typeTerminalLine(`✔ Function added. Run: ${stepCommands[5].cmd}`, true);
+            currentStep = 5;
+            commandInput.disabled = false;
+            commandInput.placeholder = "Press Tab for next command, then Enter";
+            commandInput.focus();
+
+        } else if (cmd.trim() === 'coocon-agent add-function-details' && currentStep === 5) {
+            await typeTerminalLine('► Adding implementation comments...', true);
+            updateEditor(codeStates.functionDetails);
+            await new Promise(r => setTimeout(r, 500));
+            await typeTerminalLine(`✔ Details added. Run: ${stepCommands[6].cmd}`, true);
+            currentStep = 6;
+            commandInput.disabled = false;
+            commandInput.placeholder = "Press Tab for next command, then Enter";
+            commandInput.focus();
+
+        } else if (cmd.trim() === 'coocon-agent show-isas-library' && currentStep === 6) {
+            await typeTerminalLine('► Loading top iSAS library functions...', true);
+            await typeTerminalLine('Top 3 iSAS Library Functions:', true);
+            await typeTerminalLine('1. certManager - Certificate management', true);
+            await typeTerminalLine('2. httpRequest - HTTP communication', true);
+            await typeTerminalLine('3. system - Utility functions', true);
+            updateEditor(codeStates.isasLibrary);
+            await new Promise(r => setTimeout(r, 600));
+            await typeTerminalLine('✨ COMPLETE: MinWon login module fully generated!', true);
+            currentStep = 7;
+            commandInput.disabled = false;
+            commandInput.placeholder = "Press Tab for 'help' command";
+            commandInput.focus();
+
+        } else if (cmd.trim() === 'help') {
+            await typeTerminalLine('Available commands:', true);
+            await typeTerminalLine('  clear - Clear terminal', true);
+            commandInput.disabled = false;
+            commandInput.focus();
+
+        } else if (cmd.trim() === 'clear') {
+            const lines = terminalOutput.querySelectorAll('.terminal-line');
+            lines.forEach(line => line.remove());
+            commandHistory = [];
+            currentStep = 0;
+            updateEditor(`<span class="hl-comment">// File is empty.</span>
+<span class="hl-comment">// Use the terminal below to generate the Minwon login module.</span>
+<span class="hl-comment">// Press Tab in terminal to autocomplete, then Enter to run</span>`);
+            commandInput.disabled = false;
+            commandInput.placeholder = "Press Tab to autocomplete command, then Enter to run";
+            commandInput.focus();
+
+        } else {
+            if (currentStep === 0) {
+                await typeTerminalLine(`Start with: coocon-agent init minwon_login`, true);
+            } else if (currentStep < stepCommands.length) {
+                await typeTerminalLine(`Next command: ${stepCommands[currentStep].cmd}`, true);
+            } else {
+                await typeTerminalLine(`Command not recognized. Type 'help' for available commands.`, true);
+            }
+            commandInput.disabled = false;
+            commandInput.focus();
+        }
+    }
+
+    // Event listeners - only allow Tab and Enter
+    commandInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Tab') {
+            e.preventDefault();
+            if (currentStep < stepCommands.length) {
+                const nextCmd = stepCommands[currentStep].cmd;
+                commandInput.value = nextCmd;
+            } else if (currentStep >= stepCommands.length) {
+                if (commandInput.value === '' || commandInput.value === 'help') {
+                    commandInput.value = 'clear';
+                } else {
+                    commandInput.value = 'help';
+                }
+            }
+        } else if (e.key === 'Enter' && commandInput.value.trim() !== '') {
+            handleCommand(commandInput.value);
+        } else if (e.key !== 'Enter') {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    });
+
+    // Block other input events
+    commandInput.addEventListener('keypress', (e) => {
+        if (e.key !== 'Enter') {
+            e.preventDefault();
+            e.stopPropagation();
+            return false;
+        }
+    });
+
+    commandInput.addEventListener('input', (e) => {
+        if (currentStep < stepCommands.length) {
+            const expectedCmd = stepCommands[currentStep].cmd;
+            if (commandInput.value !== expectedCmd && commandInput.value !== '') {
+                commandInput.value = '';
+            }
+        } else if (commandInput.value !== 'help' && commandInput.value !== 'clear' && commandInput.value !== '') {
+            commandInput.value = '';
+        }
+    });
+
+    // Initialize
+    setTimeout(() => {
+        commandInput.placeholder = "Press Tab to autocomplete command, then Enter to run";
+        commandInput.focus();
+    }, 800);
+
+</script>
+</body>
+</html>
