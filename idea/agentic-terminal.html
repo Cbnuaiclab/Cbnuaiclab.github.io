@@ -1,0 +1,334 @@
+/* jshint -W107 */
+var moduleVersion = "25.10.10.1";
+var moduleName = "MinWon_로그인";
+console.log(moduleName + " 스크립트 호출됨.");
+console.log("Version: " + moduleVersion);
+
+function iSASObject() {
+    console.log("iSASObject 생성자 호출");
+    this.iSASInOut = {};
+
+    this.UID = '';
+    this.AESKey = '';
+    this.EncKey = '';
+    this.KeyValue = '';
+    this.KeyStr = '';
+
+    this.LowerTempStr = '';
+    this.imgBase64 = '';
+}
+
+iSASObject.prototype.log = function(logMsg) {
+    try {
+        SASLog("iSASObject.Log(" + logMsg + "\")");
+    } catch (e) {
+        console.log("iSASObject.Log(" + logMsg + "\")");
+    }
+};
+
+iSASObject.prototype.setError = function(errcode) {
+    this.iSASInOut.Output = {};
+    this.iSASInOut.Output.ErrorCode = errcode.toString(16).toUpperCase();
+    //에러 메시지 가져오는 부분
+    this.iSASInOut.Output.ErrorMessage = getCooconErrMsg(errcode.toString(16).toUpperCase());
+};
+
+///////////////////////////////////////////////////////////////////////////////
+
+var 민원신청조회 = function() {
+    // [Metadata & Header Code Generation Here]
+    console.log(moduleName + " 민원신청조회 생성자 호출");
+        this.errorMsg = "";
+    this.host = "https://plus.gov.kr";
+    this.url = "";
+    this.postData = "";
+    this.userAgent = "";
+
+    
+    this.xgate_addr = "";
+    this.bLogIn = false;
+    console.log(moduleName + " TEST 생성자 호출");
+};
+
+민원신청조회.prototype = Object.create(iSASObject.prototype);
+
+민원신청조회.prototype.로그인 = function(aInput) {
+    this.log(moduleName + " 민원신청조회 로그인 호출 [" + aInput + "][" + moduleVersion + "]");
+    
+    // Initialize variables
+    var result = "";
+    var errCode = 0;
+    // Parse input
+    var input = dec(aInput.Input);
+    
+    try {
+        
+        
+        if (!input.로그인방식 || input.로그인방식 !== "CERT") {
+            this.setError(E_IBX_LOGIN_TYPE_ERROR);
+            return E_IBX_LOGIN_TYPE_ERROR;
+        }
+        if (!input.로그인방식) {
+            this.setError(E_IBX_CERTIFY_NOT_FOUND);
+            return EE_IBX_CERTIFY_NOT_FOUND;
+        }
+        // Handle type mismatch and empty string
+        if (typeof input.로그인방식 !== 'string' || input.로그인방식.length === 0) {
+            this.setError(E_IBX_CERT_TYPE_MISMATCH);
+            return E_IBX_CERT_TYPE_MISMATCH;
+        }
+        
+
+        if (!input.인증서 || !input.인증서.이름) {
+            this.setError(E_IBX_KEY_ACCOUNT_INFO_1_NOTENTER);
+            return E_IBX_KEY_ACCOUNT_INFO_1_NOTENTER;
+        }
+        //  empty_field & type_mismatch: Check if the field is a non-empty string
+        if (typeof input.인증서.이름 !== 'string' || input.인증서.이름.trim().length === 0) {
+            this.setError(E_IBX_KEY_ACCOUNT_INFO_1_NOTENTER);
+            return E_IBX_KEY_ACCOUNT_INFO_1_NOTENTER;
+        }
+        // 2. length_short / length_exceeded: Check for a reasonable length (e.g., 5 to 100 chars)
+        if (input.인증서.이름.length < 5 || input.인증서.이름.length > 100) {
+            this.setError(E_IBX_KEY_ACCOUNT_INFO_1_INVALID);
+            return E_IBX_KEY_ACCOUNT_INFO_1_INVALID;
+        }
+        // not_found: Placeholder for a function that would check if the certificate exists
+        if (!certManager.findCert(JSON.stringify(input.인증서))){
+            this.setError(E_IBX_CERTIFY_NOT_FOUND);
+            return E_IBX_CERTIFY_NOT_FOUND;
+        }
+        else {
+            this.log("인증서 찾음.");
+        }
+        //constraint_violation (e.g., expired): Placeholder for checking certificate status
+        
+
+        if (input.인증서 && input.인증서.비밀번호) {
+            this.iSASInOut.Input.인증서.비밀번호 = input.인증서.비밀번호.replace(/./g, '*');
+        }
+        if (!input.인증서.비밀번호) {
+            this.setError(E_IBX_KEY_ACCOUNT_PASSWORD_1_NOTENTER);
+            return E_IBX_KEY_ACCOUNT_PASSWORD_1_NOTENTER;
+        }
+        
+        if (!certManager.verifyPassword(input.인증서.비밀번호)) {
+            this.setError(E_IBX_KEY_ACCOUNT_PASSWORD_1_INVALID);
+            return E_IBX_KEY_ACCOUNT_PASSWORD_1_INVALID;
+        }
+        else {
+            this.log("인증서 검증 성공.");
+        }
+        // empty_field & type_mismatch: Check if the field is a non-empty string
+        if (typeof (input.인증서.비밀번호) !== 'string' || (input.인증서.비밀번호).trim().length === 0) {
+            this.setError(E_IBX_KEY_ACCOUNT_PASSWORD_1_INVALID);
+            return E_IBX_KEY_ACCOUNT_PASSWORD_1_INVALID;
+        }
+        
+        
+        
+        // Implement the main functionality here
+        
+        // [Encryption Param URL REQUEST Code Generation Here]
+
+        // [MAIN URL REQUEST Code Generation Here]
+
+        this.log("Starting 4-step authentication flow");
+
+        var ResultStr = "";
+        
+
+        // Step 1: Page capture: 로그인 | 정부24
+        this.log("Step 1: Page capture: 로그인 | 정부24");
+
+        this.url = "/login";
+
+        var agent_header = {};
+
+        if (httpRequest.getWithUserAgent(JSON.stringify(agent_header), this.host + this.url) == false) {
+            this.log("Step 1 failed: HTTP GET request failed");
+            this.setError(E_IBX_FAILTOGETPAGE);
+            return E_IBX_FAILTOGETPAGE;
+        }
+
+        ResultStr = httpRequest.result;
+
+        if (ResultStr) {
+            this.log("Step 1 response received (length: " + ResultStr.length + ")");
+        } else {
+            this.log("Step 1 failed: No response received");
+            this.setError(E_IBX_FAILTOGETPAGE);
+            return E_IBX_FAILTOGETPAGE;
+        }
+
+        // Step 2: API: certcertficate
+        this.log("Step 2: API: certcertficate");
+
+        this.url = "/api/user/v1.0/cert/certCertficate";
+        
+        // JSON POST request
+        var requestBody = {
+            "unityLgnUseYn": "N",
+            "lgnTypeCd": "03",
+            "signedVals": "308207a206092a864886f70d010702a08207933082078f020101310f300d06096086480165030402010500303306092a864886f70d010701a0260424ec9db420eb82b4ec9aa9ec9db420eca084ec9e90ec849cebaa85eb90a9eb8b88eb8ba42ea08205b9308205b53082049da00302010202043614e5d8300d06092a864886f70d01010b05003052310b3009060355040613026b723110300e060355040a0c077965737369676e31153013060355040b0c0c416363726564697465644341311a301806035504030c117965737369676e434120436c6173732033301e170d3235303932383135303030305a170d3236303932393134353935395a3077310b3009060355040613026b723110300e060355040a0c077965737369676e31143012060355040b0c0b706572736f6e616c344942310c300a060355040b0c034b4d423132303006035504030c29eab980ed839ceab2bd284b494d20544145204b59554e4729303030343034364830333330353135343030820122300d06092a864886f70d01010105000382010f003082010a0282010100b65819812d26d6e1f0b95ec93da3ccc345111cf6c9b3d006631518310666cef1f872e3519c9b5cf027531ccda21f9adbb468bfc551071fbabd1fd6e02686910528b39fc236b62fdbe480869f5a70f5065550651e3c0cbc6a54ff15e0b96e071b61fd85efb9587c177c0a1847b47c28b9dc2b639af852e0b38daf2a6d06d737b7e4929404d5c262c19508ae12326965554ed1f62f61a9f509be64b72de9e3116afee65ff1a09b2a69939c0acaa38f25fc175a62253d744b17a98d611273830278c9d584cf4bff84051433bbe6076b7fce1a2dfd0e322894dd30334d843c17dbecd81447e97f786b2b4801c5d29a7a1771b1b927df281a6d7433122ee6243dc27b0203010001a382026c3082026830818f0603551d230481873081848014f287a3e6d95e1616724ed8c2bc853903375990c4a168a4663064310b3009060355040613024b52310d300b060355040a0c044b495341312e302c060355040b0c254b6f7265612043657274696669636174696f6e20417574686f726974792043656e7472616c3116301406035504030c0d4b49534120526f6f744341203482021028301d0603551d0e0416041490b2531a2fb514093bcd3b40d7c16b5fa4cbd547300e0603551d0f0101ff0404030206c030818c0603551d200101ff048181307f307d06092a831a8c9a450101043070304006082b0601050507020230341e32c7740020c778c99dc11cb2940020ae08c735acb0c81cc6d0c5d0c11c0020bc1cae09d55c0020c778c99dc11cc785b2c8b2e4302c06082b060105050702011620687474703a2f2f7777772e7965737369676e2e6f722e6b722f6370732e68746d30680603551d110461305fa05d06092a831a8c9a440a0101a050304e0c09eab980ed839ceab2bd3041303f060a2a831a8c9a440a0101013031300b0609608648016503040201a02204207b733a98e9385c34a4c1f35d1c0673e9200329e8f17b7ec8be67ddc4e465797430720603551d1f046b30693067a065a06386616c6461703a2f2f64732e7965737369676e2e6f722e6b723a3338392f6f753d6470367034313032392c6f753d4163637265646974656443412c6f3d7965737369676e2c633d6b723f63657274696669636174655265766f636174696f6e4c697374303806082b06010505070101042c302a302806082b06010505073001861c687474703a2f2f6f6373702e7965737369676e2e6f72673a34363132300d06092a864886f70d01010b050003820101009f0da745d449a6e5829a1cea0f51f48718d920455b2db37eb789d56415cb949684fbaa7f91e183441c4cc5e279de6be0865da86b5873b8737f5c1ca58e62792dbdd49e54fa7e395b845d07bbb0a40cf0d51819cccc8751305d415007f8e1acab4029b4d87b44f03df8df76db8674fe2e387de3a97cd68182363f8c677d18404928f443e2cee8be53984ae56703c37bd9508d110347b3fb7465425a1f11785ef9c944c0dc3c003033aac9e00c9dcd958e7dfebac0c4ef43b3c1f853b8774245dc7e52e8f96e5630f57117fafa07a377876cadbc1cffe56f5fa72138953e3abe07c086d55580346d571772d11506e04b3e6800d016b7816b321d406c469df23bb23182018530820181020101305a3052310b3009060355040613026b723110300e060355040a0c077965737369676e31153013060355040b0c0c416363726564697465644341311a301806035504030c117965737369676e434120436c617373203302043614e5d8300d06096086480165030402010500300d06092a864886f70d0101010500048201001b04cc081273b7698164e8220140fe38a87d15ce74859d6a94345bd87f7dc8662943e5680771526ba81d715ad411a9c6b2935ebd6961b0e5bdbfeff99853c615d59fa45cf3ce01c24af98d5ec9b96eaeaacbbfe553e1f2a54fcffd0e77bb64e8b34fb15391b9356282b01837cc57bdf46d1753f823cfdbc4a1677cf0098fa922a57dd12aef27f730ae0f98536c7f2344b33c92603e9faa19fd3e829543042c3b78ec30daf6a1672f8b88650cc47159ba82768080e79456ad5fff89e623fa10a7fdac8b8e559ab373c8dce4976e7f4f15439c4159432ebf9a4c5469949672163b53a2d52a38f214e4b3baba192d8b613154b03c290b2f1237dcf95bdbe617661f",
+            "awqf": "!2a"
+        };
+        this.postData = JSON.stringify(requestBody);
+
+        var agent_header = {
+        "Referer": "https://plus.gov.kr/login",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "accept": "application/json",
+        "content-type": "application/json",
+        "sec-ch-ua": "\"Chromium\";v=\"140\", \"Not=A?Brand\";v=\"24\", \"Google Chrome\";v=\"140\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\""
+};
+
+        if (httpRequest.postWithUserAgent(JSON.stringify(agent_header), this.host + this.url, this.postData) == false) {
+            this.log("Step 2 failed: HTTP POST request failed");
+            this.setError(E_IBX_FAILTOGETPAGE);
+            return E_IBX_FAILTOGETPAGE;
+        }
+
+        ResultStr = httpRequest.result;
+
+        if (ResultStr) {
+            this.log("Step 2 response received (length: " + ResultStr.length + ")");
+        } else {
+            this.log("Step 2 failed: No response received");
+            this.setError(E_IBX_FAILTOGETPAGE);
+            return E_IBX_FAILTOGETPAGE;
+        }
+
+        // Step 3: Verify user session after login
+        this.log("Step 3: Verify user session after login");
+
+        this.url = "/api/member/v1.0/nlogin/checkUserSession";
+        
+
+        var agent_header = {
+        "Referer": "https://plus.gov.kr/login",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/140.0.0.0 Safari/537.36",
+        "content-type": "application/json",
+        "sec-ch-ua": "\"Chromium\";v=\"140\", \"Not=A?Brand\";v=\"24\", \"Google Chrome\";v=\"140\"",
+        "sec-ch-ua-mobile": "?0",
+        "sec-ch-ua-platform": "\"Windows\""
+};
+
+        if (httpRequest.postWithUserAgent(JSON.stringify(agent_header), this.host + this.url, this.postData) == false) {
+            this.log("Step 3 failed: HTTP POST request failed");
+            this.setError(E_IBX_FAILTOGETPAGE);
+            return E_IBX_FAILTOGETPAGE;
+        }
+
+        ResultStr = httpRequest.result;
+
+        if (ResultStr) {
+            this.log("Step 3 response received (length: " + ResultStr.length + ")");
+        } else {
+            this.log("Step 3 failed: No response received");
+            this.setError(E_IBX_FAILTOGETPAGE);
+            return E_IBX_FAILTOGETPAGE;
+        }
+
+        // Step 4: Post-login page: 메인 | 정부24
+        this.log("Step 4: Post-login page: 메인 | 정부24");
+
+        this.url = "/";
+
+        var agent_header = {};
+
+        if (httpRequest.getWithUserAgent(JSON.stringify(agent_header), this.host + this.url) == false) {
+            this.log("Step 4 failed: HTTP GET request failed");
+            this.setError(E_IBX_FAILTOGETPAGE);
+            return E_IBX_FAILTOGETPAGE;
+        }
+
+        ResultStr = httpRequest.result;
+
+        if (ResultStr) {
+            this.log("Step 4 response received (length: " + ResultStr.length + ")");
+        } else {
+            this.log("Step 4 failed: No response received");
+            this.setError(E_IBX_FAILTOGETPAGE);
+            return E_IBX_FAILTOGETPAGE;
+        }
+        
+        // Set success output
+        // 결과 처리
+        this.iSASInOut.Output = {};
+        this.iSASInOut.Output.ErrorCode = "00000000";
+        this.iSASInOut.Output.ErrorMessage = "";
+        this.iSASInOut.Output.Result = {};
+        this.iSASInOut.Output.Result.ResultStr = ResultStr;
+
+        
+        // Add additional output fields based on the job type
+
+
+
+        return S_IBX_OK;
+    } catch (e) {
+        // Handle errors
+        this.log("exception " + e.message);
+        this.setError(E_IBX_UNKNOWN);
+        return E_IBX_UNKNOWN;
+    } finally {
+        system.setStatus(IBXSTATE_DONE, 100);
+        this.log("민원신청조회.NHIS 로그인 호출 finally");
+    }
+};
+
+
+///////////////////////////////////////////////////////////////////////////////////////////
+//include 등등 필요한거 설정.
+function OnInit() {
+    console.log("OnInit()");
+    try {
+        //필요한거 로드
+        system.include("iSASTypes");
+        system.include("sas/sas");
+        system.include("sas/encoding");
+        system.include("common/common");
+        system.setStatus(IBXSTATE_BEGIN, 0);
+    } catch (e) {
+        console.log("Exception OnInit:[" + e.message + "]");
+    } finally {
+    }
+}
+
+function Execute(aInput) {
+
+    console.log("Execute[" + aInput + "]");
+    try {
+        console.log("Init Default Error");
+        iSASObj = JSON.parse(aInput);
+        iSASObj.Output = {};
+        iSASObj.Output.ErrorCode = '8000F110';
+        iSASObj.Output.ErrorMessage = "해당 모듈을 실행하는데 실패 했습니다.";
+
+        OnInit();
+
+        iSASObj = JSON.parse(aInput);
+        var ClassName = iSASObj.Class;
+        var ModuleName = iSASObj.Module;
+        if (Failed(SetClassName(ClassName, ModuleName))) {
+            iSASObj.Output = {};
+            iSASObj.Output.ErrorCode = '8000F111';
+            iSASObj.Output.ErrorMessage = "Class명과 Job명을 확인해주시기 바랍니다.";
+        } else {
+            obj.iSASInOut = "";
+            OnExcute(0, JSON.stringify(iSASObj));
+
+            console.log("결과 테스트 [" + obj.iSASInOut + "]");
+
+            if (obj.iSASInOut != "")
+                iSASObj = obj.iSASInOut;
+        }
+    } catch (e) {
+        console.log("exception:[" + e.message + "]");
+    } finally {
+        return JSON.stringify(iSASObj);
+    }
+}
