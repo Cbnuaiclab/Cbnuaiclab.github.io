@@ -26,8 +26,7 @@ body {
 }
 
 header {
-    /* margin: 0; */
-  /* background: #b11414; */
+  background: #ffffff;
   border-bottom: 2px solid var(--accent-red);
   position: fixed;
   width: 100%;
