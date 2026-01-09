@@ -72,7 +72,36 @@
                 <li><strong>Computer Vision & LLM Integration:</strong> Exploring synergies between visual understanding and language models</li>
                 <li><strong>Multimodal AI Solutions:</strong> Developing systems that leverage both visual and textual data</li>
                 <li><strong>Intelligent Systems:</strong> Creating AI systems that can understand and process multiple data modalities</li>
+                <li><strong>Robotic Vision:</strong> Developing perception systems for autonomous robotic manipulation</li>
             </ul>
+        </div>
+
+        <div class="profile-section">
+            <h2><i class="fas fa-project-diagram"></i> Research Projects</h2>
+            <div class="highlight">
+                <h3 style="color: var(--accent-red); margin-bottom: 1rem;">
+                    <a href="../projects.html" style="color: var(--accent-red); text-decoration: none; border-bottom: 2px solid var(--accent-red);"
+                       onmouseover="this.style.borderColor='var(--accent-gold)'"
+                       onmouseout="this.style.borderColor='var(--accent-red)'">
+                        Arm Robot for Bin-Picking in Unstructured Environments
+                    </a>
+                </h3>
+                <p style="margin-bottom: 1rem; color: var(--text-gray);">
+                    Development of an autonomous arm picking robot designed to detect, localize, and grasp objects in cluttered,
+                    unstructured environments. The project addresses critical challenges in robotic perception, particularly for
+                    transparent and reflective objects under heavy occlusion conditions.
+                </p>
+                <h4 style="color: var(--accent-red); margin-top: 1.5rem; margin-bottom: 0.75rem;">Key Contributions:</h4>
+                <ul style="margin-left: 1.5rem;">
+                    <li><strong>Instance Segmentation Pipeline:</strong> Implemented and benchmarked advanced segmentation models including SAM 2 and UOAIS to solve transparency and heavy occlusion challenges. Achieved real-time performance with UOAIS (15 fps) while maintaining accuracy, and tested Mask2Former for enhanced robustness in complex scenarios</li>
+                    <li><strong>Hardware Integration:</strong> Engineered complete integration of Intel RealSense L515 LiDAR camera with the instance segmentation pipeline using a custom Python-SDK wrapper, enabling seamless real-time depth and RGB data acquisition</li>
+                    <li><strong>3D Point Cloud Conversion:</strong> Developed robust algorithms to convert 2D pixel coordinates and depth data into accurate 3D point cloud coordinates (x, y, z), providing essential spatial information for robotic grasping operations</li>
+                    <li><strong>Grasp Detection Research:</strong> Conducted comprehensive study on Contact-GraspNet approach for 6-DoF (6 Degrees of Freedom) grasp detection, advancing understanding of grasp pose estimation in cluttered environments</li>
+                </ul>
+                <p style="margin-top: 1rem; font-size: 0.9rem; color: var(--text-gray);">
+                    <strong style="color: var(--accent-red);">Technologies:</strong> SAM 2, UOAIS, Mask2Former, Intel RealSense L515, Contact-GraspNet, Python, 3D Point Cloud Processing, Real-time Computer Vision
+                </p>
+            </div>
         </div>
 
         <div class="profile-section">
