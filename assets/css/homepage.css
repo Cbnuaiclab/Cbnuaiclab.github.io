@@ -231,7 +231,7 @@ nav a:hover::after {
   font-size: 1.3rem;
   color: rgba(255, 255, 255, 0.95);
   margin-bottom: 0.5rem;
-  font-weight: 400;
+  font-weight: 700;
   position: absolute;
   z-index: 2;
   top: 50%;
@@ -243,7 +243,7 @@ nav a:hover::after {
 
 .hero .tagline {
   font-size: 1.4rem;
-  color: var(--accent-gold);
+  color: white;
   margin-bottom: 0;
   font-weight: 700;
   letter-spacing: 2px;
