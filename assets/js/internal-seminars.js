@@ -1,5 +1,33 @@
 // Internal Seminars Page JavaScript
 
+// PDF Viewer Modal
+function openPdfModal(url, title) {
+    var modal = document.getElementById('pdf-modal');
+    var viewer = document.getElementById('pdf-viewer');
+    var modalTitle = document.getElementById('pdf-modal-title');
+    modalTitle.textContent = title;
+    viewer.src = url;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+
+function closePdfModal() {
+    var modal = document.getElementById('pdf-modal');
+    var viewer = document.getElementById('pdf-viewer');
+    modal.classList.remove('active');
+    viewer.src = '';
+    document.body.style.overflow = 'auto';
+}
+
+document.addEventListener('keydown', function(event) {
+    if (event.key === 'Escape') {
+        var modal = document.getElementById('pdf-modal');
+        if (modal && modal.classList.contains('active')) {
+            closePdfModal();
+        }
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     // Add fade-in animation to table rows
     const tableRows = document.querySelectorAll('.seminar-table tbody tr');
