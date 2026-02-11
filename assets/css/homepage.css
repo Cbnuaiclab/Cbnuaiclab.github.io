@@ -1670,10 +1670,7 @@ footer::before {
   }
 }
 
-/* Smooth Scrolling */
-html {
-  scroll-behavior: smooth;
-}
+/* Instant scroll to anchor sections */
 
 /* Additional Professional Touches */
 ::selection {
