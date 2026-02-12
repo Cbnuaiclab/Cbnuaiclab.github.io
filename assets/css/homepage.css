@@ -403,18 +403,15 @@ h2::after {
   height: 100%;
   object-fit: cover;
   object-position: center;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
   transform: translateZ(0);
-  -webkit-font-smoothing: subpixel-antialiased;
 }
 
-/* White background for scaled-down profile pictures */
+/* Match background color to rembg-processed images (#f8fafc) */
 .member-photo:has(img[src*="chhun_rotanakkosal"]),
 .member-photo:has(img[src*="pov_phannet"]) {
-  background: white !important;
+  background: #f8fafc !important;
 }
 
 /* Specific adjustments for zoomed-in profile pictures */
@@ -427,24 +424,22 @@ h2::after {
 
 .member-photo img[src*="vorn_naro"] {
   object-fit: contain;
-  background: white;
+  background: #f8fafc;
 }
 
 .member-photo img[src*="chan_sokheang"] {
   object-fit: cover;
   object-position: center;
-  filter: brightness(1.1) contrast(1.05);
 }
 
 .member-photo img[src*="chhor_ratanaktepi"] {
   object-fit: cover;
-  object-position: center 30%;
+  object-position: 55% 25%;
 }
 
 .member-photo img[src*="kong_vungsovanreach"] {
   object-fit: cover;
-  object-position: center;
-  transform: scale(1.15);
+  object-position: center 25%;
 }
 
 .member-name {

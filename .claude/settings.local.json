@@ -7,7 +7,15 @@
       "WebFetch(domain:fitat.org)",
       "WebFetch(domain:aqis-conf.org)",
       "WebFetch(domain:conf.kics.or.kr)",
-      "Bash(curl:*)"
+      "Bash(curl:*)",
+      "Bash(pip show:*)",
+      "Bash(pip install:*)",
+      "Bash(python remove_bg.py:*)",
+      "Bash(where:*)",
+      "Bash(\"C:\\\\Users\\\\chhor\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe\" -c \"from rembg import remove; print\\(''rembg OK''\\)\")",
+      "Bash(\"C:\\\\Users\\\\chhor\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe\" -m pip install \"rembg[cpu]\")",
+      "Bash(\"C:\\\\Users\\\\chhor\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe\" \"c:/Users/chhor/OneDrive/Desktop/Cbnuaiclab.github.io/remove_bg.py\")",
+      "Bash(\"C:\\\\Users\\\\chhor\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe\" -c:*)"
     ],
     "deny": [],
     "ask": []
