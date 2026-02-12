@@ -80,6 +80,68 @@
     background: linear-gradient(to bottom, transparent 0%, rgba(139, 40, 80, 0.1) 100%);
 }
 
+/* Conference Hero Cards (replaces images) */
+.conference-hero {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+.conference-hero:has(.conference-badge.domestic) {
+    background: linear-gradient(135deg, #2d1b30 0%, #4a1942 50%, #6b2150 100%);
+}
+
+.conference-hero-content {
+    text-align: center;
+    color: white;
+    padding: 1.5rem;
+    z-index: 1;
+}
+
+.conference-hero-icon {
+    font-size: 2.5rem;
+    margin-bottom: 0.8rem;
+    color: var(--accent-gold);
+}
+
+.conference-hero-name {
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    margin-bottom: 0.5rem;
+}
+
+.conference-hero-full {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    line-height: 1.4;
+    max-width: 320px;
+    margin: 0 auto 0.8rem;
+}
+
+.conference-hero-location {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-gold);
+}
+
+.conference-hero-location i {
+    margin-right: 0.3rem;
+}
+
+.conference-badge.domestic ~ .conference-hero-content {
+    color: white;
+}
+
+.conference-badge.domestic ~ .conference-hero-content .conference-hero-icon {
+    color: var(--accent-red-light);
+}
+
+.conference-badge.domestic ~ .conference-hero-content .conference-hero-location {
+    color: var(--accent-red-light);
+}
+
 /* Conference Badges */
 .conference-badge {
     position: absolute;

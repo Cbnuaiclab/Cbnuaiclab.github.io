@@ -3,7 +3,11 @@
     "allow": [
       "Bash(tree:*)",
       "Bash(dir:*)",
-      "Bash(powershell:*)"
+      "Bash(powershell:*)",
+      "WebFetch(domain:fitat.org)",
+      "WebFetch(domain:aqis-conf.org)",
+      "WebFetch(domain:conf.kics.or.kr)",
+      "Bash(curl:*)"
     ],
     "deny": [],
     "ask": []
