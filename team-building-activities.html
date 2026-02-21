@@ -39,6 +39,35 @@
 
         <!-- Activity Cards -->
         <div class="activities-grid">
+            <!-- Midongsan Arboretum Card -->
+            <div class="activity-card" onclick="openGalleryModal('midongsan')">
+                <div class="activity-image">
+                    <div class="activity-badge">
+                        <i class="fas fa-calendar"></i>
+                        February 2026
+                    </div>
+                    <img src="assets/img/activity/midongsan/01.jpg" alt="Midongsan Arboretum">
+                </div>
+                <div class="activity-content">
+                    <h2><i class="fas fa-tree"></i> Walk at Midongsan Arboretum</h2>
+                    <p>Our team went for a walk in nature to relax, reset, and re-energize for the upcoming Spring semester.</p>
+                    <div class="activity-stats">
+                        <div class="stat-item">
+                            <i class="fas fa-images"></i>
+                            <span>5 Photos</span>
+                        </div>
+                        <div class="stat-item">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Midongsan</span>
+                        </div>
+                    </div>
+                    <div class="view-gallery-btn">
+                        <span>View Gallery</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+
             <!-- Goesan Trail Hike Card -->
             <div class="activity-card" onclick="openGalleryModal('goesan')">
                 <div class="activity-image">
@@ -46,7 +75,7 @@
                         <i class="fas fa-calendar"></i>
                         October 2025
                     </div>
-                    <img src="assets/img/activity/goesan_trial_hike/01.jpg" alt="Goesan Trail Hike">
+                    <img src="assets/img/activity/goesan_trial_hike/02.JPG" alt="Goesan Trail Hike">
                 </div>
                 <div class="activity-content">
                     <h2><i class="fas fa-hiking"></i> Hiking at Goesan Trail</h2>
@@ -55,10 +84,6 @@
                         <div class="stat-item">
                             <i class="fas fa-images"></i>
                             <span>8 Photos</span>
-                        </div>
-                        <div class="stat-item">
-                            <i class="fas fa-users"></i>
-                            <span>All Members</span>
                         </div>
                         <div class="stat-item">
                             <i class="fas fa-map-marker-alt"></i>
@@ -79,7 +104,7 @@
                         <i class="fas fa-calendar"></i>
                         September 2025
                     </div>
-                    <img src="assets/img/activity/mungyeong_trip/1.jpg" alt="Mungyeong Trip">
+                    <img src="assets/img/activity/mungyeong_trip/2.jpg" alt="Mungyeong Trip">
                 </div>
                 <div class="activity-content">
                     <h2><i class="fas fa-mountain"></i> A Trip to Mungyeong</h2>
@@ -90,10 +115,6 @@
                             <span>7 Photos</span>
                         </div>
                         <div class="stat-item">
-                            <i class="fas fa-users"></i>
-                            <span>Team Bonding</span>
-                        </div>
-                        <div class="stat-item">
                             <i class="fas fa-map-marker-alt"></i>
                             <span>Mungyeong</span>
                         </div>
@@ -101,6 +122,60 @@
                     <div class="view-gallery-btn">
                         <span>View Gallery</span>
                         <i class="fas fa-arrow-right"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Modal for Midongsan -->
+    <div class="gallery-modal" id="midongsan-modal">
+        <span class="gallery-close" onclick="closeGalleryModal('midongsan')">×</span>
+        <div class="gallery-modal-content">
+            <div class="gallery-header">
+                <h2><i class="fas fa-tree"></i> Walk at Midongsan Arboretum</h2>
+                <span class="gallery-date"><i class="fas fa-calendar"></i> February 2026</span>
+                <p class="gallery-description">AICLab members went for a walk in nature to relax, reset, and re-energize for the upcoming Spring semester.</p>
+            </div>
+            <div class="photo-grid">
+                <div class="photo-item" onclick="openLightbox('midongsan', 0)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/midongsan/01.jpg" alt="Midongsan Arboretum 1">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('midongsan', 1)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/midongsan/02.jpg" alt="Midongsan Arboretum 2">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('midongsan', 2)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/midongsan/03.jpg" alt="Midongsan Arboretum 3">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('midongsan', 3)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/midongsan/04.jpg" alt="Midongsan Arboretum 4">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="photo-item" onclick="openLightbox('midongsan', 4)">
+                    <div class="photo-wrapper">
+                        <img src="assets/img/activity/midongsan/05.jpg" alt="Midongsan Arboretum 5">
+                        <div class="photo-overlay">
+                            <i class="fas fa-search-plus"></i>
+                        </div>
                     </div>
                 </div>
             </div>

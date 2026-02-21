@@ -15,7 +15,9 @@
       "Bash(\"C:\\\\Users\\\\chhor\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe\" -c \"from rembg import remove; print\\(''rembg OK''\\)\")",
       "Bash(\"C:\\\\Users\\\\chhor\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe\" -m pip install \"rembg[cpu]\")",
       "Bash(\"C:\\\\Users\\\\chhor\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe\" \"c:/Users/chhor/OneDrive/Desktop/Cbnuaiclab.github.io/remove_bg.py\")",
-      "Bash(\"C:\\\\Users\\\\chhor\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe\" -c:*)"
+      "Bash(\"C:\\\\Users\\\\chhor\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe\" -c:*)",
+      "WebFetch(domain:sovanreach.com)",
+      "Bash(echo:*)"
     ],
     "deny": [],
     "ask": []

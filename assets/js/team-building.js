@@ -2,6 +2,13 @@
 
 // Gallery data
 const galleries = {
+    midongsan: [
+        'assets/img/activity/midongsan/01.jpg',
+        'assets/img/activity/midongsan/02.jpg',
+        'assets/img/activity/midongsan/03.jpg',
+        'assets/img/activity/midongsan/04.jpg',
+        'assets/img/activity/midongsan/05.jpg'
+    ],
     goesan: [
         'assets/img/activity/goesan_trial_hike/01.jpg',
         'assets/img/activity/goesan_trial_hike/02.JPG',
