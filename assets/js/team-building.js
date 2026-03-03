@@ -2,6 +2,18 @@
 
 // Gallery data
 const galleries = {
+    mungyeong2026: [
+        'assets/img/activity/mungyeong_spring2026/00 COVER.jpg',
+        'assets/img/activity/mungyeong_spring2026/01.jpg',
+        'assets/img/activity/mungyeong_spring2026/02.jpg',
+        'assets/img/activity/mungyeong_spring2026/03.jpg',
+        'assets/img/activity/mungyeong_spring2026/04.jpg',
+        'assets/img/activity/mungyeong_spring2026/05.jpg',
+        'assets/img/activity/mungyeong_spring2026/06.jpg',
+        'assets/img/activity/mungyeong_spring2026/07.jpg',
+        'assets/img/activity/mungyeong_spring2026/08.jpg',
+        'assets/img/activity/mungyeong_spring2026/09.jpg'
+    ],
     midongsan: [
         'assets/img/activity/midongsan/01.jpg',
         'assets/img/activity/midongsan/02.jpg',
