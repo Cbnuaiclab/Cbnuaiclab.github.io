@@ -37,7 +37,20 @@
         <h1>AICLab</h1>
         <p class="subtitle">Dream. Excellence. Teamwork.</p>
         <div class="hero-photo">
-          <img src="assets/img/frontcover/cbnu_gate.jpg" />
+          <div class="hero-slider">
+            <div class="hero-slide active">
+              <img src="assets/img/frontcover/00_mungyeong.jpg" alt="Mungyeong Trip" />
+            </div>
+            <div class="hero-slide">
+              <img src="assets/img/frontcover/01_cbnu_gate.jpg" alt="CBNU Gate" />
+            </div>
+          </div>
+          <button class="slider-prev" onclick="changeSlide(-1)">&#10094;</button>
+          <button class="slider-next" onclick="changeSlide(1)">&#10095;</button>
+          <div class="slider-dots">
+            <span class="dot active" onclick="goToSlide(0)"></span>
+            <span class="dot" onclick="goToSlide(1)"></span>
+          </div>
         </div>
       </section>
       <div class="stats">
@@ -780,5 +793,37 @@
     </footer>
 
     <script src="./assets/js/homepage.js"></script>
-  </body>
+  
+    <script>
+      let currentSlide = 0;
+      const heroSlides = document.querySelectorAll('.hero-slide');
+      const heroDots = document.querySelectorAll('.slider-dots .dot');
+      let autoSlideInterval;
+
+      function showSlide(index) {
+        heroSlides.forEach(s => s.classList.remove('active'));
+        heroDots.forEach(d => d.classList.remove('active'));
+        currentSlide = (index + heroSlides.length) % heroSlides.length;
+        heroSlides[currentSlide].classList.add('active');
+        heroDots[currentSlide].classList.add('active');
+      }
+
+      function changeSlide(direction) {
+        showSlide(currentSlide + direction);
+        resetAutoSlide();
+      }
+
+      function goToSlide(index) {
+        showSlide(index);
+        resetAutoSlide();
+      }
+
+      function resetAutoSlide() {
+        clearInterval(autoSlideInterval);
+        autoSlideInterval = setInterval(() => showSlide(currentSlide + 1), 5000);
+      }
+
+      autoSlideInterval = setInterval(() => showSlide(currentSlide + 1), 5000);
+    </script>
+</body>
 </html>
