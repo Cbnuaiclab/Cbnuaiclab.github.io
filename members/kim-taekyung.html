@@ -4,40 +4,16 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prof. KIM Tae-Kyung - AICLab</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-    />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
     <link rel="stylesheet" href="../assets/css/profile.css" />
   </head>
 
   <body>
     <header>
-        <nav>
-            <div class="logo"><span></span></div>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu">
-                <li><a href="../index.html#about">About</a></li>
-                <li><a href="../index.html#team">Team</a></li>
-                <li><a href="../index.html#publications">Publications</a></li>
-                <li><a href="../index.html#projects">Research Projects</a></li>
-                <li><a href="../index.html#activities">Member's Activities</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- <header>
-      <div class="header1">
+      <nav>
         <div class="logo"><span></span></div>
         <button class="mobile-menu-toggle" aria-label="Toggle menu">
-          <span></span>
-          <span></span>
-          <span></span>
+          <span></span><span></span><span></span>
         </button>
         <ul class="nav-menu">
           <li><a href="../index.html#about">About</a></li>
@@ -47,146 +23,984 @@
           <li><a href="../index.html#activities">Member's Activities</a></li>
           <li><a href="../index.html#contact">Contact</a></li>
         </ul>
-    </div>
-    </header> -->
+      </nav>
+    </header>
 
-    <div class="profile-container">
-      <div class="profile-header">
-        <div class="profile-photo">
-          <img src="../assets/img/profile/kim_taekyung.jpg" />
+    <!-- ══ HERO ══════════════════════════════════════════════ -->
+    <section class="profile-hero">
+      <div class="hero-inner">
+        <div class="hero-photo-wrap">
+          <img src="../assets/img/profile/kim_taekyung.jpg" alt="Professor KIM Tae-Kyung" />
         </div>
-        <h1>Professor KIM Tae-Kyung</h1>
-        <div class="position">Principal Investigator | Associate Professor</div>
-        <div class="expertise">
-          Big Data | Artificial Intelligence | Quantum Computing
+        <div class="hero-info">
+          <!-- <div class="hero-badge">
+            <i class="fas fa-flask"></i> Principal Investigator · AICLab
+          </div> -->
+          <h1>KIM Tae-Kyung</h1>
+          <div class="hero-subtitle">Associate Professor</div>
+          <div class="hero-institution">
+            <i class="fas fa-university"></i>
+            Department of Business Information Systems, Chungbuk National University
+          </div>
+          <div class="hero-tags">
+            <span class="hero-tag"><i class="fas fa-brain" style="font-size:0.7rem;margin-right:3px;"></i>Artificial Intelligence</span>
+            <span class="hero-tag"><i class="fas fa-database" style="font-size:0.7rem;margin-right:3px;"></i>Big Data</span>
+            <span class="hero-tag"><i class="fas fa-atom" style="font-size:0.7rem;margin-right:3px;"></i>Quantum Computing</span>
+          </div>
+          <div class="hero-stats">
+            <div class="hero-stat">
+              <span class="hero-stat-num">20+</span>
+              <span class="hero-stat-label">Publications</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">11+</span>
+              <span class="hero-stat-label">Projects</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">15+</span>
+              <span class="hero-stat-label">Years Exp.</span>
+            </div>
+            <div class="hero-stat">
+              <span class="hero-stat-num">2024</span>
+              <span class="hero-stat-label">AICLab Founded</span>
+            </div>
+          </div>
+          <div class="hero-links">
+            <a href="https://sciprofiles.com/profile/3467113?utm_source=mdpi.com&utm_medium=website&utm_campaign=avatar_name" target="_blank" class="hero-link primary">
+              <i class="fas fa-user-circle"></i> SciProfiles
+            </a>
+            <a href="mailto:kimtk@chungbuk.ac.kr" class="hero-link secondary">
+              <i class="fas fa-envelope"></i> Email
+            </a>
+            <a href="#contact" class="hero-link secondary">
+              <i class="fas fa-address-card"></i> Contact
+            </a>
+          </div>
         </div>
-        <div style="margin-top: 1rem">
-          <a
-            href="https://sciprofiles.com/profile/3467113?utm_source=mdpi.com&utm_medium=website&utm_campaign=avatar_name"
-            target="_blank"
-            style="
-              display: inline-flex;
-              align-items: center;
-              gap: 0.5rem;
-              color: var(--accent-red);
-              text-decoration: none;
-              font-weight: 600;
-              border: 2px solid var(--accent-red);
-              padding: 0.5rem 1rem;
-              border-radius: 8px;
-              transition: all 0.3s;
-            "
-            onmouseover="this.style.background='var(--accent-red)'; this.style.color='white';"
-            onmouseout="this.style.background=''; this.style.color='var(--accent-red)';"
-          >
-            <i class="fas fa-user-circle"></i>
-            SciProfiles
-          </a>
+      </div>
+    </section>
+
+    <!-- ══ LAYOUT: LEFT SIDEBAR + CONTENT ═══════════════════ -->
+    <div class="profile-layout">
+
+      <!-- ── Left Sidebar: Quick Nav ── -->
+      <aside>
+        <div class="sidebar-card sidebar-nav-card">
+          <div class="sidebar-card-title">Quick Nav</div>
+          <nav class="sidebar-nav">
+            <a href="#background" class="sidebar-nav-link"><i class="fas fa-graduation-cap"></i> Education</a>
+            <a href="#positions" class="sidebar-nav-link"><i class="fas fa-briefcase"></i> Positions</a>
+            <a href="#career" class="sidebar-nav-link"><i class="fas fa-star"></i> Career</a>
+            <a href="#research" class="sidebar-nav-link"><i class="fas fa-microscope"></i> Research</a>
+            <a href="#publications" class="sidebar-nav-link"><i class="fas fa-book-open"></i> Publications</a>
+            <a href="#projects" class="sidebar-nav-link"><i class="fas fa-flask"></i> Projects</a>
+            <a href="#philosophy" class="sidebar-nav-link"><i class="fas fa-lightbulb"></i> Philosophy</a>
+            <a href="#media" class="sidebar-nav-link"><i class="fas fa-newspaper"></i> Media</a>
+            <a href="#contact" class="sidebar-nav-link"><i class="fas fa-address-card"></i> Contact</a>
+          </nav>
         </div>
-      </div>
+      </aside>
 
-      <div class="profile-section">
-        <h2><i class="fas fa-graduation-cap"></i> Academic Background</h2>
-        <ul>
-          <li>
-            <strong>PhD</strong> in Information Industry Engineering, Chungbuk
-            National University (2010)
-          </li>
-          <li>
-            <strong>M.E.</strong> in Information Industry Engineering, Chungbuk
-            National University (2005)
-          </li>
-        </ul>
-      </div>
+      <!-- ── Main Content (RIGHT) ── -->
+      <main>
 
-      <div class="profile-section">
-        <h2><i class="fas fa-briefcase"></i> Current Positions</h2>
-        <ul>
-          <li><strong>Associate Professor</strong>, Department of Business Information Systems, Chungbuk National University (March 2024 – Present)</li>
-          <li><strong>Department Chair</strong>, Department of Business Information Systems, CBNU</li>
-          <li><strong>Deputy Director</strong>, Startup Support Group, CBNU</li>
-          <li><strong>Director</strong>, RISE K-International Student Support Center, CBNU</li>
-          <li><strong>Director</strong>, Startup Incubation Center / G-Tech Venture Center, CBNU</li>
-          <li><strong>Director</strong>, Convergence Technology Institute, CBNU</li>
-        </ul>
-      </div>
+        <!-- Academic Background -->
+        <div id="background" class="profile-section section-anchor">
+          <div class="section-label">Academic</div>
+          <h2><i class="fas fa-graduation-cap"></i> Academic Background</h2>
+          <div class="degree-cards">
 
-      <div class="profile-section">
-        <h2><i class="fas fa-history"></i> Previous Experience</h2>
-        <ul>
-          <li>
-            <strong>2020 - 2023:</strong> Assistant Professor, AI Department of
-            Computer &amp; Information Technology, Incheon Jaeneung University,
-            Republic of Korea
-          </li>
-          <li>
-            <strong>2013 - 2019:</strong> Director, Korea Software HRD Center,
-            Phnom Penh, Cambodia — Trained 80 Cambodian IT graduates/year
-          </li>
-        </ul>
-      </div>
+            <div class="degree-card">
+              <div class="degree-badge">PhD</div>
+              <div class="degree-body">
+                <div class="degree-title">Doctor of Philosophy</div>
+                <div class="degree-field">Information Industry Engineering</div>
+                <div class="degree-uni"><i class="fas fa-university"></i> Chungbuk National University</div>
+              </div>
+              <div class="degree-year">2010</div>
+            </div>
 
-      <div class="profile-section">
-        <h2><i class="fas fa-microscope"></i> Research Interests</h2>
-        <div class="highlight">
-          <p>
-            Professor Kim's research spans three core domains: Artificial Intelligence, Big Data, and Quantum Computing — bridging theoretical foundations with practical industry applications.
-          </p>
+            <div class="degree-card">
+              <div class="degree-badge me">M.E.</div>
+              <div class="degree-body">
+                <div class="degree-title">Master of Engineering</div>
+                <div class="degree-field">Information Industry Engineering</div>
+                <div class="degree-uni"><i class="fas fa-university"></i> Chungbuk National University</div>
+              </div>
+              <div class="degree-year">2005</div>
+            </div>
+
+          </div>
         </div>
-        <ul>
-          <li><strong>Artificial Intelligence:</strong> Anomaly Detection (Deep Learning/Autoencoder), Computer Vision &amp; Object Detection, Posture-Based Action Recognition &amp; Fall Detection, LLM Reliability/Hallucination Analysis, NL-to-SQL Generation &amp; Prompt Engineering</li>
-          <li><strong>Big Data:</strong> Distributed Data Analysis &amp; Modeling (IoT/Power), Federated Learning-Based Training &amp; Anomaly Detection, DDoS Attack Detection &amp; Mitigation, Traffic &amp; Time Series Forecasting</li>
-          <li><strong>Quantum Computing:</strong> NISQ Environment Optimization (Qubit Allocation/Mapping), Combinatorial Optimization with Quantum Machines, QAOA Error Mitigation &amp; Noise Resilience, Quantum-Classical Hybrid Models (Time Series/Financial Forecasting)</li>
-        </ul>
-      </div>
 
-      <div class="profile-section">
-        <h2><i class="fas fa-bullseye"></i> Role in AICLab</h2>
-        <p>
-          As the Principal Investigator and founder of AICLab, Professor Kim
-          leads the lab's strategic direction in pursuing applied AI and
-          computer vision research. He established AICLab in 2024 with the
-          mission of bridging academic excellence with industry needs, fostering
-          a collaborative environment where diverse talents unite to solve
-          real-world challenges through innovative AI solutions.
-        </p>
-      </div>
+        <!-- Current Positions -->
+        <div id="positions" class="profile-section section-anchor">
+          <div class="section-label">Roles</div>
+          <h2><i class="fas fa-briefcase"></i> Current Positions</h2>
 
-      <div class="profile-section">
-        <h2><i class="fas fa-globe"></i> International Collaboration</h2>
-        <p>
-          With extensive experience in international academic collaboration,
-          particularly through his leadership role at the Korea Software HRD
-          Center in Cambodia (2013-2019), Professor Kim brings a unique
-          perspective on building cross-cultural research partnerships and
-          developing human resources in emerging technology sectors.
-        </p>
-      </div>
-    </div>
+          <!-- Primary Role -->
+          <div class="position-primary">
+            <div class="position-primary-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+            <div class="position-primary-body">
+              <div class="position-primary-role">Associate Professor</div>
+              <div class="position-primary-org">Dept. of Business Information Systems, Chungbuk National University</div>
+            </div>
+            <span class="position-badge">Mar 2024 – Present</span>
+          </div>
 
-    <footer id="contact">
+          <!-- Leadership Roles Grid -->
+          <div class="position-grid">
+            <div class="position-card">
+              <div class="position-card-icon"><i class="fas fa-sitemap"></i></div>
+              <div class="position-card-role">Department Chair</div>
+              <div class="position-card-org">Dept. of Business Information Systems, CBNU</div>
+            </div>
+            <div class="position-card">
+              <div class="position-card-icon"><i class="fas fa-users-cog"></i></div>
+              <div class="position-card-role">Deputy Director</div>
+              <div class="position-card-org">Startup Support Group, CBNU</div>
+            </div>
+            <div class="position-card">
+              <div class="position-card-icon"><i class="fas fa-globe"></i></div>
+              <div class="position-card-role">Director</div>
+              <div class="position-card-org">RISE K-International Student Support Center, CBNU</div>
+            </div>
+            <div class="position-card">
+              <div class="position-card-icon"><i class="fas fa-rocket"></i></div>
+              <div class="position-card-role">Director</div>
+              <div class="position-card-org">Startup Incubation Center / G-Tech Venture Center, CBNU</div>
+            </div>
+            <div class="position-card">
+              <div class="position-card-icon"><i class="fas fa-atom"></i></div>
+              <div class="position-card-role">Director</div>
+              <div class="position-card-org">Convergence Technology Institute, CBNU</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Career Highlights — Timeline -->
+        <div id="career" class="profile-section section-anchor">
+          <div class="section-label">Experience</div>
+          <h2><i class="fas fa-star"></i> Key Career Highlights</h2>
+
+          <!-- Category: Domestic -->
+          <div class="exp-category">
+            <div class="exp-category-label"><i class="fas fa-chalkboard-teacher"></i> Domestic Digital Education &amp; Research</div>
+
+            <div class="exp-card">
+              <div class="exp-card-header">
+                <div class="exp-icon"><i class="fas fa-university"></i></div>
+                <div class="exp-meta">
+                  <div class="exp-role">Associate Professor</div>
+                  <div class="exp-org">Chungbuk National University, Dept. of Business Information Systems</div>
+                </div>
+                <div class="exp-right">
+                  <span class="exp-period-badge current">Mar 2024 – Present</span>
+                </div>
+              </div>
+              <ul class="exp-desc">
+                <li>Digital Seed Project Lead: AI education for 1,600 elementary, middle, and high school students</li>
+                <li>Supporting career transitions through AI and big data education in degree programs</li>
+              </ul>
+            </div>
+
+            <div class="exp-card">
+              <div class="exp-card-header">
+                <div class="exp-icon"><i class="fas fa-university"></i></div>
+                <div class="exp-meta">
+                  <div class="exp-role">Assistant Professor</div>
+                  <div class="exp-org">AI Dept. of Computer &amp; Information Technology, Incheon Jaeneung University</div>
+                </div>
+                <div class="exp-right">
+                  <span class="exp-period-badge">2020 – 2023</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Category: International -->
+          <div class="exp-category">
+            <div class="exp-category-label"><i class="fas fa-globe"></i> International Activities</div>
+
+            <div class="exp-card">
+              <div class="exp-card-header">
+                <div class="exp-icon intl"><i class="fas fa-globe-asia"></i></div>
+                <div class="exp-meta">
+                  <div class="exp-role">Director, Korea SW HRD Center in Cambodia</div>
+                  <div class="exp-org">Korea Software HRD Center, Phnom Penh, Cambodia</div>
+                </div>
+                <div class="exp-right">
+                  <span class="exp-period-badge">Apr 2013 – Jul 2019</span>
+                </div>
+              </div>
+              <ul class="exp-desc">
+                <li>Training SW professionals for youth in developing countries</li>
+                <li>Annually selected 80 IT graduates from major Cambodian universities for advanced training</li>
+                <li>Operated a software expert training program to enhance Cambodia's IT capabilities</li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Research Areas — Icon Cards -->
+        <div id="research" class="profile-section section-anchor">
+          <div class="section-label">Areas</div>
+          <h2><i class="fas fa-microscope"></i> Research Areas</h2>
+          <div class="research-area-grid">
+
+            <div class="research-area-card ai">
+              <div class="research-area-banner">
+                <div class="research-area-icon"><i class="fas fa-brain"></i></div>
+                <span class="research-count">5 topics</span>
+              </div>
+              <div class="research-area-body">
+                <h3>Artificial Intelligence</h3>
+                <ul>
+                  <li>Anomaly Detection (Deep Learning / Autoencoder)</li>
+                  <li>Computer Vision &amp; Object Detection</li>
+                  <li>Posture-Based Action Recognition &amp; Fall Detection</li>
+                  <li>LLM Reliability / Hallucination Analysis</li>
+                  <li>NL-to-SQL Generation &amp; Prompt Engineering</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="research-area-card bigdata">
+              <div class="research-area-banner">
+                <div class="research-area-icon"><i class="fas fa-database"></i></div>
+                <span class="research-count">4 topics</span>
+              </div>
+              <div class="research-area-body">
+                <h3>Big Data</h3>
+                <ul>
+                  <li>Distributed Environment Data Analysis (Power / IoT)</li>
+                  <li>Federated Learning-Based Training / Anomaly Detection</li>
+                  <li>DDoS Attack Detection &amp; Mitigation</li>
+                  <li>Traffic / Time Series Forecasting</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="research-area-card quantum">
+              <div class="research-area-banner">
+                <div class="research-area-icon"><i class="fas fa-atom"></i></div>
+                <span class="research-count">4 topics</span>
+              </div>
+              <div class="research-area-body">
+                <h3>Quantum Computing</h3>
+                <ul>
+                  <li>NISQ Environment Optimization (Qubit Allocation)</li>
+                  <li>Combinatorial Optimization with Quantum Machines</li>
+                  <li>QAOA Error Mitigation &amp; Noise Resilience</li>
+                  <li>Quantum-Classical Hybrid Models</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Research Publications -->
+        <div id="publications" class="profile-section section-anchor">
+          <div class="section-label">Scholarship</div>
+          <h2><i class="fas fa-book-open"></i> Research Publications</h2>
+
+          <!-- Stats Bar -->
+          <div class="pub-stats-bar">
+            <div class="pub-stats-row">
+              <div class="pub-stat-item total">
+                <span class="pub-stat-num">19</span>
+                <span class="pub-stat-label">Total Papers</span>
+              </div>
+              <div class="pub-stat-divider"></div>
+              <div class="pub-stat-item">
+                <span class="pub-stat-dot scie-dot"></span>
+                <span class="pub-stat-num">11</span>
+                <span class="pub-stat-label">SCIE</span>
+              </div>
+              <div class="pub-stat-item">
+                <span class="pub-stat-dot kci-dot"></span>
+                <span class="pub-stat-num">5</span>
+                <span class="pub-stat-label">KCI</span>
+              </div>
+              <div class="pub-stat-item">
+                <span class="pub-stat-dot scopus-dot"></span>
+                <span class="pub-stat-num">4</span>
+                <span class="pub-stat-label">SCOPUS</span>
+              </div>
+            </div>
+            <div class="pub-progress-bar">
+              <div class="pub-progress-seg scie-seg" style="width: 57.9%" title="SCIE: 11"></div>
+              <div class="pub-progress-seg kci-seg" style="width: 26.3%" title="KCI: 5"></div>
+              <div class="pub-progress-seg scopus-seg" style="width: 15.8%" title="SCOPUS: 4"></div>
+            </div>
+          </div>
+
+          <!-- 2026 -->
+          <div class="pub-year-group">
+            <div class="pub-year-header">
+              <span class="pub-year-label">2026</span>
+              <div class="pub-year-line"></div>
+              <span class="pub-year-count">1 paper</span>
+            </div>
+            <div class="pub-cards">
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[1]</span><span class="pub-type-chip scie">SCIE</span></div>
+                  <span class="pub-card-date">Apr. 2026</span>
+                </div>
+                <div class="pub-title"><a href="https://doi.org/10.1016/j.icte.2025.12.011" target="_blank">Are you hallucinated? Insights into large language models</a></div>
+                <div class="pub-authors">Sarvagya Singh, Rahul Saha, Gulshan Kumar, Anand Nayyar, <strong>Tae-Kyung Kim</strong></div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> ICT Express</span>
+                  <a href="https://doi.org/10.1016/j.icte.2025.12.011" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2025 -->
+          <div class="pub-year-group">
+            <div class="pub-year-header">
+              <span class="pub-year-label">2025</span>
+              <div class="pub-year-line"></div>
+              <span class="pub-year-count">6 papers</span>
+            </div>
+            <div class="pub-cards">
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[2]</span><span class="pub-type-chip scie">SCIE</span></div>
+                  <span class="pub-card-date">Dec. 2025</span>
+                </div>
+                <div class="pub-title"><a href="https://peerj.com/articles/cs-3525/" target="_blank">QA-SQL: Query-Augmented SQL generation using few-shot prompting with data augmentation</a></div>
+                <div class="pub-authors">Sokheang Chan, Vungsovanreach Kong, Anand Nayyar, and <strong>Tae-Kyung Kim</strong></div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> PeerJ Computer Science</span>
+                  <a href="https://peerj.com/articles/cs-3525/" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[3]</span><span class="pub-type-chip scie">SCIE</span></div>
+                  <span class="pub-card-date">Dec. 2025</span>
+                </div>
+                <div class="pub-title"><a href="https://ieeexplore.ieee.org/document/11314116" target="_blank">Strategies for Noise-Resilient Quantum Approximate Optimization Algorithms: A Review and Classification of Error Mitigation</a></div>
+                <div class="pub-authors">Kimchhor Chiv, Leanghok Hour, Sanghyeon Lee, Tara Kit, <strong>Tae-Kyung Kim</strong>, and Youngsun Han</div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> IEEE Access</span>
+                  <a href="https://ieeexplore.ieee.org/document/11314116" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[4]</span><span class="pub-type-chip scie">SCIE</span></div>
+                  <span class="pub-card-date">Nov. 2025</span>
+                </div>
+                <div class="pub-title"><a href="https://www.techscience.com/cmc/v86n3/65469" target="_blank">FRF-BiLSTM: Recognizing and Mitigating DDoS Attacks through a Secure Decentralized Feature Optimized Federated Learning Approach</a></div>
+                <div class="pub-authors">Sushruta Mishra, Sunil Kumar Mohapatra, Kshira Sagar Sahoo, Anand Nayyar, and <strong>Tae-Kyung Kim</strong></div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> CMC-Computers, Materials &amp; Continua</span>
+                  <a href="https://www.techscience.com/cmc/v86n3/65469" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[5]</span><span class="pub-type-chip kci">KCI</span></div>
+                  <span class="pub-card-date">Sep. 2025</span>
+                </div>
+                <div class="pub-title"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003252465" target="_blank">Evaluating DNSSEC Against DNS Spoofing/MITM Attack in Virtualized Networks</a></div>
+                <div class="pub-authors">Naro Vorn and <strong>Tae-Kyung Kim</strong></div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> International Journal of Contents</span>
+                  <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003252465" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[6]</span><span class="pub-type-chip scopus">SCOPUS</span></div>
+                  <span class="pub-card-date">Jun. 2025</span>
+                </div>
+                <div class="pub-title"><a href="https://thesai.org/Publications/ViewPaper?Volume=16&Issue=6&Code=IJACSA&SerialNo=86" target="_blank">Dynamic Polygon-Based Reverse Driving Detection Technique for Enhanced Road Safety</a></div>
+                <div class="pub-authors">Tara Kit, Youngsun Han, Anand Nayyar, <strong>Tae-Kyung Kim</strong></div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> International Journal of Advanced Computer Science and Applications</span>
+                  <a href="https://thesai.org/Publications/ViewPaper?Volume=16&Issue=6&Code=IJACSA&SerialNo=86" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[7]</span><span class="pub-type-chip scie">SCIE</span></div>
+                  <span class="pub-card-date">Jun. 2025</span>
+                </div>
+                <div class="pub-title"><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0325253" target="_blank">PIFR: A novel approach for analyzing pose angle-based human activity to automate fall detection in videos</a></div>
+                <div class="pub-authors">Vungsovanreach Kong, Saravit Soeng, Munirot Thon, Wan-Sup Cho, Anand Nayyar, <strong>Tae-Kyung Kim</strong></div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> PLOS ONE</span>
+                  <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0325253" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2024 -->
+          <div class="pub-year-group">
+            <div class="pub-year-header">
+              <span class="pub-year-label">2024</span>
+              <div class="pub-year-line"></div>
+              <span class="pub-year-count">5 papers</span>
+            </div>
+            <div class="pub-cards">
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[8]</span><span class="pub-type-chip scie">SCIE</span><span class="pub-type-chip kci">KCI</span></div>
+                  <span class="pub-card-date">Dec. 2024</span>
+                </div>
+                <div class="pub-title"><a href="https://itiis.org/journals/tiis/digital-library/101752" target="_blank">Multiple Sensor-based Adaptive Foveated Display Control for Enhanced Computational Efficiency of Virtual Reality Devices</a></div>
+                <div class="pub-authors">Kimleang Kea, Youngsun Han, <strong>Tae-Kyung Kim</strong></div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> KSII Transactions on Internet and Information Systems</span>
+                  <a href="https://itiis.org/journals/tiis/digital-library/101752" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[9]</span><span class="pub-type-chip scie">SCIE</span></div>
+                  <span class="pub-card-date">Nov. 2024</span>
+                </div>
+                <div class="pub-title"><a href="https://ieeexplore.ieee.org/document/10752554" target="_blank">Quantum Autoencoder for Enhanced Fraud Detection in Imbalanced Credit Card Dataset</a></div>
+                <div class="pub-authors">Chansreynich Huot, Sovanmonynuth Heng, <strong>Tae-Kyung Kim</strong>, and Youngsun Han</div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> IEEE Access</span>
+                  <a href="https://ieeexplore.ieee.org/document/10752554" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[10]</span><span class="pub-type-chip scie">SCIE</span></div>
+                  <span class="pub-card-date">Nov. 2024</span>
+                </div>
+                <div class="pub-title"><a href="https://www.mdpi.com/1099-4300/26/11/954" target="_blank">A Hybrid Quantum-Classical Model for Stock Price Prediction Using Quantum-Enhanced Long Short-Term Memory</a></div>
+                <div class="pub-authors">Kimleang Kea, Dongmin Kim, Chansreynich Huot, <strong>Tae-Kyung Kim</strong>, and Youngsun Han</div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> Entropy</span>
+                  <a href="https://www.mdpi.com/1099-4300/26/11/954" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[11]</span><span class="pub-type-chip scopus">SCOPUS</span></div>
+                  <span class="pub-card-date">Aug. 2024</span>
+                </div>
+                <div class="pub-title"><a href="https://thesai.org/Publications/ViewPaper?Volume=15&Issue=8&Code=IJACSA&SerialNo=120" target="_blank">A Simple and Efficient Approach for Extracting Object Hierarchy in Image Data</a></div>
+                <div class="pub-authors">Saravit Soeng, Vungsovanreach Kong, Munirot Tho, Wan-Sup Cho, and <strong>Tae-Kyung Kim</strong></div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> International Journal of Advanced Computer Science and Applications</span>
+                  <a href="https://thesai.org/Publications/ViewPaper?Volume=15&Issue=8&Code=IJACSA&SerialNo=120" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[12]</span><span class="pub-type-chip kci">KCI</span></div>
+                  <span class="pub-card-date">2024</span>
+                </div>
+                <div class="pub-title"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003162916" target="_blank">A Study on Improvement Measures for Non-Face-to-Face Trade Consultation Platforms Targeting ICT SMEs and Venture Companies</a></div>
+                <div class="pub-authors">Lee Jong-Hyun, <strong>Kim Tae-Kyung</strong>, Shin Seung-Yong</div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> Korea Trade Association</span>
+                  <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART003162916" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2023 -->
+          <div class="pub-year-group">
+            <div class="pub-year-header">
+              <span class="pub-year-label">2023</span>
+              <div class="pub-year-line"></div>
+              <span class="pub-year-count">3 papers</span>
+            </div>
+            <div class="pub-cards">
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[13]</span><span class="pub-type-chip scie">SCIE</span></div>
+                  <span class="pub-card-date">Aug. 2023</span>
+                </div>
+                <div class="pub-title"><a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0290337" target="_blank">Enhancing anomaly detection in distributed power systems using autoencoder-based federated learning</a></div>
+                <div class="pub-authors">Kimleang Kea, Youngsun Han, and <strong>Tae-Kyung Kim</strong></div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> PLOS ONE</span>
+                  <a href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0290337" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[14]</span><span class="pub-type-chip kci">KCI</span></div>
+                  <span class="pub-card-date">2023</span>
+                </div>
+                <div class="pub-title"><span class="pub-no-link">Design and Implementation of a Data-Driven Fault and Linearity Evaluation Monitoring System for Electric Power Steering</span></div>
+                <div class="pub-authors">Lawal Alabe Wale, Kimleang Kea, Youngsun Han, <strong>Tae-Kyung Kim</strong></div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> Journal of Internet of Things Convergence</span>
+                </div>
+              </div>
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[15]</span><span class="pub-type-chip kci">KCI</span></div>
+                  <span class="pub-card-date">2023</span>
+                </div>
+                <div class="pub-title"><span class="pub-no-link">The Mediating Effect of Immersion on the Relationship between SW Attitude, Computational Thinking, and Creative Self-Efficacy in AI·SW Classes</span></div>
+                <div class="pub-authors">Kim Jeong-Hyun, <strong>Kim Tae-Kyung</strong></div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> Korean Society for Information Education</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2022 -->
+          <div class="pub-year-group">
+            <div class="pub-year-header">
+              <span class="pub-year-label">2022</span>
+              <div class="pub-year-line"></div>
+              <span class="pub-year-count">2 papers</span>
+            </div>
+            <div class="pub-cards">
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[16]</span><span class="pub-type-chip scie">SCIE</span></div>
+                  <span class="pub-card-date">2022</span>
+                </div>
+                <div class="pub-title"><a href="https://www.mdpi.com/1424-8220/22/22/8981" target="_blank">A Deep Learning Approach to Detect Anomalies in an Electric Power Steering System</a></div>
+                <div class="pub-authors">Lawal Wale Alabe, Kimleang Kea, Youngsun Han, Young Jae Min, and <strong>Tae-Kyung Kim</strong></div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> Sensors</span>
+                  <a href="https://www.mdpi.com/1424-8220/22/22/8981" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[17]</span><span class="pub-type-chip scie">SCIE</span></div>
+                  <span class="pub-card-date">Nov. 2022</span>
+                </div>
+                <div class="pub-title"><a href="https://ieeexplore.ieee.org/document/9934910" target="_blank">How to Solve Combinatorial Optimization Problems Using Real Quantum Machines: A Recent Survey</a></div>
+                <div class="pub-authors">Sovanmonynuth Heng, Dongmin Kim, <strong>Tae-Kyung Kim</strong>, and Youngsun Han</div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> IEEE Access</span>
+                  <a href="https://ieeexplore.ieee.org/document/9934910" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2021 -->
+          <div class="pub-year-group">
+            <div class="pub-year-header">
+              <span class="pub-year-label">2021</span>
+              <div class="pub-year-line"></div>
+              <span class="pub-year-count">1 paper</span>
+            </div>
+            <div class="pub-cards">
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[18]</span><span class="pub-type-chip scopus">SCOPUS</span></div>
+                  <span class="pub-card-date">Jun. 2021</span>
+                </div>
+                <div class="pub-title"><a href="https://ieiespc.org/ieiespc/XmlViewer/f404950" target="_blank">Recent Advances in Qubit Allocation Algorithm for NISQ Architectures</a></div>
+                <div class="pub-authors">Sengthai Heng, <strong>Tae-Kyung Kim</strong>, and Youngsun Han</div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> IEIE Transactions on Smart Processing &amp; Computing</span>
+                  <a href="https://ieiespc.org/ieiespc/XmlViewer/f404950" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2020 -->
+          <div class="pub-year-group">
+            <div class="pub-year-header">
+              <span class="pub-year-label">2020</span>
+              <div class="pub-year-line"></div>
+              <span class="pub-year-count">1 paper</span>
+            </div>
+            <div class="pub-cards">
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">[19]</span><span class="pub-type-chip scopus">SCOPUS</span></div>
+                  <span class="pub-card-date">Dec. 2020</span>
+                </div>
+                <div class="pub-title"><a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002658588" target="_blank">Exploiting GPU-based Parallelism for Quantum Computer Simulation: A Survey</a></div>
+                <div class="pub-authors">Sengthai Heng, <strong>Tae-Kyung Kim</strong>, and Youngsun Han</div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> IEIE Transactions on Smart Processing &amp; Computing</span>
+                  <a href="https://www.kci.go.kr/kciportal/ci/sereArticleSearch/ciSereArtiView.kci?sereArticleSearchBean.artiId=ART002658588" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project Performance -->
+        <div id="projects" class="profile-section section-anchor">
+          <div class="section-label">Grants &amp; Contracts</div>
+          <h2><i class="fas fa-flask"></i> Project Performance</h2>
+
+          <div class="project-stats-bar">
+            <div class="project-stat-item">
+              <span class="project-stat-num">11</span>
+              <span class="project-stat-label">Total Projects</span>
+            </div>
+            <div class="project-stat-divider"></div>
+            <div class="project-stat-item">
+              <span class="project-stat-dot gov-dot"></span>
+              <span class="project-stat-num">5</span>
+              <span class="project-stat-label">Government</span>
+            </div>
+            <div class="project-stat-item">
+              <span class="project-stat-dot ind-dot"></span>
+              <span class="project-stat-num">6</span>
+              <span class="project-stat-label">Industry</span>
+            </div>
+          </div>
+
+          <div class="project-cards">
+            <div class="project-card">
+              <div class="project-card-top">
+                <div class="project-top-left">
+                  <span class="project-index">[1]</span>
+                  <span class="project-funder-chip gov"><i class="fas fa-landmark"></i> National Research Foundation</span>
+                </div>
+                <span class="project-period">Jun. 2025 ~ Feb. 2026</span>
+              </div>
+              <div class="project-title">Foundational Research on Quantum Computer Business Convergence and Utilization</div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-top">
+                <div class="project-top-left">
+                  <span class="project-index">[2]</span>
+                  <span class="project-funder-chip ind"><i class="fas fa-building"></i> Kukon Co., Ltd.</span>
+                </div>
+                <span class="project-period">Jul. 2025 ~ Dec. 2025</span>
+              </div>
+              <div class="project-title">Development of AI-Based Scraping Module Auto-Generation Technology</div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-top">
+                <div class="project-top-left">
+                  <span class="project-index">[3]</span>
+                  <span class="project-funder-chip gov"><i class="fas fa-landmark"></i> Ministry of SMEs and Startups</span>
+                </div>
+                <span class="project-period">Oct. 2024 ~ Dec. 2025</span>
+              </div>
+              <div class="project-title">Advanced Data Management System Applying AI-Based Scheduling and Traffic Prediction Algorithms</div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-top">
+                <div class="project-top-left">
+                  <span class="project-index">[4]</span>
+                  <span class="project-funder-chip ind"><i class="fas fa-building"></i> WebCash Inc.</span>
+                </div>
+                <span class="project-period">Sep. 2024 ~ Mar. 2026</span>
+              </div>
+              <div class="project-title">Advisory Services for WebCash Inc.'s Interactive B2B Software Technology Development</div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-top">
+                <div class="project-top-left">
+                  <span class="project-index">[5]</span>
+                  <span class="project-funder-chip gov"><i class="fas fa-landmark"></i> National IT Industry Promotion Agency</span>
+                </div>
+                <span class="project-period">Jun. 2024 ~ Aug. 2024</span>
+              </div>
+              <div class="project-title">Derivation of Operation Plan for Digital Workforce Training Program Linked to Overseas Offices</div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-top">
+                <div class="project-top-left">
+                  <span class="project-index">[6]</span>
+                  <span class="project-funder-chip ind"><i class="fas fa-building"></i> Pentagate</span>
+                </div>
+                <span class="project-period">Jan. 2023 ~ Nov. 2024</span>
+              </div>
+              <div class="project-title">Development of Traffic Light and License Plate Recognition Algorithms from Vietnamese CCTV Footage</div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-top">
+                <div class="project-top-left">
+                  <span class="project-index">[7]</span>
+                  <span class="project-funder-chip ind"><i class="fas fa-building"></i> Aigen Tech</span>
+                </div>
+                <span class="project-period">Mar. 2024 ~ Dec. 2024</span>
+              </div>
+              <div class="project-title">Generative AI Practical Intensive Training Advisory Services</div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-top">
+                <div class="project-top-left">
+                  <span class="project-index">[8]</span>
+                  <span class="project-funder-chip gov"><i class="fas fa-landmark"></i> Korea Foundation for the Advancement of Science and Creativity</span>
+                </div>
+                <span class="project-period">Dec. 2022 ~ Mar. 2023</span>
+              </div>
+              <div class="project-title">2022 Vacation SW·AI Education Camp Project</div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-top">
+                <div class="project-top-left">
+                  <span class="project-index">[9]</span>
+                  <span class="project-funder-chip ind"><i class="fas fa-building"></i> Pentagate</span>
+                </div>
+                <span class="project-period">Sep. 2023 ~ Jan. 2024</span>
+              </div>
+              <div class="project-title">Development of Deep Learning-Based Abnormal Behavior and Fire Detection Algorithms</div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-top">
+                <div class="project-top-left">
+                  <span class="project-index">[10]</span>
+                  <span class="project-funder-chip ind"><i class="fas fa-building"></i> Pentagate</span>
+                </div>
+                <span class="project-period">Jul. 2022 ~ Dec. 2022</span>
+              </div>
+              <div class="project-title">Development of Object Detection Algorithm from Low-Resolution CCTV Footage in Vietnam</div>
+            </div>
+            <div class="project-card">
+              <div class="project-card-top">
+                <div class="project-top-left">
+                  <span class="project-index">[11]</span>
+                  <span class="project-funder-chip ind"><i class="fas fa-building"></i> JaeNung Education</span>
+                </div>
+                <span class="project-period">Oct. 2020 ~ Feb. 2021</span>
+              </div>
+              <div class="project-title">Development of AI-based Adaptive Full-Learning Platform</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Educational Philosophy -->
+        <div id="philosophy" class="profile-section section-anchor">
+          <div class="section-label">Mission</div>
+          <h2><i class="fas fa-lightbulb"></i> Educational Philosophy</h2>
+
+          <div class="philosophy-quote">
+            <span class="philosophy-quote-mark">"</span>
+            <p>Lifelong Digital Education Expert — pursuing practical AI and SW education accessible to all, based on experience providing digital education to learners of diverse ages and backgrounds.</p>
+          </div>
+
+          <div class="philosophy-audience-grid">
+            <div class="philosophy-card">
+              <div class="philosophy-card-icon">
+                <i class="fas fa-globe-asia"></i>
+              </div>
+              <div class="philosophy-card-body">
+                <div class="philosophy-card-title">Youth in Developing Countries</div>
+                <div class="philosophy-card-desc">Strengthening national competitiveness by cultivating SW experts</div>
+              </div>
+            </div>
+            <div class="philosophy-card">
+              <div class="philosophy-card-icon">
+                <i class="fas fa-graduation-cap"></i>
+              </div>
+              <div class="philosophy-card-body">
+                <div class="philosophy-card-title">Elementary, Middle &amp; High School Students</div>
+                <div class="philosophy-card-desc">Foundational AI/SW education to cultivate future digital talent</div>
+              </div>
+            </div>
+            <div class="philosophy-card">
+              <div class="philosophy-card-icon">
+                <i class="fas fa-briefcase"></i>
+              </div>
+              <div class="philosophy-card-body">
+                <div class="philosophy-card-title">Adults &amp; Working Professionals</div>
+                <div class="philosophy-card-desc">Practical, job-focused education for career transitions and development</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Media Coverage -->
+        <div id="media" class="profile-section section-anchor">
+          <div class="section-label">Press</div>
+          <h2><i class="fas fa-newspaper"></i> Media Coverage</h2>
+
+          <div class="media-cards">
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Maeil Business Newspaper</span>
+                <span class="media-date">Sep. 2025</span>
+              </div>
+              <div class="media-headline"><a href="https://n.news.naver.com/mnews/article/009/0005559724?sid=105" target="_blank">"I'll repay Korea for life"... The story of a boy who sold fruit in Cambodia and became a professor in Silicon Valley</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Chungcheong Ilbo</span>
+                <span class="media-date">May 2025</span>
+              </div>
+              <div class="media-headline"><a href="https://www.inews365.com/news/article.html?no=866627" target="_blank">Chungbuk National University Signs Academic Exchange Agreement with Cambodia's Ministry of Posts and Telecommunications</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Maeil Business Newspaper</span>
+                <span class="media-date">Apr. 2025</span>
+              </div>
+              <div class="media-headline"><a href="https://n.news.naver.com/mnews/article/009/0005478218?sid=110" target="_blank">[Opinion] Korea's ODA Contributing to Global Talent Development</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> E-Daily</span>
+                <span class="media-date">Aug. 2023</span>
+              </div>
+              <div class="media-headline"><a href="https://n.news.naver.com/mnews/article/018/0005543872?sid=105" target="_blank">Software Talent Shortage More Serious Than Semiconductors...Seeking Solutions Abroad for Mismatch</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Digital Daily</span>
+                <span class="media-date">Apr. 2019</span>
+              </div>
+              <div class="media-headline"><a href="http://www.ddaily.co.kr/news/article/?no=179670" target="_blank">"New Southern IT Market Prepares for Dynamic Growth... Hoping Young Koreans Will Definitely Challenge It"</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Digital Daily</span>
+                <span class="media-date">Feb. 2019</span>
+              </div>
+              <div class="media-headline"><a href="https://news.naver.com/main/read.nhn?mode=LSD&mid=sec&sid1=105&oid=138&aid=0002070562" target="_blank">Young People Dreaming of 'IT Cambodia'... 'Their Dreams' as Told by Kim Tae-kyung, HRD Center Director</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Seoul Economic Daily</span>
+                <span class="media-date">Feb. 2019</span>
+              </div>
+              <div class="media-headline"><a href="https://n.news.naver.com/mnews/article/011/0003511199?sid=105" target="_blank">Supporting Software Talent Development in Cambodia. "It Will Become a New Model for Creating Shared Value"</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Dong-A Ilbo</span>
+                <span class="media-date">Feb. 2019</span>
+              </div>
+              <div class="media-headline"><a href="http://news.donga.com/3/all/20190225/94287786/1" target="_blank">"Gaining Practical Skills Not Taught in Universities"... Cambodian Youths' IT Startup Dreams in Full Bloom</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Maeil Business Newspaper</span>
+                <span class="media-date">Feb. 2019</span>
+              </div>
+              <div class="media-headline"><a href="https://www.mk.co.kr/news/society/view/2019/02/114839/" target="_blank">Cultivating SW Development Talent in Cambodia</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Dong-A Ilbo</span>
+                <span class="media-date">Mar. 2018</span>
+              </div>
+              <div class="media-headline"><a href="http://www.donga.com/news/article/all/20180304/88948480/1" target="_blank">Seeds of 'SW Talent Development' Sown in Cambodia... IT Hallyu Blooms</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Korea Economic Daily</span>
+                <span class="media-date">Mar. 2018</span>
+              </div>
+              <div class="media-headline"><a href="https://www.hankyung.com/it/article/2018030400451" target="_blank">Cambodia, Having Learned 'Korea SW'... Nurtures IT Dreams</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Yonhap News</span>
+                <span class="media-date">Jun. 2017</span>
+              </div>
+              <div class="media-headline"><a href="http://news.naver.com/main/read.nhn?mode=LSD&mid=sec&sid1=001&oid=001&aid=0009319398" target="_blank">[Interview] Kim Tae-kyung, Head of Cambodia HRD Center: "The Portal Market is Wide Open, Let Korea Take the Lead"</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Kookje Shinmun</span>
+                <span class="media-date">Sep. 2016</span>
+              </div>
+              <div class="media-headline"><a href="http://www.kookje.co.kr/news2011/asp/newsbody.asp?code=0300&key=20160906.22004194158" target="_blank">Former Dongnam Bank Employee Builds 'Cambodian IT'</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Maeil Business Newspaper</span>
+                <span class="media-date">Feb. 2016</span>
+              </div>
+              <div class="media-headline"><a href="https://n.news.naver.com/mnews/article/009/0003682695" target="_blank">Cambodia's IT Sector: Korea Takes the Lead</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Overseas Koreans Newspaper</span>
+                <span class="media-date">Sep. 2015</span>
+              </div>
+              <div class="media-headline"><a href="https://www.dongponews.net/news/articleView.html?idxno=29846" target="_blank">Cambodian Trainees in Korea: "Let's Learn Korea's Success Model and Build a Prosperous Nation!"</a></div>
+            </div>
+            <div class="media-card">
+              <div class="media-card-top">
+                <span class="media-outlet-chip"><i class="fas fa-newspaper"></i> Seoul Shinmun</span>
+                <span class="media-date">Aug. 2014</span>
+              </div>
+              <div class="media-headline"><a href="https://news.naver.com/main/read.nhn?mode=LSD&mid=sec&sid1=100&oid=081&aid=0002450648" target="_blank">[Visiting Overseas Aid Sites] (Part 2) Cultivating Specialized Talent</a></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact -->
+        <div id="contact" class="profile-section section-anchor">
+          <div class="section-label">Get in Touch</div>
+          <h2><i class="fas fa-address-card"></i> Contact</h2>
+          <div class="contact-grid">
+            <div class="contact-card">
+              <div class="contact-card-icon">
+                <i class="fas fa-envelope"></i>
+              </div>
+              <div class="contact-card-body">
+                <div class="contact-card-label">University Email</div>
+                <a href="mailto:kimtk@chungbuk.ac.kr" class="contact-card-value">kimtk@chungbuk.ac.kr</a>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon">
+                <i class="fas fa-flask"></i>
+              </div>
+              <div class="contact-card-body">
+                <div class="contact-card-label">Lab Email</div>
+                <a href="mailto:cbnuaiclab@gmail.com" class="contact-card-value">cbnuaiclab@gmail.com</a>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon">
+                <i class="fas fa-phone"></i>
+              </div>
+              <div class="contact-card-body">
+                <div class="contact-card-label">Phone</div>
+                <span class="contact-card-value">010-3090-7916</span>
+              </div>
+            </div>
+            <div class="contact-card">
+              <div class="contact-card-icon">
+                <i class="fas fa-university"></i>
+              </div>
+              <div class="contact-card-body">
+                <div class="contact-card-label">Affiliation</div>
+                <span class="contact-card-value">Dept. of Business Information Systems, CBNU</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+    </div><!-- /profile-layout -->
+
+    <footer>
       <div class="footer-main">
         <div class="footer-content">
           <div class="footer-section footer-about">
             <div class="container">
-              <img
-                src="../assets/img/logo/aiclab_logo_white.png"
-                alt="AICLab Logo"
-                class="footer-logo"
-              />
+              <img src="../assets/img/logo/aiclab_logo_white.png" alt="AICLab Logo" class="footer-logo" />
             </div>
             <div class="footer-text">
               <h3>AI Convergence Lab</h3>
-              <p class="footer-tagline">
-                Pioneering Applied AI and Computer Vision Research
-              </p>
-              <p class="footer-description">
-                Bridging academic excellence with industry needs through
-                innovative AI solutions and collaborative research.
-              </p>
+              <p class="footer-tagline">Pioneering Applied AI and Computer Vision Research</p>
+              <p class="footer-description">Bridging academic excellence with industry needs through innovative AI solutions and collaborative research.</p>
             </div>
           </div>
-
           <div class="footer-section footer-contact">
             <h3>Contact Information</h3>
             <div class="contact-item">
@@ -200,17 +1014,12 @@
               <i class="fas fa-map-marker-alt"></i>
               <div>
                 <strong>Location</strong>
-                <p>
-                  Room N13-216, Chungbuk National University<br />
-                  Chungdae-Ro 1, Seowon-Gu<br />
-                  Cheongju, Chungbuk, South Korea
-                </p>
+                <p>Room N13-216, Chungbuk National University<br />Chungdae-Ro 1, Seowon-Gu<br />Cheongju, Chungbuk, South Korea</p>
               </div>
             </div>
           </div>
         </div>
       </div>
-
       <div class="footer-bottom">
         <div class="footer-bottom-content">
           <p>&copy; 2026 AICLab - AI Convergence Lab. All rights reserved.</p>
@@ -219,6 +1028,66 @@
       </div>
     </footer>
 
+    <!-- Back to Top Button -->
+    <button id="back-to-top" aria-label="Back to top">
+      <i class="fas fa-chevron-up"></i>
+    </button>
+
     <script src="../assets/js/profile.js"></script>
+    <script>
+      // ── Smooth scroll with pulse animation on Quick Nav clicks ──
+      const navLinks = document.querySelectorAll('.sidebar-nav-link[href^="#"]');
+
+      // Match the sidebar's sticky top value so sections land at the same level
+      const SCROLL_OFFSET = 120;
+
+      navLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          const targetId = this.getAttribute('href').slice(1);
+          const target = document.getElementById(targetId);
+          if (!target) return;
+
+          // Manually calculate scroll position so it always aligns with Quick Nav top
+          const targetTop = target.getBoundingClientRect().top + window.scrollY - SCROLL_OFFSET;
+          window.scrollTo({ top: targetTop, behavior: 'smooth' });
+
+          // Pulse highlight: remove then re-add so it re-triggers if clicked twice
+          target.classList.remove('section-highlight');
+          void target.offsetWidth; // force reflow
+          target.classList.add('section-highlight');
+          target.addEventListener('animationend', () => {
+            target.classList.remove('section-highlight');
+          }, { once: true });
+        });
+      });
+
+      // ── Scrollspy — highlight active sidebar nav link ──
+      const sections = document.querySelectorAll('.section-anchor');
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const id = entry.target.getAttribute('id');
+            navLinks.forEach(link => {
+              link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+            });
+          }
+        });
+      }, { rootMargin: '-20% 0px -65% 0px', threshold: 0 });
+
+      sections.forEach(section => observer.observe(section));
+
+      // ── Back to Top Button ──
+      const backToTop = document.getElementById('back-to-top');
+
+      window.addEventListener('scroll', () => {
+        backToTop.classList.toggle('visible', window.scrollY > 400);
+      });
+
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    </script>
   </body>
 </html>
