@@ -1,175 +1,184 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CHIV Kimchhor - AICLab</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/profile.css">
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="../assets/css/profile.css" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav>
-            <div class="logo"><span></span></div>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu">
-                <li><a href="../index.html#about">About</a></li>
-                <li><a href="../index.html#team">Team</a></li>
-                <li><a href="../index.html#publications">Publications</a></li>
-                <li><a href="../index.html#projects">Research Projects</a></li>
-                <li><a href="../index.html#activities">Member's Activities</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-            </ul>
-        </nav>
+      <nav>
+        <a href="../index.html" class="logo"><span></span></a>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-menu">
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#team">Team</a></li>
+          <li><a href="../index.html#publications">Publications</a></li>
+          <li><a href="../index.html#projects">Research Projects</a></li>
+          <li><a href="../index.html#activities">Member's Activities</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
     </header>
 
-    <div class="profile-container">
-        <div class="profile-header">
-            <div class="profile-photo">
-                <img src="../assets/img/profile/chiv_kimchhor.jpg" />
-            </div>
-            <h1>CHIV Kimchhor</h1>
-            <div class="position">PhD</div>
-            <div class="expertise">Deep Learning | Quantum Computing | Quantum Machine Learning</div>
-            <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-                <a href="https://www.dbpia.co.kr/author/authorDetail?ancId=324428887" target="_blank"
-                   style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-red); text-decoration: none; font-weight: 600; border: 2px solid var(--accent-red); padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s;"
-                   onmouseover="this.style.background='var(--accent-red)'; this.style.color='white';"
-                   onmouseout="this.style.background=''; this.style.color='var(--accent-red)';">
-                    <i class="fas fa-book"></i>
-                    DBpia Profile
-                </a>
-                <a href="https://orcid.org/0009-0009-5907-8869" target="_blank"
-                   style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-red); text-decoration: none; font-weight: 600; border: 2px solid var(--accent-red); padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s;"
-                   onmouseover="this.style.background='var(--accent-red)'; this.style.color='white';"
-                   onmouseout="this.style.background=''; this.style.color='var(--accent-red)';">
-                    <i class="fab fa-orcid"></i>
-                    ORCID Profile
-                </a>
-                <a href="https://sites.google.com/view/qcl-pknu/students?authuser=0" target="_blank"
-                   style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-red); text-decoration: none; font-weight: 600; border: 2px solid var(--accent-red); padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s;"
-                   onmouseover="this.style.background='var(--accent-red)'; this.style.color='white';"
-                   onmouseout="this.style.background=''; this.style.color='var(--accent-red)';">
-                    <i class="fas fa-globe"></i>
-                    QCL Profile
-                </a>
-            </div>
+    <section class="profile-hero">
+      <div class="hero-inner">
+        <div class="hero-photo-wrap">
+          <img src="../assets/img/profile/chiv_kimchhor.jpg" alt="CHIV Kimchhor" />
+        </div>
+        <div class="hero-info">
+          <h1>CHIV Kimchhor</h1>
+          <div class="hero-subtitle">PhD Student</div>
+          <div class="hero-institution">
+            <i class="fas fa-university"></i>
+            Department of Big Data, Chungbuk National University
+          </div>
+          <div class="hero-tags">
+            <span class="hero-tag"><i class="fas fa-brain"></i>Deep Learning</span>
+            <span class="hero-tag"><i class="fas fa-atom"></i>Quantum Computing</span>
+            <span class="hero-tag"><i class="fas fa-cogs"></i>Quantum Machine Learning</span>
+          </div>
+          <div class="hero-links">
+            <a href="https://www.dbpia.co.kr/author/authorDetail?ancId=324428887" target="_blank" class="hero-link primary">
+              <i class="fas fa-book"></i> DBpia Profile
+            </a>
+            <a href="https://orcid.org/0009-0009-5907-8869" target="_blank" class="hero-link secondary">
+              <i class="fab fa-orcid"></i> ORCID
+            </a>
+            <a href="https://sites.google.com/view/qcl-pknu/students?authuser=0" target="_blank" class="hero-link secondary">
+              <i class="fas fa-globe"></i> QCL Profile
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="profile-layout">
+      <aside>
+        <div class="sidebar-card sidebar-nav-card">
+          <div class="sidebar-card-title">Quick Nav</div>
+          <nav class="sidebar-nav">
+            <a href="#about" class="sidebar-nav-link"><i class="fas fa-user-graduate"></i> About</a>
+            <a href="#education" class="sidebar-nav-link"><i class="fas fa-graduation-cap"></i> Education</a>
+            <a href="#research" class="sidebar-nav-link"><i class="fas fa-microscope"></i> Research</a>
+            <a href="#publications" class="sidebar-nav-link"><i class="fas fa-book-open"></i> Publications</a>
+            <a href="#interests" class="sidebar-nav-link"><i class="fas fa-bullseye"></i> Interests</a>
+          </nav>
+        </div>
+      </aside>
+
+      <main>
+
+        <div id="about" class="profile-section section-anchor">
+          <div class="section-label">About</div>
+          <h2><i class="fas fa-user-graduate"></i> About</h2>
+          <div class="highlight">
+            <p>PhD student specializing in Quantum Machine Learning, with a foundation in Quantum Computing, Quantum Error Mitigation, and advanced machine learning. Holding a Master's degree from Pukyong National University, her research focuses on bridging the gap between theoretical quantum algorithms and their deployment in practical, real-world applications.</p>
+          </div>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-user-graduate"></i> About</h2>
-            <div class="highlight">
-                <p>PhD student specializing in Quantum Machine Learning, with a foundation in Quantum Computing, Quantum Error Mitigation, and advanced machine learning. Holding a Master's degree from Pukyong National University, her research focuses on bridging the gap between theoretical quantum algorithms and their deployment in practical, real-world applications.</p>
-            </div>
+        <div id="education" class="profile-section section-anchor">
+          <div class="section-label">Background</div>
+          <h2><i class="fas fa-graduation-cap"></i> Academic Background</h2>
+          <ul>
+            <li><strong>Current:</strong> PhD in Big Data, Chungbuk National University (CBNU)</li>
+            <li><strong>Master's Degree:</strong> AI Convergence, Pukyong National University (PKNU)</li>
+            <li><strong>Bachelor's Degree:</strong> Computer Science, Royal University of Phnom Penh, Cambodia (2022)</li>
+          </ul>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-user-graduate"></i> Academic Background</h2>
-            <ul>
-                <li><strong>Current:</strong> PhD in Big Data, Chungbuk National University (CBNU)</li>
-                <li><strong>Master's Degree:</strong> AI Convergence, Pukyong National University (PKNU)</li>
-                <li><strong>Bachelor's Degree:</strong> Computer Science, Royal University of Phnom Penh, Cambodia (2022)</li>
-            </ul>
+        <div id="research" class="profile-section section-anchor">
+          <div class="section-label">Areas</div>
+          <h2><i class="fas fa-microscope"></i> Research Focus</h2>
+          <div class="highlight">
+            <p>Her research focuses on Quantum Machine Learning, with emphasis on bridging theoretical quantum algorithms and their practical applications. She explores how quantum computing principles can enhance machine learning capabilities for real-world deployment.</p>
+          </div>
+          <ul>
+            <li><strong>Quantum Machine Learning:</strong> Bridging theoretical quantum algorithms with practical, real-world applications</li>
+            <li><strong>Quantum Error Mitigation:</strong> Techniques to improve quantum computation reliability and accuracy</li>
+            <li><strong>Quantum Computing:</strong> Variational quantum algorithms and quantum circuit optimization</li>
+          </ul>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-microscope"></i> Research Focus</h2>
-            <div class="highlight">
-                <p>Her research focuses on Quantum Machine Learning, with emphasis on bridging theoretical quantum algorithms and their practical applications. She explores how quantum computing principles can enhance machine learning capabilities for real-world deployment.</p>
+        <div id="publications" class="profile-section section-anchor">
+          <div class="section-label">Scholarship</div>
+          <h2><i class="fas fa-book-open"></i> Research Publications</h2>
+
+          <div class="pub-year-group">
+            <div class="pub-year-header">
+              <span class="pub-year-label">2025</span>
+              <div class="pub-year-line"></div>
+              <span class="pub-year-count">1 paper</span>
             </div>
-            <ul>
-                <li><strong>Quantum Machine Learning:</strong> Bridging theoretical quantum algorithms with practical, real-world applications</li>
-                <li><strong>Quantum Error Mitigation:</strong> Techniques to improve quantum computation reliability and accuracy</li>
-                <li><strong>Quantum Computing:</strong> Variational quantum algorithms and quantum circuit optimization</li>
-            </ul>
+            <div class="pub-cards">
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">1</span><span class="pub-type-chip scie">SCIE</span></div>
+                  <span class="pub-card-date">2025</span>
+                </div>
+                <div class="pub-title"><a href="https://ieeexplore.ieee.org/document/11314116" target="_blank">Strategies for Noise-Resilient Quantum Approximate Optimization Algorithms: A Review and Classification of Error Mitigation</a></div>
+                <div class="pub-authors"><strong>Kimchhor Chiv</strong>, Leanghok Hour, Sanghyeon Lee, Tara Kit, Tae-Kyung Kim, Youngsun Han</div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> IEEE Access</span>
+                  <a href="https://ieeexplore.ieee.org/document/11314116" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="pub-year-group">
+            <div class="pub-year-header">
+              <span class="pub-year-label">2024</span>
+              <div class="pub-year-line"></div>
+              <span class="pub-year-count">2 papers</span>
+            </div>
+            <div class="pub-cards">
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">2</span><span class="pub-type-chip conference">Conference</span></div>
+                  <span class="pub-card-date">Nov. 2024</span>
+                </div>
+                <div class="pub-title"><a href="https://conf.kics.or.kr/2024f/program" target="_blank">Using Zero-Noise Extrapolation to Improve Variational Quantum Eigensolver for Portfolio Optimization</a></div>
+                <div class="pub-authors"><strong>Kimchhor Chiv</strong>, Chansreynich Huot, Myeongseong Go, Youngsun Han</div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> 2024년도 한국통신학회 추계학술대회 (KICS Fall Conference 2024)</span>
+                  <a href="https://conf.kics.or.kr/2024f/program" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+              <div class="pub-card">
+                <div class="pub-card-top">
+                  <div class="pub-top-left"><span class="pub-index">3</span><span class="pub-type-chip conference">Conference</span></div>
+                  <span class="pub-card-date">Aug. 2024</span>
+                </div>
+                <div class="pub-title"><a href="https://aqis-conf.org/2024/" target="_blank">Efficient Transpilation of Quantum Circuits to Quantum Intermediate Representation</a></div>
+                <div class="pub-authors">Sengthai Heng, Nagyeong Choi, <strong>Kimchhor Chiv</strong>, Youngsun Han</div>
+                <div class="pub-footer">
+                  <span class="pub-venue-chip"><i class="fas fa-book-open"></i> 24th Asian Quantum Information Science Conference (AQIS 2024)</span>
+                  <a href="https://aqis-conf.org/2024/" class="pub-link-btn" target="_blank">View paper <i class="fas fa-external-link-alt"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-file-alt"></i> Publications</h2>
-            <div class="publication-item" style="margin-bottom: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
-                <h4 style="color: var(--accent-red); margin-bottom: 0.5rem;">Strategies for Noise-Resilient Quantum Approximate Optimization Algorithms: A Review and Classification of Error Mitigation</h4>
-                <p style="margin-bottom: 0.5rem; color: #555;"><strong>Authors:</strong> Kimchhor Chiv, Leanghok Hour, Sanghyeon Lee, Tara Kit, Tae-Kyung Kim, Youngsun Han</p>
-                <p style="color: #666;">
-                    <strong>Journal:</strong> IEEE Access -
-                    <a href="https://ieeexplore.ieee.org/document/11314116" target="_blank" style="color: var(--accent-red); text-decoration: none; border-bottom: 2px solid var(--accent-red);" onmouseover="this.style.borderColor='var(--accent-gold)'" onmouseout="this.style.borderColor='var(--accent-red)'">View Paper</a>
-                </p>
-            </div>
-            <div class="publication-item" style="margin-bottom: 1.5rem; padding: 1rem; background: #f8f9fa; border-radius: 8px;">
-                <h4 style="color: var(--accent-red); margin-bottom: 0.5rem;">Using Zero-Noise Extrapolation to Improve Variational Quantum Eigensolver for Portfolio Optimization</h4>
-                <p style="margin-bottom: 0.5rem; color: #555;"><strong>Authors:</strong> Kimchhor Chiv, Chansreynich Huot, Myeongseong Go, Youngsun Han</p>
-                <p style="color: #666;">
-                    <strong>Conference:</strong> 2024년도 한국통신학회 추계학술대회 (KICS Fall Conference 2024), November 2024 -
-                    <a href="https://conf.kics.or.kr/2024f/program" target="_blank" style="color: var(--accent-red); text-decoration: none; border-bottom: 2px solid var(--accent-red);" onmouseover="this.style.borderColor='var(--accent-gold)'" onmouseout="this.style.borderColor='var(--accent-red)'">View Conference</a>
-                </p>
-            </div>
-            <div class="publication-item" style="padding: 1rem; background: #f8f9fa; border-radius: 8px;">
-                <h4 style="color: var(--accent-red); margin-bottom: 0.5rem;">Efficient Transpilation of Quantum Circuits to Quantum Intermediate Representation</h4>
-                <p style="margin-bottom: 0.5rem; color: #555;"><strong>Authors:</strong> Sengthai Heng, Nagyeong Choi, Kimchhor Chiv, Youngsun Han</p>
-                <p style="color: #666;">
-                    <strong>Conference:</strong> 24th Asian Quantum Information Science Conference (AQIS 2024), August 2024 -
-                    <a href="https://aqis-conf.org/2024/" target="_blank" style="color: var(--accent-red); text-decoration: none; border-bottom: 2px solid var(--accent-red);" onmouseover="this.style.borderColor='var(--accent-gold)'" onmouseout="this.style.borderColor='var(--accent-red)'">View Conference</a>
-                </p>
-            </div>
+        <div id="interests" class="profile-section section-anchor">
+          <div class="section-label">Interests</div>
+          <h2><i class="fas fa-bullseye"></i> Research Interests</h2>
+          <p>Her research explores Quantum Machine Learning, investigating how quantum computing can enhance traditional machine learning approaches for real-world applications. She is particularly interested in variational quantum algorithms and their applications in optimization problems, quantum error mitigation techniques, and efficient quantum circuit design and transpilation.</p>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-bullseye"></i> Research Interests</h2>
-            <p>Her research explores Quantum Machine Learning, investigating how quantum computing can enhance traditional machine learning approaches for real-world applications. She is particularly interested in variational quantum algorithms and their applications in optimization problems, quantum error mitigation techniques, and efficient quantum circuit design and transpilation.</p>
-        </div>
+      </main>
     </div>
 
-    <footer id="contact">
-        <div class="footer-main">
-            <div class="footer-content">
-                <div class="footer-section footer-about">
-                    <div class="container">
-                        <img src="../assets/img/logo/aiclab_logo_white.png" alt="AICLab Logo" class="footer-logo">
-                    </div>
-                    <div class="footer-text">
-                        <h3>AI Convergence Lab</h3>
-                        <p class="footer-tagline">Pioneering Applied AI and Computer Vision Research</p>
-                        <p class="footer-description">
-                            Bridging academic excellence with industry needs through innovative AI solutions and collaborative research.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="footer-section footer-contact">
-                    <h3>Contact Information</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <strong>Email</strong>
-                            <a href="mailto:cbnuaiclab@gmail.com">cbnuaiclab@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Location</strong>
-                            <p>Room N13-216, Chungbuk National University<br>
-                            Chungdae-Ro 1, Seowon-Gu<br>
-                            Cheongju, Chungbuk, South Korea</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
-                <p>&copy; 2026 AICLab - AI Convergence Lab. All rights reserved.</p>
-                <p class="footer-affiliation">Chungbuk National University</p>
-            </div>
-        </div>
+    <footer style="margin-top: 4rem; padding: 2rem; text-align: center; background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%); color: white;">
+      <p>© 2026 AICLab - AI Convergence Lab. All rights reserved.</p>
     </footer>
-    <script src="../assets/js/profile.js"></script>
-</body>
 
+    <script src="../assets/js/profile.js"></script>
+  </body>
 </html>

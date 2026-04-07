@@ -1,177 +1,158 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Prof. Chheang Vuthea - AICLab</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/profile.css">
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="../assets/css/profile.css" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav>
-            <div class="logo"><span></span></div>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu">
-                <li><a href="../index.html#about">About</a></li>
-                <li><a href="../index.html#team">Team</a></li>
-                <li><a href="../index.html#publications">Publications</a></li>
-                <li><a href="../index.html#projects">Research Projects</a></li>
-                <li><a href="../index.html#activities">Member's Activities</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-            </ul>
-        </nav>
+      <nav>
+        <a href="../index.html" class="logo"><span></span></a>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-menu">
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#team">Team</a></li>
+          <li><a href="../index.html#publications">Publications</a></li>
+          <li><a href="../index.html#projects">Research Projects</a></li>
+          <li><a href="../index.html#activities">Member's Activities</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
     </header>
 
-    <div class="profile-container">
-        <div class="profile-header">
-            <div class="profile-photo">
-                <img src="../assets/img/profile/chheang_vuthea.jpg"/>
-            </div>
-            <h1>Professor CHHEANG Vuthea</h1>
-            <div class="position">Collaborator</div>
-            <div class="expertise">Extended Reality (XR) | Human-Computer Interaction | Visualization</div>
-            <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-                <a href="https://scholar.google.com/citations?hl=en&user=i7ju-RUAAAAJ" target="_blank"
-                   style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-red); text-decoration: none; font-weight: 600; border: 2px solid var(--accent-red); padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s;"
-                   onmouseover="this.style.background='var(--accent-red)'; this.style.color='white';"
-                   onmouseout="this.style.background=''; this.style.color='var(--accent-red)';">
-                    <i class="fas fa-graduation-cap"></i>
-                    Google Scholar Profile
-                </a>
-                <a href="https://www.linkedin.com/in/vuthea/" target="_blank"
-                   style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-red); text-decoration: none; font-weight: 600; border: 2px solid var(--accent-red); padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s;"
-                   onmouseover="this.style.background='var(--accent-red)'; this.style.color='white';"
-                   onmouseout="this.style.background=''; this.style.color='var(--accent-red)';">
-                    <i class="fab fa-linkedin"></i>
-                    LinkedIn Profile
-                </a>
-                <a href="https://orcid.org/0000-0001-5999-4968" target="_blank"
-                   style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-red); text-decoration: none; font-weight: 600; border: 2px solid var(--accent-red); padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s;"
-                   onmouseover="this.style.background='var(--accent-red)'; this.style.color='white';"
-                   onmouseout="this.style.background=''; this.style.color='var(--accent-red)';">
-                    <i class="fab fa-orcid"></i>
-                    ORCID Profile
-                </a>
-            </div>
+    <section class="profile-hero">
+      <div class="hero-inner">
+        <div class="hero-photo-wrap">
+          <img src="../assets/img/profile/chheang_vuthea.jpg" alt="Professor CHHEANG Vuthea" />
+        </div>
+        <div class="hero-info">
+          <h1>Professor CHHEANG Vuthea</h1>
+          <div class="hero-subtitle">Collaborator · Assistant Professor</div>
+          <div class="hero-institution">
+            <i class="fas fa-university"></i>
+            Department of Computer Science, San José State University, USA
+          </div>
+          <div class="hero-tags">
+            <span class="hero-tag"><i class="fas fa-vr-cardboard"></i>Extended Reality (XR)</span>
+            <span class="hero-tag"><i class="fas fa-mouse-pointer"></i>Human-Computer Interaction</span>
+            <span class="hero-tag"><i class="fas fa-eye"></i>Visualization</span>
+          </div>
+          <div class="hero-links">
+            <a href="https://scholar.google.com/citations?hl=en&user=i7ju-RUAAAAJ" target="_blank" class="hero-link primary">
+              <i class="fas fa-graduation-cap"></i> Google Scholar
+            </a>
+            <a href="https://www.linkedin.com/in/vuthea/" target="_blank" class="hero-link secondary">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="https://orcid.org/0000-0001-5999-4968" target="_blank" class="hero-link secondary">
+              <i class="fab fa-orcid"></i> ORCID
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="profile-layout">
+      <aside>
+        <div class="sidebar-card sidebar-nav-card">
+          <div class="sidebar-card-title">Quick Nav</div>
+          <nav class="sidebar-nav">
+            <a href="#biography" class="sidebar-nav-link"><i class="fas fa-user"></i> Biography</a>
+            <a href="#education" class="sidebar-nav-link"><i class="fas fa-graduation-cap"></i> Education</a>
+            <a href="#experience" class="sidebar-nav-link"><i class="fas fa-briefcase"></i> Experience</a>
+            <a href="#research" class="sidebar-nav-link"><i class="fas fa-microscope"></i> Research</a>
+            <a href="#expertise" class="sidebar-nav-link"><i class="fas fa-lightbulb"></i> Expertise</a>
+            <a href="#role" class="sidebar-nav-link"><i class="fas fa-bullseye"></i> Role in AICLab</a>
+            <a href="#collaboration" class="sidebar-nav-link"><i class="fas fa-globe"></i> Collaboration</a>
+          </nav>
+        </div>
+      </aside>
+
+      <main>
+
+        <div id="biography" class="profile-section section-anchor">
+          <div class="section-label">About</div>
+          <h2><i class="fas fa-user"></i> Biography</h2>
+          <div class="highlight">
+            <p>Dr. Vuthea Chheang is an assistant professor in the Department of Computer Science at San José State University (SJSU). His research bridges extended reality technologies with practical applications in medical planning and training, bringing cutting-edge XR innovations to real-world healthcare scenarios.</p>
+          </div>
+          <p>Before joining SJSU, Dr. Chheang was a postdoctoral research staff at the Center for Applied Scientific Computing at Lawrence Livermore National Laboratory (LLNL) and a postdoctoral researcher at the University of Delaware, where he advanced his research in visualization and interactive systems.</p>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-user"></i> Biography</h2>
-            <div class="highlight">
-                <p>Dr. Vuthea Chheang is an assistant professor in the Department of Computer Science at San José State University (SJSU). His research bridges extended reality technologies with practical applications in medical planning and training, bringing cutting-edge XR innovations to real-world healthcare scenarios.</p>
-            </div>
-            <p>Before joining SJSU, Dr. Chheang was a postdoctoral research staff at the Center for Applied Scientific Computing at Lawrence Livermore National Laboratory (LLNL) and a postdoctoral researcher at the University of Delaware, where he advanced his research in visualization and interactive systems.</p>
+        <div id="education" class="profile-section section-anchor">
+          <div class="section-label">Background</div>
+          <h2><i class="fas fa-graduation-cap"></i> Academic Background</h2>
+          <ul>
+            <li><strong>PhD</strong> in Computer Science, University of Magdeburg, Germany (2022)</li>
+            <li><strong>M.Eng.</strong> in Computer Science, Chungbuk National University, South Korea (2018)</li>
+            <li><strong>B.Sc.</strong> in Computer Science and Engineering, Royal University of Phnom Penh, Cambodia (2015)</li>
+          </ul>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-graduation-cap"></i> Academic Background</h2>
-            <ul>
-                <li><strong>PhD</strong> in Computer Science, University of Magdeburg, Germany (2022)</li>
-                <li><strong>M.Eng.</strong> in Computer Science, Chungbuk National University, South Korea (2018)</li>
-                <li><strong>B.Sc.</strong> in Computer Science and Engineering, Royal University of Phnom Penh, Cambodia (2015)</li>
-            </ul>
+        <div id="experience" class="profile-section section-anchor">
+          <div class="section-label">Career</div>
+          <h2><i class="fas fa-briefcase"></i> Professional Experience</h2>
+          <ul>
+            <li><strong>Current:</strong> Assistant Professor, Department of Computer Science, San José State University (SJSU), USA</li>
+            <li><strong>Previous:</strong> Postdoctoral Research Staff, Center for Applied Scientific Computing, Lawrence Livermore National Laboratory (LLNL)</li>
+            <li><strong>Previous:</strong> Postdoctoral Researcher, University of Delaware</li>
+          </ul>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-briefcase"></i> Professional Experience</h2>
-            <ul>
-                <li><strong>Current:</strong> Assistant Professor, Department of Computer Science, San José State University (SJSU), USA</li>
-                <li><strong>Previous:</strong> Postdoctoral Research Staff, Center for Applied Scientific Computing, Lawrence Livermore National Laboratory (LLNL)</li>
-                <li><strong>Previous:</strong> Postdoctoral Researcher, University of Delaware</li>
-            </ul>
+        <div id="research" class="profile-section section-anchor">
+          <div class="section-label">Areas</div>
+          <h2><i class="fas fa-microscope"></i> Research Interests</h2>
+          <div class="highlight">
+            <p><strong>Focus Areas:</strong> Extended Reality (XR) technologies and their applications in healthcare, interactive systems, and collaborative environments.</p>
+          </div>
+          <ul>
+            <li>Extended Reality (XR) — Virtual Reality, Augmented Reality, Mixed Reality</li>
+            <li>Human-Computer Interaction</li>
+            <li>Visualization Techniques</li>
+            <li>Interaction Techniques for Immersive Environments</li>
+            <li>Collaborative Virtual Environments</li>
+            <li>XR Applications for Medical Planning and Training</li>
+            <li>Scientific Visualization</li>
+          </ul>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-microscope"></i> Research Interests</h2>
-            <div class="highlight">
-                <p><strong>Focus Areas:</strong> Extended Reality (XR) technologies and their applications in healthcare, interactive systems, and collaborative environments.</p>
-            </div>
-            <ul>
-                <li>Extended Reality (XR) - Virtual Reality, Augmented Reality, Mixed Reality</li>
-                <li>Human-Computer Interaction</li>
-                <li>Visualization Techniques</li>
-                <li>Interaction Techniques for Immersive Environments</li>
-                <li>Collaborative Virtual Environments</li>
-                <li>XR Applications for Medical Planning and Training</li>
-                <li>Scientific Visualization</li>
-            </ul>
+        <div id="expertise" class="profile-section section-anchor">
+          <div class="section-label">Skills</div>
+          <h2><i class="fas fa-lightbulb"></i> Areas of Expertise</h2>
+          <ul>
+            <li><strong>Extended Reality (XR):</strong> Development and evaluation of VR, AR, and MR applications</li>
+            <li><strong>Human-Computer Interaction:</strong> User interface design and interaction techniques for immersive environments</li>
+            <li><strong>Visualization:</strong> Scientific and information visualization, particularly in computational contexts</li>
+            <li><strong>Medical Applications:</strong> XR systems for medical planning, training, and education</li>
+            <li><strong>Collaborative Systems:</strong> Multi-user virtual environments and remote collaboration tools</li>
+          </ul>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-bullseye"></i> Role in AICLab</h2>
-            <p>As an Advisor to AICLab, Professor Chheang Vuthea brings specialized expertise in extended reality technologies and human-computer interaction. His experience in developing XR applications for medical contexts and his background in visualization techniques provide valuable guidance for the lab's research initiatives in applied AI and computer vision. His international experience across multiple renowned institutions enriches AICLab's collaborative research environment and opens opportunities for innovative applications of AI in immersive technologies.</p>
+        <div id="role" class="profile-section section-anchor">
+          <div class="section-label">AICLab</div>
+          <h2><i class="fas fa-bullseye"></i> Role in AICLab</h2>
+          <p>As an Advisor to AICLab, Professor Chheang Vuthea brings specialized expertise in extended reality technologies and human-computer interaction. His experience in developing XR applications for medical contexts and his background in visualization techniques provide valuable guidance for the lab's research initiatives in applied AI and computer vision. His international experience across multiple renowned institutions enriches AICLab's collaborative research environment and opens opportunities for innovative applications of AI in immersive technologies.</p>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-globe"></i> International Collaboration</h2>
-            <p>With academic and research experience spanning four continents - Cambodia, South Korea, Germany, and the United States - Professor Chheang brings a truly global perspective to AICLab. His postdoctoral work at prestigious institutions like Lawrence Livermore National Laboratory and the University of Delaware, combined with his current position at San José State University, positions him as a valuable bridge for international research collaborations in extended reality and visualization technologies.</p>
+        <div id="collaboration" class="profile-section section-anchor">
+          <div class="section-label">Global</div>
+          <h2><i class="fas fa-globe"></i> International Collaboration</h2>
+          <p>With academic and research experience spanning four continents — Cambodia, South Korea, Germany, and the United States — Professor Chheang brings a truly global perspective to AICLab. His postdoctoral work at prestigious institutions like Lawrence Livermore National Laboratory and the University of Delaware, combined with his current position at San José State University, positions him as a valuable bridge for international research collaborations in extended reality and visualization technologies.</p>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-lightbulb"></i> Areas of Expertise</h2>
-            <ul>
-                <li><strong>Extended Reality (XR):</strong> Development and evaluation of VR, AR, and MR applications</li>
-                <li><strong>Human-Computer Interaction:</strong> User interface design and interaction techniques for immersive environments</li>
-                <li><strong>Visualization:</strong> Scientific and information visualization, particularly in computational contexts</li>
-                <li><strong>Medical Applications:</strong> XR systems for medical planning, training, and education</li>
-                <li><strong>Collaborative Systems:</strong> Multi-user virtual environments and remote collaboration tools</li>
-            </ul>
-        </div>
+      </main>
     </div>
 
-    <footer id="contact">
-        <div class="footer-main">
-            <div class="footer-content">
-                <div class="footer-section footer-about">
-                    <div class="container">
-                        <img src="../assets/img/logo/aiclab_logo_white.png" alt="AICLab Logo" class="footer-logo">
-                    </div>
-                    <div class="footer-text">
-                        <h3>AI Convergence Lab</h3>
-                        <p class="footer-tagline">Pioneering Applied AI and Computer Vision Research</p>
-                        <p class="footer-description">
-                            Bridging academic excellence with industry needs through innovative AI solutions and collaborative research.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="footer-section footer-contact">
-                    <h3>Contact Information</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <strong>Email</strong>
-                            <a href="mailto:cbnuaiclab@gmail.com">cbnuaiclab@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Location</strong>
-                            <p>Room N13-216, Chungbuk National University<br>
-                            Chungdae-Ro 1, Seowon-Gu<br>
-                            Cheongju, Chungbuk, South Korea</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
-                <p>&copy; 2026 AICLab - AI Convergence Lab. All rights reserved.</p>
-                <p class="footer-affiliation">Chungbuk National University</p>
-            </div>
-        </div>
+    <footer style="margin-top: 4rem; padding: 2rem; text-align: center; background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%); color: white;">
+      <p>© 2026 AICLab - AI Convergence Lab. All rights reserved.</p>
     </footer>
-    <script src="../assets/js/profile.js"></script>
-</body>
 
+    <script src="../assets/js/profile.js"></script>
+  </body>
 </html>

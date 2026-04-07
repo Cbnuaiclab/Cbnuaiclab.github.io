@@ -1,173 +1,146 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CHHOR Ratanaktepi - AICLab</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/profile.css">
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="../assets/css/profile.css" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav>
-            <div class="logo"><span></span></div>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu">
-                <li><a href="../index.html#about">About</a></li>
-                <li><a href="../index.html#team">Team</a></li>
-                <li><a href="../index.html#publications">Publications</a></li>
-                <li><a href="../index.html#projects">Research Projects</a></li>
-                <li><a href="../index.html#activities">Member's Activities</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-            </ul>
-        </nav>
+      <nav>
+        <a href="../index.html" class="logo"><span></span></a>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-menu">
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#team">Team</a></li>
+          <li><a href="../index.html#publications">Publications</a></li>
+          <li><a href="../index.html#projects">Research Projects</a></li>
+          <li><a href="../index.html#activities">Member's Activities</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
     </header>
 
-    <div class="profile-container">
-        <div class="profile-header">
-            <div class="profile-photo">
-                <img src="../assets/img/profile/chhor_ratanaktepi.jpg" />
-            </div>
-            <h1>CHHOR Ratanaktepi</h1>
-            <div class="position">PhD</div>
-            <div class="expertise">Big Data | AI Development | Digital Skills</div>
-            <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-                <a href="https://kh.linkedin.com/in/tepi-chhor-2b572873" target="_blank"
-                   style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-red); text-decoration: none; font-weight: 600; border: 2px solid var(--accent-red); padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s;"
-                   onmouseover="this.style.background='var(--accent-red)'; this.style.color='white';"
-                   onmouseout="this.style.background=''; this.style.color='var(--accent-red)';">
-                    <i class="fab fa-linkedin"></i>
-                    LinkedIn Profile
-                </a>
-                <a href="mailto:chhortepi@chhungbuk.ac.kr"
-                   style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-red); text-decoration: none; font-weight: 600; border: 2px solid var(--accent-red); padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s;"
-                   onmouseover="this.style.background='var(--accent-red)'; this.style.color='white';"
-                   onmouseout="this.style.background=''; this.style.color='var(--accent-red)';">
-                    <i class="fas fa-envelope"></i>
-                    chhortepi@chhungbuk.ac.kr
-                </a>
-            </div>
+    <section class="profile-hero">
+      <div class="hero-inner">
+        <div class="hero-photo-wrap">
+          <img src="../assets/img/profile/chhor_ratanaktepi.jpg" alt="CHHOR Ratanaktepi" />
+        </div>
+        <div class="hero-info">
+          <h1>CHHOR Ratanaktepi</h1>
+          <div class="hero-subtitle">PhD Student</div>
+          <div class="hero-institution">
+            <i class="fas fa-university"></i>
+            Department of Big Data, Chungbuk National University
+          </div>
+          <div class="hero-tags">
+            <span class="hero-tag"><i class="fas fa-database"></i>Big Data</span>
+            <span class="hero-tag"><i class="fas fa-robot"></i>AI Development</span>
+            <span class="hero-tag"><i class="fas fa-laptop-code"></i>Digital Skills</span>
+          </div>
+          <div class="hero-links">
+            <a href="https://kh.linkedin.com/in/tepi-chhor-2b572873" target="_blank" class="hero-link primary">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+            <a href="mailto:chhortepi@chhungbuk.ac.kr" class="hero-link secondary">
+              <i class="fas fa-envelope"></i> Email
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="profile-layout">
+      <aside>
+        <div class="sidebar-card sidebar-nav-card">
+          <div class="sidebar-card-title">Quick Nav</div>
+          <nav class="sidebar-nav">
+            <a href="#about" class="sidebar-nav-link"><i class="fas fa-user-graduate"></i> About</a>
+            <a href="#education" class="sidebar-nav-link"><i class="fas fa-graduation-cap"></i> Education</a>
+            <a href="#research" class="sidebar-nav-link"><i class="fas fa-microscope"></i> Research</a>
+            <a href="#focus" class="sidebar-nav-link"><i class="fas fa-bullseye"></i> Research Focus</a>
+            <a href="#collaboration" class="sidebar-nav-link"><i class="fas fa-globe"></i> Collaboration</a>
+            <a href="#vision" class="sidebar-nav-link"><i class="fas fa-lightbulb"></i> Vision</a>
+            <a href="#perspective" class="sidebar-nav-link"><i class="fas fa-star"></i> Perspective</a>
+          </nav>
+        </div>
+      </aside>
+
+      <main>
+
+        <div id="about" class="profile-section section-anchor">
+          <div class="section-label">About</div>
+          <h2><i class="fas fa-user-graduate"></i> About</h2>
+          <div class="highlight">
+            <p>PhD student in Big Data at Chungbuk National University (CBNU), participating in an academic exchange and collaboration between MPTC and CBNU. Part of an initiative focused on building human resources in digital skills for advancing AI development in Cambodia.</p>
+          </div>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-user-graduate"></i> About</h2>
-            <div class="highlight">
-                <p>PhD student in Big Data at Chungbuk National University (CBNU), participating in an academic exchange
-                    and collaboration between MPTC and CBNU. Part of an initiative focused on building human resources
-                    in digital skills for advancing AI development in Cambodia.</p>
-            </div>
+        <div id="education" class="profile-section section-anchor">
+          <div class="section-label">Background</div>
+          <h2><i class="fas fa-graduation-cap"></i> Academic Background</h2>
+          <ul>
+            <li><strong>Current:</strong> PhD in Big Data, Chungbuk National University (CBNU)</li>
+            <li><strong>Master's Degree:</strong> ICT Policy, Soongsil University (KOICA Scholarship)</li>
+            <li>Part of MPTC-CBNU academic exchange and collaboration program</li>
+          </ul>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-graduation-cap"></i> Academic Background</h2>
-            <ul>
-                <li><strong>Current:</strong> PhD in Big Data, Chungbuk National University (CBNU)</li>
-                <li><strong>Master's Degree:</strong> ICT Policy, Soongsil University (KOICA Scholarship)</li>
-                <li>Part of MPTC-CBNU academic exchange and collaboration program</li>
-            </ul>
+        <div id="research" class="profile-section section-anchor">
+          <div class="section-label">Areas</div>
+          <h2><i class="fas fa-microscope"></i> Research Interests</h2>
+          <ul>
+            <li><strong>Emerging Technologies:</strong> Learning and exploring cutting-edge technology, particularly in AI and Big Data</li>
+            <li><strong>Operational Efficiency:</strong> How AI and Big Data can improve organizational and operational work</li>
+            <li><strong>Public Accessibility:</strong> Making AI technologies accessible to the general public</li>
+            <li><strong>Digital Skills Development:</strong> Building capacity in digital technologies for societal advancement</li>
+          </ul>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-microscope"></i> Research Interests</h2>
-            <ul>
-                <li><strong>Emerging Technologies:</strong> Learning and exploring cutting-edge technology, particularly
-                    in AI and Big Data</li>
-                <li><strong>Operational Efficiency:</strong> How AI and Big Data can improve organizational and
-                    operational work</li>
-                <li><strong>Public Accessibility:</strong> Making AI technologies accessible to the general public</li>
-                <li><strong>Digital Skills Development:</strong> Building capacity in digital technologies for societal
-                    advancement</li>
-            </ul>
+        <div id="focus" class="profile-section section-anchor">
+          <div class="section-label">Focus</div>
+          <h2><i class="fas fa-bullseye"></i> Research Focus</h2>
+          <div class="highlight">
+            <p>Her work encompasses the learning of emerging technology, particularly in the field of AI and Big Data, and how they can be used to improve the operational efficiency of organizational and operational work, and how it could be accessible to the general public.</p>
+          </div>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-bullseye"></i> Research Focus</h2>
-            <div class="highlight">
-                <p>Her work encompasses the learning of emerging technology, particularly in the field of AI and Big
-                    Data, and how they can be used to improve the operational efficiency of organizational and
-                    operational work, and how it could be accessible to the general public.</p>
-            </div>
+        <div id="collaboration" class="profile-section section-anchor">
+          <div class="section-label">Global</div>
+          <h2><i class="fas fa-globe"></i> International Collaboration</h2>
+          <p>As part of the MPTC-CBNU collaboration, Ratanaktepi represents an important bridge between institutions, working towards building human resources in digital skills. This collaboration aims to advance AI development capabilities and foster knowledge transfer between Korea and Cambodia.</p>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-globe"></i> International Collaboration</h2>
-            <p>As part of the MPTC-CBNU collaboration, Ratanaktepi represents an important bridge between institutions,
-                working towards building human resources in digital skills. This collaboration aims to advance AI
-                development capabilities and foster knowledge transfer between Korea and Cambodia.</p>
+        <div id="vision" class="profile-section section-anchor">
+          <div class="section-label">Goals</div>
+          <h2><i class="fas fa-lightbulb"></i> Vision &amp; Goals</h2>
+          <ul>
+            <li>Contribute to AI development in Cambodia through advanced research</li>
+            <li>Bridge the gap between complex AI technologies and practical applications</li>
+            <li>Develop solutions that improve organizational efficiency</li>
+            <li>Make emerging technologies accessible to broader audiences</li>
+            <li>Build capacity in digital skills for societal benefit</li>
+          </ul>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-lightbulb"></i> Vision & Goals</h2>
-            <ul>
-                <li>Contribute to AI development in Cambodia through advanced research</li>
-                <li>Bridge the gap between complex AI technologies and practical applications</li>
-                <li>Develop solutions that improve organizational efficiency</li>
-                <li>Make emerging technologies accessible to broader audiences</li>
-                <li>Build capacity in digital skills for societal benefit</li>
-            </ul>
+        <div id="perspective" class="profile-section section-anchor">
+          <div class="section-label">Perspective</div>
+          <h2><i class="fas fa-star"></i> Unique Perspective</h2>
+          <p>With a background in ICT Policy and current focus on Big Data and AI, Ratanaktepi brings a unique perspective that combines policy understanding with technical expertise. This allows her to consider both the technical and societal implications of AI development, ensuring that research outcomes are not only technically sound but also practically implementable and socially beneficial.</p>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-star"></i> Unique Perspective</h2>
-            <p>With a background in ICT Policy and current focus on Big Data and AI, Ratanaktepi brings a unique
-                perspective that combines policy understanding with technical expertise. This allows her to consider
-                both the technical and societal implications of AI development, ensuring that research outcomes are not
-                only technically sound but also practically implementable and socially beneficial.</p>
-        </div>
+      </main>
     </div>
 
-    <footer id="contact">
-        <div class="footer-main">
-            <div class="footer-content">
-                <div class="footer-section footer-about">
-                    <div class="container">
-                        <img src="../assets/img/logo/aiclab_logo_white.png" alt="AICLab Logo" class="footer-logo">
-                    </div>
-                    <div class="footer-text">
-                        <h3>AI Convergence Lab</h3>
-                        <p class="footer-tagline">Pioneering Applied AI and Computer Vision Research</p>
-                        <p class="footer-description">
-                            Bridging academic excellence with industry needs through innovative AI solutions and collaborative research.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="footer-section footer-contact">
-                    <h3>Contact Information</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <strong>Email</strong>
-                            <a href="mailto:cbnuaiclab@gmail.com">cbnuaiclab@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Location</strong>
-                            <p>Room N13-216, Chungbuk National University<br>
-                            Chungdae-Ro 1, Seowon-Gu<br>
-                            Cheongju, Chungbuk, South Korea</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
-                <p>&copy; 2026 AICLab - AI Convergence Lab. All rights reserved.</p>
-                <p class="footer-affiliation">Chungbuk National University</p>
-            </div>
-        </div>
+    <footer style="margin-top: 4rem; padding: 2rem; text-align: center; background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%); color: white;">
+      <p>© 2026 AICLab - AI Convergence Lab. All rights reserved.</p>
     </footer>
-    <script src="../assets/js/profile.js"></script>
-</body>
 
+    <script src="../assets/js/profile.js"></script>
+  </body>
 </html>

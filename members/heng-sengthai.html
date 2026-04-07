@@ -1,169 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>HENG Sengthai - AICLab</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/profile.css">
-</head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    <link rel="stylesheet" href="../assets/css/profile.css" />
+  </head>
 
-<body>
+  <body>
     <header>
-        <nav>
-            <div class="logo"><span></span></div>
-            <button class="mobile-menu-toggle" aria-label="Toggle menu">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
-            <ul class="nav-menu">
-                <li><a href="../index.html#about">About</a></li>
-                <li><a href="../index.html#team">Team</a></li>
-                <li><a href="../index.html#publications">Publications</a></li>
-                <li><a href="../index.html#projects">Research Projects</a></li>
-                <li><a href="../index.html#activities">Member's Activities</a></li>
-                <li><a href="../index.html#contact">Contact</a></li>
-            </ul>
-        </nav>
+      <nav>
+        <a href="../index.html" class="logo"><span></span></a>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+          <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-menu">
+          <li><a href="../index.html#about">About</a></li>
+          <li><a href="../index.html#team">Team</a></li>
+          <li><a href="../index.html#publications">Publications</a></li>
+          <li><a href="../index.html#projects">Research Projects</a></li>
+          <li><a href="../index.html#activities">Member's Activities</a></li>
+          <li><a href="../index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
     </header>
 
-    <div class="profile-container">
-        <div class="profile-header">
-            <div class="profile-photo">
-                <img src="../assets/img/profile/heng_sengthai.webp"/>
-            </div>
-            <h1>HENG Sengthai</h1>
-            <div class="position">Researcher</div>
-            <div class="expertise">Quantum Computing | Quantum-Classical Compilers | Protein Structure Prediction</div>
-            <div style="margin-top: 1rem; display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center;">
-                <a href="https://scholar.google.com/citations?user=B8pXavwAAAAJ&hl=en&oi=ao" target="_blank"
-                   style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-red); text-decoration: none; font-weight: 600; border: 2px solid var(--accent-red); padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s;"
-                   onmouseover="this.style.background='var(--accent-red)'; this.style.color='white';"
-                   onmouseout="this.style.background=''; this.style.color='var(--accent-red)';">
-                    <i class="fas fa-graduation-cap"></i>
-                    Google Scholar Profile
-                </a>
-                <a href="https://www.linkedin.com/in/hengsengthai/" target="_blank"
-                   style="display: inline-flex; align-items: center; gap: 0.5rem; color: var(--accent-red); text-decoration: none; font-weight: 600; border: 2px solid var(--accent-red); padding: 0.5rem 1rem; border-radius: 8px; transition: all 0.3s;"
-                   onmouseover="this.style.background='var(--accent-red)'; this.style.color='white';"
-                   onmouseout="this.style.background=''; this.style.color='var(--accent-red)';">
-                    <i class="fab fa-linkedin"></i>
-                    LinkedIn Profile
-                </a>
-            </div>
+    <section class="profile-hero">
+      <div class="hero-inner">
+        <div class="hero-photo-wrap">
+          <img src="../assets/img/profile/heng_sengthai.webp" alt="HENG Sengthai" />
+        </div>
+        <div class="hero-info">
+          <h1>HENG Sengthai</h1>
+          <div class="hero-subtitle">Researcher · PhD</div>
+          <div class="hero-institution">
+            <i class="fas fa-university"></i>
+            AI Convergence Lab, Chungbuk National University
+          </div>
+          <div class="hero-tags">
+            <span class="hero-tag"><i class="fas fa-atom"></i>Quantum Computing</span>
+            <span class="hero-tag"><i class="fas fa-code"></i>Quantum-Classical Compilers</span>
+            <span class="hero-tag"><i class="fas fa-dna"></i>Protein Structure Prediction</span>
+          </div>
+          <div class="hero-links">
+            <a href="https://scholar.google.com/citations?user=B8pXavwAAAAJ&hl=en&oi=ao" target="_blank" class="hero-link primary">
+              <i class="fas fa-graduation-cap"></i> Google Scholar
+            </a>
+            <a href="https://www.linkedin.com/in/hengsengthai/" target="_blank" class="hero-link secondary">
+              <i class="fab fa-linkedin"></i> LinkedIn
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="profile-layout">
+      <aside>
+        <div class="sidebar-card sidebar-nav-card">
+          <div class="sidebar-card-title">Quick Nav</div>
+          <nav class="sidebar-nav">
+            <a href="#biography" class="sidebar-nav-link"><i class="fas fa-user"></i> Biography</a>
+            <a href="#education" class="sidebar-nav-link"><i class="fas fa-graduation-cap"></i> Education</a>
+            <a href="#research" class="sidebar-nav-link"><i class="fas fa-microscope"></i> Research</a>
+            <a href="#projects" class="sidebar-nav-link"><i class="fas fa-project-diagram"></i> Projects</a>
+            <a href="#role" class="sidebar-nav-link"><i class="fas fa-bullseye"></i> Role in AICLab</a>
+            <a href="#expertise" class="sidebar-nav-link"><i class="fas fa-lightbulb"></i> Expertise</a>
+            <a href="#affiliation" class="sidebar-nav-link"><i class="fas fa-flask"></i> Affiliation</a>
+          </nav>
+        </div>
+      </aside>
+
+      <main>
+
+        <div id="biography" class="profile-section section-anchor">
+          <div class="section-label">About</div>
+          <h2><i class="fas fa-user"></i> Biography</h2>
+          <div class="highlight">
+            <p>Dr. Heng Seng Thai is a Quantum Software Engineer and Quantum-Classical Compiler Researcher passionate about advancing hybrid quantum-classical computing systems. He received his PhD in AI Convergence from Pukyong National University in 2025, where he developed a quantum compiler for optimization in Intrinsically Disordered Protein (IDP) Structure Prediction at the Quantum Computing Lab, combining his expertise in both quantum algorithms and classical computing to push the boundaries of computational biology.</p>
+          </div>
+          <p>His research focuses on bridging the gap between theoretical quantum computing and practical applications, particularly in the challenging domain of protein structure prediction. By developing specialized compilation techniques that optimize quantum circuits for biological simulations, his work contributes to making quantum computing more accessible and effective for real-world scientific problems.</p>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-user"></i> Biography</h2>
-            <div class="highlight">
-                <p>Dr. Heng Seng Thai is a Quantum Software Engineer and Quantum-Classical Compiler Researcher passionate about advancing hybrid quantum-classical computing systems. He received his PhD in AI Convergence from Pukyong National University in 2025, where he developed a quantum compiler for optimization in Intrinsically Disordered Protein (IDP) Structure Prediction at the Quantum Computing Lab, combining his expertise in both quantum algorithms and classical computing to push the boundaries of computational biology.</p>
-            </div>
-            <p>His research focuses on bridging the gap between theoretical quantum computing and practical applications, particularly in the challenging domain of protein structure prediction. By developing specialized compilation techniques that optimize quantum circuits for biological simulations, his work contributes to making quantum computing more accessible and effective for real-world scientific problems.</p>
+        <div id="education" class="profile-section section-anchor">
+          <div class="section-label">Background</div>
+          <h2><i class="fas fa-graduation-cap"></i> Academic Background</h2>
+          <ul>
+            <li><strong>PhD</strong> in AI Convergence, Pukyong National University, Busan, South Korea (2025)</li>
+            <li><strong>Research Focus:</strong> Quantum-Classical Hybrid Systems, Compiler Design, Protein Structure Prediction</li>
+          </ul>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-graduation-cap"></i> Academic Background</h2>
-            <ul>
-                <li><strong>PhD</strong> in AI Convergence, Pukyong National University, Busan, South Korea (2025)</li>
-                <li><strong>Research Focus:</strong> Quantum-Classical Hybrid Systems, Compiler Design, Protein Structure Prediction</li>
-            </ul>
+        <div id="research" class="profile-section section-anchor">
+          <div class="section-label">Areas</div>
+          <h2><i class="fas fa-microscope"></i> Research Interests</h2>
+          <div class="highlight">
+            <p><strong>Focus Areas:</strong> Quantum computing compiler development, hybrid quantum-classical algorithms, and computational biology applications.</p>
+          </div>
+          <ul>
+            <li>Quantum-Classical Compiler Design and Optimization</li>
+            <li>Hybrid Quantum-Classical Computing Systems</li>
+            <li>Quantum Algorithms for Biological Applications</li>
+            <li>Intrinsically Disordered Protein (IDP) Structure Prediction</li>
+            <li>Quantum Circuit Optimization</li>
+            <li>Quantum Software Engineering</li>
+            <li>Computational Biology and Bioinformatics</li>
+          </ul>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-microscope"></i> Research Interests</h2>
-            <div class="highlight">
-                <p><strong>Focus Areas:</strong> Quantum computing compiler development, hybrid quantum-classical algorithms, and computational biology applications.</p>
-            </div>
-            <ul>
-                <li>Quantum-Classical Compiler Design and Optimization</li>
-                <li>Hybrid Quantum-Classical Computing Systems</li>
-                <li>Quantum Algorithms for Biological Applications</li>
-                <li>Intrinsically Disordered Protein (IDP) Structure Prediction</li>
-                <li>Quantum Circuit Optimization</li>
-                <li>Quantum Software Engineering</li>
-                <li>Computational Biology and Bioinformatics</li>
-            </ul>
+        <div id="projects" class="profile-section section-anchor">
+          <div class="section-label">Projects</div>
+          <h2><i class="fas fa-project-diagram"></i> Research Projects</h2>
+          <ul>
+            <li><strong>Lead Developer:</strong> Quantum Compiler for IDP Structure Prediction — Developing specialized compilation techniques to optimize quantum circuits for predicting the structure of intrinsically disordered proteins</li>
+            <li><strong>Quantum-Classical Integration:</strong> Building hybrid systems that leverage the strengths of both quantum and classical computing paradigms</li>
+            <li><strong>Compiler Optimization:</strong> Advancing techniques for efficient quantum circuit compilation and resource management</li>
+          </ul>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-project-diagram"></i> Research Projects</h2>
-            <ul>
-                <li><strong>Lead Developer:</strong> Quantum Compiler for IDP Structure Prediction - Developing specialized compilation techniques to optimize quantum circuits for predicting the structure of intrinsically disordered proteins</li>
-                <li><strong>Quantum-Classical Integration:</strong> Building hybrid systems that leverage the strengths of both quantum and classical computing paradigms</li>
-                <li><strong>Compiler Optimization:</strong> Advancing techniques for efficient quantum circuit compilation and resource management</li>
-            </ul>
+        <div id="role" class="profile-section section-anchor">
+          <div class="section-label">AICLab</div>
+          <h2><i class="fas fa-bullseye"></i> Role in AICLab</h2>
+          <p>As a Researcher at AICLab, HENG Sengthai brings specialized expertise in quantum computing and its applications to artificial intelligence. His work on quantum-classical hybrid systems and compiler development provides valuable insights for exploring the intersection of quantum computing and AI. His research on protein structure prediction demonstrates the potential of combining cutting-edge quantum computing techniques with practical biological applications, aligning with AICLab's mission of developing innovative AI solutions for real-world challenges.</p>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-bullseye"></i> Role in AICLab</h2>
-            <p>As a Researcher at AICLab, HENG Sengthai brings specialized expertise in quantum computing and its applications to artificial intelligence. His work on quantum-classical hybrid systems and compiler development provides valuable insights for exploring the intersection of quantum computing and AI. His research on protein structure prediction demonstrates the potential of combining cutting-edge quantum computing techniques with practical biological applications, aligning with AICLab's mission of developing innovative AI solutions for real-world challenges.</p>
+        <div id="expertise" class="profile-section section-anchor">
+          <div class="section-label">Skills</div>
+          <h2><i class="fas fa-lightbulb"></i> Areas of Expertise</h2>
+          <ul>
+            <li><strong>Quantum Software Engineering:</strong> Development and optimization of quantum computing software and compilers</li>
+            <li><strong>Compiler Design:</strong> Specialized compilation techniques for quantum-classical hybrid systems</li>
+            <li><strong>Quantum Algorithms:</strong> Implementation and optimization of quantum algorithms for practical applications</li>
+            <li><strong>Computational Biology:</strong> Application of quantum computing to biological problems, particularly protein structure prediction</li>
+            <li><strong>Hybrid Computing Systems:</strong> Integration of quantum and classical computing paradigms</li>
+          </ul>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-lightbulb"></i> Areas of Expertise</h2>
-            <ul>
-                <li><strong>Quantum Software Engineering:</strong> Development and optimization of quantum computing software and compilers</li>
-                <li><strong>Compiler Design:</strong> Specialized compilation techniques for quantum-classical hybrid systems</li>
-                <li><strong>Quantum Algorithms:</strong> Implementation and optimization of quantum algorithms for practical applications</li>
-                <li><strong>Computational Biology:</strong> Application of quantum computing to biological problems, particularly protein structure prediction</li>
-                <li><strong>Hybrid Computing Systems:</strong> Integration of quantum and classical computing paradigms</li>
-            </ul>
+        <div id="affiliation" class="profile-section section-anchor">
+          <div class="section-label">Affiliation</div>
+          <h2><i class="fas fa-flask"></i> Research Affiliation</h2>
+          <p>Dr. HENG Sengthai completed his doctoral research at the Quantum Computing Lab at Pukyong National University, where he collaborated with researchers advancing the frontiers of quantum computing technology and its applications to scientific computing challenges. His doctoral work at the lab focused on developing quantum compilers for protein structure prediction, establishing a strong foundation for exploring collaborative research opportunities between quantum computing and artificial intelligence.</p>
         </div>
 
-        <div class="profile-section">
-            <h2><i class="fas fa-flask"></i> Research Affiliation</h2>
-            <p>Dr. HENG Sengthai completed his doctoral research at the Quantum Computing Lab at Pukyong National University, where he collaborated with researchers advancing the frontiers of quantum computing technology and its applications to scientific computing challenges. His doctoral work at the lab focused on developing quantum compilers for protein structure prediction, establishing a strong foundation for exploring collaborative research opportunities between quantum computing and artificial intelligence.</p>
-        </div>
+      </main>
     </div>
 
-    <footer id="contact">
-        <div class="footer-main">
-            <div class="footer-content">
-                <div class="footer-section footer-about">
-                    <div class="container">
-                        <img src="../assets/img/logo/aiclab_logo_white.png" alt="AICLab Logo" class="footer-logo">
-                    </div>
-                    <div class="footer-text">
-                        <h3>AI Convergence Lab</h3>
-                        <p class="footer-tagline">Pioneering Applied AI and Computer Vision Research</p>
-                        <p class="footer-description">
-                            Bridging academic excellence with industry needs through innovative AI solutions and collaborative research.
-                        </p>
-                    </div>
-                </div>
-
-                <div class="footer-section footer-contact">
-                    <h3>Contact Information</h3>
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
-                            <strong>Email</strong>
-                            <a href="mailto:cbnuaiclab@gmail.com">cbnuaiclab@gmail.com</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
-                            <strong>Location</strong>
-                            <p>Room N13-216, Chungbuk National University<br>
-                            Chungdae-Ro 1, Seowon-Gu<br>
-                            Cheongju, Chungbuk, South Korea</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="footer-bottom">
-            <div class="footer-bottom-content">
-                <p>&copy; 2026 AICLab - AI Convergence Lab. All rights reserved.</p>
-                <p class="footer-affiliation">Chungbuk National University</p>
-            </div>
-        </div>
+    <footer style="margin-top: 4rem; padding: 2rem; text-align: center; background: linear-gradient(135deg, var(--accent-red) 0%, var(--accent-red-light) 100%); color: white;">
+      <p>© 2026 AICLab - AI Convergence Lab. All rights reserved.</p>
     </footer>
-    <script src="../assets/js/profile.js"></script>
-</body>
 
+    <script src="../assets/js/profile.js"></script>
+  </body>
 </html>
