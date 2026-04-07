@@ -18,7 +18,8 @@
       "Bash(\"C:\\\\Users\\\\chhor\\\\AppData\\\\Local\\\\Programs\\\\Python\\\\Python314\\\\python.exe\" -c:*)",
       "WebFetch(domain:sovanreach.com)",
       "Bash(echo:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "WebFetch(domain:drive.google.com)"
     ],
     "deny": [],
     "ask": []
