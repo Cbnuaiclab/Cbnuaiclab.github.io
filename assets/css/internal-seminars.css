@@ -1,5 +1,113 @@
 /* Internal Seminars Page Specific Styles */
 
+/* Category palette */
+:root {
+    --tag-llms-bg: #f3e5f5;
+    --tag-llms-fg: #6a1b9a;
+    --tag-nn-bg: #fff3e0;
+    --tag-nn-fg: #e65100;
+    --tag-research-bg: #e3f2fd;
+    --tag-research-fg: #1565c0;
+    --tag-tools-bg: #e0f2f1;
+    --tag-tools-fg: #00695c;
+    --tag-vision-bg: #fce4ec;
+    --tag-vision-fg: #ad1457;
+    --tag-quantum-bg: #e8f5e9;
+    --tag-quantum-fg: #2e7d32;
+}
+
+/* Filter pills */
+.seminar-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 1.5rem;
+    padding: 0.25rem;
+}
+
+.filter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background: #f5f5f5;
+    color: #555;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-pill:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.filter-pill .count {
+    display: inline-block;
+    min-width: 1.4rem;
+    padding: 0.05rem 0.45rem;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.08);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.filter-pill.active {
+    background: var(--accent-red);
+    color: white;
+    border-color: var(--accent-red);
+}
+
+.filter-pill.active .count {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+}
+
+.filter-pill.tag-llms { background: var(--tag-llms-bg); color: var(--tag-llms-fg); }
+.filter-pill.tag-nn { background: var(--tag-nn-bg); color: var(--tag-nn-fg); }
+.filter-pill.tag-research { background: var(--tag-research-bg); color: var(--tag-research-fg); }
+.filter-pill.tag-tools { background: var(--tag-tools-bg); color: var(--tag-tools-fg); }
+.filter-pill.tag-vision { background: var(--tag-vision-bg); color: var(--tag-vision-fg); }
+.filter-pill.tag-quantum { background: var(--tag-quantum-bg); color: var(--tag-quantum-fg); }
+
+.filter-pill.tag-llms.active { background: var(--tag-llms-fg); color: white; border-color: var(--tag-llms-fg); }
+.filter-pill.tag-nn.active { background: var(--tag-nn-fg); color: white; border-color: var(--tag-nn-fg); }
+.filter-pill.tag-research.active { background: var(--tag-research-fg); color: white; border-color: var(--tag-research-fg); }
+.filter-pill.tag-tools.active { background: var(--tag-tools-fg); color: white; border-color: var(--tag-tools-fg); }
+.filter-pill.tag-vision.active { background: var(--tag-vision-fg); color: white; border-color: var(--tag-vision-fg); }
+.filter-pill.tag-quantum.active { background: var(--tag-quantum-fg); color: white; border-color: var(--tag-quantum-fg); }
+
+/* Inline topic tag badge */
+.topic-tag {
+    display: inline-block;
+    padding: 0.15rem 0.55rem;
+    margin-right: 0.55rem;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+.topic-tag.tag-llms { background: var(--tag-llms-bg); color: var(--tag-llms-fg); }
+.topic-tag.tag-nn { background: var(--tag-nn-bg); color: var(--tag-nn-fg); }
+.topic-tag.tag-research { background: var(--tag-research-bg); color: var(--tag-research-fg); }
+.topic-tag.tag-tools { background: var(--tag-tools-bg); color: var(--tag-tools-fg); }
+.topic-tag.tag-vision { background: var(--tag-vision-bg); color: var(--tag-vision-fg); }
+.topic-tag.tag-quantum { background: var(--tag-quantum-bg); color: var(--tag-quantum-fg); }
+
+/* Hidden rows when filter is active */
+.seminar-table tbody tr.is-hidden {
+    display: none;
+}
+
 .seminar-table-wrapper {
     background: white;
     border: 3px solid var(--accent-red);

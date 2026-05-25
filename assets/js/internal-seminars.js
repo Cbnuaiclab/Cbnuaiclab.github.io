@@ -56,4 +56,19 @@ document.addEventListener('DOMContentLoaded', function() {
             pageHeader.style.transform = 'translateY(0)';
         }, 100);
     }
+
+    // Category filter pills
+    const filterPills = document.querySelectorAll('.filter-pill');
+    const seminarRows = document.querySelectorAll('.seminar-table tbody tr');
+    filterPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+            const filter = pill.getAttribute('data-filter');
+            filterPills.forEach(p => p.classList.remove('active'));
+            pill.classList.add('active');
+            seminarRows.forEach(row => {
+                const matches = filter === 'all' || row.getAttribute('data-category') === filter;
+                row.classList.toggle('is-hidden', !matches);
+            });
+        });
+    });
 });

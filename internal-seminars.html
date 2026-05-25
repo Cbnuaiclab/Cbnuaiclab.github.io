@@ -37,6 +37,16 @@
             <p>Regular knowledge sharing sessions among lab members - Weekly presentations on latest research, methodologies, and industry trends</p>
         </div>
 
+        <div class="seminar-filters" id="seminar-filters">
+            <button class="filter-pill active" data-filter="all">All <span class="count">27</span></button>
+            <button class="filter-pill tag-llms" data-filter="llms">LLMs &amp; Prompting <span class="count">6</span></button>
+            <button class="filter-pill tag-nn" data-filter="nn">ML Fundamentals <span class="count">7</span></button>
+            <button class="filter-pill tag-research" data-filter="research">Research &amp; Publication <span class="count">6</span></button>
+            <button class="filter-pill tag-tools" data-filter="tools">AI Tools &amp; Ecosystems <span class="count">4</span></button>
+            <button class="filter-pill tag-vision" data-filter="vision">Computer Vision <span class="count">2</span></button>
+            <button class="filter-pill tag-quantum" data-filter="quantum">Quantum Computing <span class="count">2</span></button>
+        </div>
+
         <div class="seminar-table-wrapper">
             <table class="seminar-table">
                 <thead>
@@ -49,33 +59,88 @@
                 </thead>
                 <tbody>
 
-                    <tr>
+                    <tr data-category="llms">
                         <td>1</td>
-                        <td class="topic-cell" data-label="Topic">Hyperparameter Tuning: Controlling and Improving Neural Network Training</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-llms">LLMs</span>Fine Tuning LLMs</td>
+                        <td class="subtopic-cell" data-label="Sub Topic"><ul>
+                            <li>Introduction to LLM fine-tuning</li>
+                            <li>Fine-tuning methods (Full, LoRA, QLoRA, PEFT)</li>
+                            <li>LLM training pipeline</li>
+                            <li>Hardware &amp; optimization</li>
+                            <li>Evaluation &amp; benchmarking</li>
+                            <li>Deployment &amp; inference</li>
+                        </ul></td>
+                        <td class="materials-cell" data-label="Materials">
+                            —
+                        </td>
+                    </tr>
+                    <tr data-category="llms">
+                        <td>2</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-llms">LLMs</span>Understanding Large Language Models (LLMs)</td>
+                        <td class="subtopic-cell" data-label="Sub Topic"><ul>
+                            <li>What LLMs are &amp; common use cases</li>
+                            <li>Tokens &amp; next-token prediction</li>
+                            <li>Pretraining, datasets &amp; scaling laws</li>
+                            <li>Context window &amp; compute requirements</li>
+                        </ul></td>
+                        <td class="materials-cell" data-label="Materials">
+                            —
+                        </td>
+                    </tr>
+                    <tr data-category="quantum">
+                        <td>3</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-quantum">Quantum</span>Basic of Quantum Computing (Part 2)</td>
+                        <td class="subtopic-cell" data-label="Sub Topic"><ul>
+                            <li>Quantum measurement mechanics</li>
+                            <li>Device ecosystems &amp; QPUs</li>
+                            <li>Quantum software stack (Qiskit)</li>
+                            <li>Hardware noise &amp; decoherence</li>
+                        </ul></td>
+                        <td class="materials-cell" data-label="Materials">
+                            <a href="https://drive.google.com/file/d/1Tbcsta3nmdG8cdRdOnUMVytDbpWrj5l7/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
+                        </td>
+                    </tr>
+                    <tr data-category="llms">
+                        <td>4</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-llms">LLMs</span>Understanding the 4 Main Approaches to LLM Evaluation</td>
+                        <td class="subtopic-cell" data-label="Sub Topic"><ul>
+                            <li>Foundations of LLM evaluation</li>
+                            <li>Multi-dimensional quality &amp; failure modes</li>
+                            <li>Benchmark &amp; verifier-based evaluation</li>
+                            <li>Human preference &amp; LLM-as-a-judge</li>
+                            <li>Paradigm trade-offs</li>
+                        </ul></td>
+                        <td class="materials-cell" data-label="Materials">
+                            <a href="https://drive.google.com/file/d/16lfNYuO6T22RJWZb4eH7HLbc2lpWvkhA/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
+                        </td>
+                    </tr>
+                    <tr data-category="nn">
+                        <td>5</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-nn">ML Fund.</span>Hyperparameter Tuning: Controlling and Improving Neural Network Training</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>What are hyperparameters?</li>
                             <li>Learning rate, batch size &amp; epochs</li>
                             <li>Tuning strategies</li>
                         </ul></td>
                         <td class="materials-cell" data-label="Materials">
-                            —
+                            <a href="https://drive.google.com/file/d/1QBkMz91jK4UjmpfLyMxmG9okMGZ0o_Pw/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>2</td>
-                        <td class="topic-cell" data-label="Topic">Regularization Techniques: Preventing Overfitting and Improving Generalization</td>
+                    <tr data-category="nn">
+                        <td>6</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-nn">ML Fund.</span>Regularization Techniques: Preventing Overfitting and Improving Generalization</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Overfitting &amp; underfitting</li>
                             <li>Dropout, L1 &amp; L2 regularization</li>
                             <li>Generalization strategies</li>
                         </ul></td>
                         <td class="materials-cell" data-label="Materials">
-                            —
+                            <a href="https://drive.google.com/file/d/1UUAu5McItzYja1sxdhIz4TfajPUFip59/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>3</td>
-                        <td class="topic-cell" data-label="Topic">How Neural Networks Improve: Optimization Algorithms and Learning Dynamics</td>
+                    <tr data-category="nn">
+                        <td>7</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-nn">ML Fund.</span>How Neural Networks Improve: Optimization Algorithms and Learning Dynamics</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Gradient descent variants</li>
                             <li>Adam, SGD &amp; momentum</li>
@@ -85,21 +150,21 @@
                             —
                         </td>
                     </tr>
-                    <tr>
-                        <td>4</td>
-                        <td class="topic-cell" data-label="Topic">Backpropagation: How Neural Networks Learn Through Gradient Flow</td>
+                    <tr data-category="nn">
+                        <td>8</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-nn">ML Fund.</span>Backpropagation: How Neural Networks Learn Through Gradient Flow</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Backpropagation algorithm</li>
                             <li>Gradient flow &amp; chain rule</li>
                             <li>Weight updates</li>
                         </ul></td>
                         <td class="materials-cell" data-label="Materials">
-                            —
+                            <a href="https://drive.google.com/file/d/1lg78SV1nxs98ndfvOG9qnW6QrwCBqhHX/view?usp=sharing"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>5</td>
-                        <td class="topic-cell" data-label="Topic">Basic of Quantum Computing</td>
+                    <tr data-category="quantum">
+                        <td>9</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-quantum">Quantum</span>Basic of Quantum Computing (Part I)</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Introduction to quantum computing</li>
                             <li>Mathematical language of qubits</li>
@@ -110,9 +175,9 @@
                             <a href="https://drive.google.com/file/d/1XKRVrEuHueLJsuh5Cr3w5c1h4NnVOKsQ/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>6</td>
-                        <td class="topic-cell" data-label="Topic">N8N Workflow Automation: From Fundamentals to AI Integration</td>
+                    <tr data-category="tools">
+                        <td>10</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-tools">AI Tools</span>N8N Workflow Automation: From Fundamentals to AI Integration</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>N8N architecture, nodes &amp; workflows</li>
                             <li>Hands-on pipelines</li>
@@ -123,9 +188,9 @@
                             <a href="https://drive.google.com/file/d/1tQg2kfPdyGJk1iEDAxJnL0y466Fj94_t/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>7</td>
-                        <td class="topic-cell" data-label="Topic">Activation Functions and Loss Functions: Enabling Learning in Neural Networks</td>
+                    <tr data-category="nn">
+                        <td>11</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-nn">ML Fund.</span>Activation Functions and Loss Functions: Enabling Learning in Neural Networks</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Activation functions</li>
                             <li>Loss functions</li>
@@ -135,9 +200,9 @@
                             <a href="https://drive.google.com/file/d/1TakIBP9GXHtBGfhwE0Bv7fvSX7Pp_OZy/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>8</td>
-                        <td class="topic-cell" data-label="Topic">Model Architecture and Forward Propagation: How Neural Networks Are Structured and Compute Predictions</td>
+                    <tr data-category="nn">
+                        <td>12</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-nn">ML Fund.</span>Model Architecture and Forward Propagation: How Neural Networks Are Structured and Compute Predictions</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Neural network architecture</li>
                             <li>Forward propagation</li>
@@ -147,9 +212,9 @@
                             <a href="https://drive.google.com/file/d/1bG15su-9JHIymXi5fXU9jtvKm801Ohug/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>9</td>
-                        <td class="topic-cell" data-label="Topic">Anthropic Products and Features</td>
+                    <tr data-category="tools">
+                        <td>13</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-tools">AI Tools</span>Anthropic Products and Features</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Anthropic background</li>
                             <li>Claude model use cases</li>
@@ -161,9 +226,9 @@
                             <a href="https://drive.google.com/file/d/1TfJoc7rCQ5BvIZXNLEqLKHI9JiJJAHmp/view?usp=sharing"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>10</td>
-                        <td class="topic-cell" data-label="Topic">Understanding Gemini AI Ecosystem and Use Cases</td>
+                    <tr data-category="tools">
+                        <td>14</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-tools">AI Tools</span>Understanding Gemini AI Ecosystem and Use Cases</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Gemini multimodal model &amp; context window</li>
                             <li>Deep Research &amp; Gemini Live</li>
@@ -175,9 +240,9 @@
                             <a href="https://drive.google.com/file/d/1yo7Ka9s7dxJxG2yQv2UvAkX_eM-qAg3k/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>11</td>
-                        <td class="topic-cell" data-label="Topic">OpenAI Products and Features</td>
+                    <tr data-category="tools">
+                        <td>15</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-tools">AI Tools</span>OpenAI Products and Features</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>OpenAI introduction</li>
                             <li>ChatGPT products &amp; use cases</li>
@@ -188,9 +253,9 @@
                             <a href="https://drive.google.com/file/d/1_y8eQqv5ern3YbYOkLt6gWsSLgm4xUeX/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>12</td>
-                        <td class="topic-cell" data-label="Topic">Foundations of Building Machine Learning Models</td>
+                    <tr data-category="nn">
+                        <td>16</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-nn">ML Fund.</span>Foundations of Building Machine Learning Models</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Problem definition</li>
                             <li>Data handling &amp; preprocessing</li>
@@ -199,9 +264,9 @@
                             <a href="https://drive.google.com/file/d/1xAbTgKwTKL0Tg5HzL6km3C0ZtSRg03VH/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>13</td>
-                        <td class="topic-cell" data-label="Topic">PAPER : Attention is all you need</td>
+                    <tr data-category="llms">
+                        <td>17</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-llms">LLMs</span>PAPER : Attention is all you need</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Transformer overview &amp; architecture</li>
                             <li>Encoder</li>
@@ -213,9 +278,9 @@
                             <a href="https://arxiv.org/abs/1706.03762" target="_blank"><i class="fas fa-link"></i> Paper</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>14</td>
-                        <td class="topic-cell" data-label="Topic">Deep Dive into Object Detection : How models see "what"and "where"</td>
+                    <tr data-category="vision">
+                        <td>18</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-vision">Vision</span>Deep Dive into Object Detection : How models see "what"and "where"</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Object detection overview &amp; model output</li>
                             <li>Two-stage &amp; one-stage detectors</li>
@@ -226,9 +291,9 @@
                             <a href="https://drive.google.com/file/d/1KsDlC36Z4R2J9RXzwLa_R85TrHkzQwbx/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>15</td>
-                        <td class="topic-cell" data-label="Topic">Mastering Data Storytelling and Visualization in Power BI</td>
+                    <tr data-category="research">
+                        <td>19</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-research">Research</span>Mastering Data Storytelling and Visualization in Power BI</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Plot types &amp; interpretation</li>
                             <li>Power BI</li>
@@ -238,9 +303,9 @@
                             <a href="https://drive.google.com/file/d/1hQE9auCFWFiiT8_K3LDWCpFQS2g4HZTF/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>16</td>
-                        <td class="topic-cell" data-label="Topic">Understanding fundamentals of Prompt Engineering</td>
+                    <tr data-category="llms">
+                        <td>20</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-llms">LLMs</span>Understanding fundamentals of Prompt Engineering</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Prompt engineering definition</li>
                             <li>Mechanics of LLM prompting</li>
@@ -251,9 +316,9 @@
                             <a href="https://drive.google.com/file/d/1ZzExTA_NEJkNMO5IDYUCZT83iz8FakbH/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>17</td>
-                        <td class="topic-cell" data-label="Topic">An Introduction to NL2SQL</td>
+                    <tr data-category="llms">
+                        <td>21</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-llms">LLMs</span>An Introduction to NL2SQL</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>NL2SQL core ideas &amp; pipeline</li>
                             <li>Models &amp; schema encoding</li>
@@ -263,9 +328,9 @@
                             <a href="https://drive.google.com/file/d/1ily9KnHcpIoyLbE3oFVqzz5FagfV9TJK/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>18</td>
-                        <td class="topic-cell" data-label="Topic">Understanding Computer Vision and Applications</td>
+                    <tr data-category="vision">
+                        <td>22</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-vision">Vision</span>Understanding Computer Vision and Applications</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Computer vision overview</li>
                             <li>Image classification</li>
@@ -277,9 +342,9 @@
                             <a href="https://drive.google.com/file/d/1p8gmxl4nwWyEZJXQ29SqVRHxHYm_7-pZ/view?usp=drive_linkd"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>19</td>
-                        <td class="topic-cell" data-label="Topic">Understanding Journal Indexing and Publication metrics</td>
+                    <tr data-category="research">
+                        <td>23</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-research">Research</span>Understanding Journal Indexing and Publication Metrics</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Journal indexing databases</li>
                             <li>Impact Factor vs. CiteScore</li>
@@ -290,9 +355,9 @@
                             <a href="https://drive.google.com/file/d/1Q9LoyY-a7SAT4yo_OPA8fHChfCm3A73-/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>20</td>
-                        <td class="topic-cell" data-label="Topic">Understanding basic LaTex</td>
+                    <tr data-category="research">
+                        <td>24</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-research">Research</span>Understanding Basic LaTeX</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>What is LaTeX?</li>
                             <li>Essential commands</li>
@@ -304,9 +369,9 @@
                             <a href="https://drive.google.com/file/d/1AqML3M4LY87mPh6Vk_atIBkTrkg07SB2/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>21</td>
-                        <td class="topic-cell" data-label="Topic">Understanding Submission and Revision processes</td>
+                    <tr data-category="research">
+                        <td>25</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-research">Research</span>Understanding Submission and Revision Processes</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Choosing a journal</li>
                             <li>Formatting for submission</li>
@@ -318,9 +383,9 @@
                             <a href="https://drive.google.com/file/d/1FfAEvRurF3yKeUBmtkhtoqFbHtfo8DhN/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>22</td>
-                        <td class="topic-cell" data-label="Topic">Citation and Reference Management</td>
+                    <tr data-category="research">
+                        <td>26</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-research">Research</span>Citation and Reference Management</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Citation styles</li>
                             <li>Manual citation</li>
@@ -331,9 +396,9 @@
                             <a href="https://drive.google.com/file/d/11RSjdbxlh-A8RZx2Y6stccADBbXCv7OM/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
-                    <tr>
-                        <td>23</td>
-                        <td class="topic-cell" data-label="Topic">Understanding research paper structure</td>
+                    <tr data-category="research">
+                        <td>27</td>
+                        <td class="topic-cell" data-label="Topic"><span class="topic-tag tag-research">Research</span>Understanding Research Paper Structure</td>
                         <td class="subtopic-cell" data-label="Sub Topic"><ul>
                             <li>Research paper structure overview</li>
                             <li>Description of each section</li>
@@ -343,6 +408,7 @@
                             <a href="https://drive.google.com/file/d/1HOhUlyw92T-1AQk9RV6jp4Ip2ZOht4y8/view?usp=drive_link"><i class="fas fa-file-pdf"></i> Slides</a>
                         </td>
                     </tr>
+
                     <!-- Add more rows as needed from your Google Sheets data -->
                 </tbody>
             </table>
