@@ -356,6 +356,10 @@ h2::after {
   gap: 2.5rem;
 }
 
+.team-grid > a {
+  display: flex;
+}
+
 .team-member {
   text-align: center;
   padding: 2rem;
@@ -363,6 +367,13 @@ h2::after {
   transition: transform 0.3s, box-shadow 0.3s;
   background: white;
   border: 2px solid transparent;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
 }
 
 .team-member:hover {

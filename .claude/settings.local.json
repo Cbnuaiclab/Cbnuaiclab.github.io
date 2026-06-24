@@ -20,7 +20,8 @@
       "Bash(echo:*)",
       "Bash(python3:*)",
       "WebFetch(domain:drive.google.com)",
-      "WebFetch(domain:bird-bench.github.io)"
+      "WebFetch(domain:bird-bench.github.io)",
+      "Bash(git mv *)"
     ],
     "deny": [],
     "ask": []
