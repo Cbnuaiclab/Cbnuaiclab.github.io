@@ -95,6 +95,88 @@ body {
 .project-category,
 .year-section {
     margin-bottom: 4rem;
+    scroll-margin-top: 160px;
+}
+
+/* Sticky section nav pills — matches .filter-pill in internal-seminars */
+.section-nav {
+    position: sticky;
+    top: var(--site-header-h, 80px);
+    z-index: 100;
+    background: #ffffff;
+    box-shadow: 0 6px 16px -12px rgba(139, 40, 80, 0.35);
+    margin: 0 0 3.5rem;
+    padding: 1rem 2rem;
+}
+
+.section-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    align-items: center;
+}
+
+.section-nav-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 999px;
+    background: #f5f5f5;
+    color: #555;
+    text-decoration: none;
+    font-family: inherit;
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+}
+
+.section-nav-pill:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+}
+
+.section-nav-pill.active {
+    background: var(--accent-red);
+    color: white;
+    border-color: var(--accent-red);
+}
+
+.section-nav-pill .count {
+    display: inline-block;
+    min-width: 1.4rem;
+    padding: 0.05rem 0.45rem;
+    border-radius: 999px;
+    background: rgba(0, 0, 0, 0.08);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-align: center;
+}
+
+.section-nav-pill.active .count {
+    background: rgba(255, 255, 255, 0.25);
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .section-nav {
+        padding: 0.7rem 1rem;
+    }
+
+    .section-nav-inner {
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+
+    .section-nav-pill {
+        font-size: 0.82rem;
+        padding: 0.4rem 0.85rem;
+    }
 }
 
 /* Responsive Design */
