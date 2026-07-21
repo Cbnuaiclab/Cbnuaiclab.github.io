@@ -445,7 +445,7 @@ h2::after {
 
 .member-photo img[src*="chhor_ratanaktepi"] {
   object-fit: cover;
-  object-position: 55% 25%;
+  object-position: center 20%;
 }
 
 .member-photo img[src*="kong_vungsovanreach"] {

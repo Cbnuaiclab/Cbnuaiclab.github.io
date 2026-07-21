@@ -240,7 +240,7 @@ nav a:hover::after {
 
 .profile-photo img[src*="chhor_ratanaktepi"] {
   object-fit: cover;
-  object-position: 55% 25%;
+  object-position: center 20%;
 }
 
 .profile-photo img[src*="kong_vungsovanreach"] {
