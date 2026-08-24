@@ -1071,6 +1071,17 @@ footer::before {
   font-size: 1rem;
 }
 
+.timeline-content a {
+  color: var(--accent-red);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(136, 33, 78, 0.35);
+  transition: border-color 0.3s;
+}
+
+.timeline-content a:hover {
+  border-bottom-color: var(--accent-red);
+}
+
 /* AI Visual Elements */
 .ai-background {
   position: fixed;

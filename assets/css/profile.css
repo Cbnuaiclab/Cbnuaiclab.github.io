@@ -601,6 +601,7 @@ nav a:hover::after {
 .pub-type-chip.scie   { background: #eef0ff; color: #4a4dc0; border-color: #d0d2f8; }
 .pub-type-chip.kci    { background: #edfaf5; color: #177050; border-color: #b8edd8; }
 .pub-type-chip.scopus { background: #fff8ec; color: #a06008; border-color: #f0d898; }
+.pub-type-chip.conference { background: #f2f4f8; color: #4a5468; border-color: #d6dbe4; }
 
 .pub-card-date {
   font-size: 0.75rem;
