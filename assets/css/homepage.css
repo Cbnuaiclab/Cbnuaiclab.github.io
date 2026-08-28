@@ -453,6 +453,11 @@ h2::after {
   object-position: center 25%;
 }
 
+.member-photo img[src*="thon_sopheap"] {
+  object-fit: cover;
+  object-position: center 10%;
+}
+
 .member-name {
   font-size: 1.1rem;
   font-weight: 700;
