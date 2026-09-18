@@ -33,23 +33,73 @@
     <main>
         <div class="projects-header">
             <h1><i class="fas fa-display"></i> Demos</h1>
-            <p>Hands-on demos of the systems and services built by AICLab members, from research prototypes to deployed tools</p>
+            <p>Services built by AICLab members, from research prototypes to deployed tools, ready for you to try</p>
         </div>
 
         <div class="projects-container">
-            <div class="project-category" id="available-demos">
+            <div class="project-category" id="our-services">
                 <h2 class="category-title">
-                    <i class="fas fa-circle-play"></i>
-                    Available Demos
+                    <i class="fas fa-server"></i>
+                    Our Services
                 </h2>
                 <div class="research-grid project-list demo-list">
+                    <div class="research-card project-card" id="bizplay">
+                        <div class="research-icon"><i class="fas fa-receipt"></i></div>
+                        <div class="project-body">
+                            <div class="project-head">
+                                <h3>Bizplay Business Trip Agent</h3>
+                                <span class="project-status active">Live</span>
+                            </div>
+                            <p>An AI agent for Bizplay, a corporate expense management platform, that covers the business trip workflow from request and approval to the expense report. Employees plan trips and settle expenses in a chat, and every message passes a safety check before any agent acts.</p>
+                            <div class="project-meta">
+                                <p><strong>Key Technologies:</strong> LLM Agents, Model Context Protocol (MCP), Guardrails</p>
+                                <div class="demo-actions">
+                                    <a href="https://bizplay-api.aiconvergencelab.com/web/" class="demo-link" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> Open Service</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="research-card project-card" id="mcp-portal">
+                        <div class="research-icon"><i class="fas fa-plug"></i></div>
+                        <div class="project-body">
+                            <div class="project-head">
+                                <h3>Bizplay MCP Portal</h3>
+                                <span class="project-status active">Live</span>
+                            </div>
+                            <p>A management portal for Bizplay's Model Context Protocol (MCP) servers, the connectors that let AI agents use company tools. Administrators register backends, control which users and agents can reach them, and audit every agent call.</p>
+                            <div class="project-meta">
+                                <div class="demo-actions">
+                                    <a href="https://mcp-portal.aiconvergencelab.com/" class="demo-link" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> Open Service</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="research-card project-card" id="suction-point">
+                        <div class="research-icon"><i class="fas fa-crosshairs"></i></div>
+                        <div class="project-body">
+                            <div class="project-head">
+                                <h3>Pharma Bin Picking</h3>
+                                <span class="project-status active">Live</span>
+                            </div>
+                            <p>A service that detects objects and returns the central point of each one, giving a robot suction arm a precise target to pick from.</p>
+                            <div class="project-meta">
+                                <p><strong>Related Project:</strong> <a href="projects.html#active-projects">Arm Robot for Bin-Picking in Unstructured Environments</a></p>
+                                <div class="demo-actions">
+                                    <a href="https://dropbox.aiconvergencelab.com/" class="demo-link" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> Open Service</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <!--
                         HOW TO ADD A DEMO
                         1. Copy the template below, paste it above this comment, and remove the comment markers around it.
-                        2. Delete the "demo-empty" block further down once the first demo is live.
-                        3. Status chip: "project-status active" with the label "Live", or "project-status completed" with "Coming Soon".
-                        4. The launch link can point to an external host (Hugging Face Spaces, Streamlit, Vercel, a lab server)
+                        2. Status chip: "project-status active" with the label "Live", or "project-status completed" with "Coming Soon".
+                        3. The launch link can point to an external host (Hugging Face Spaces, Streamlit, Vercel, a lab server)
                            or to a static page in this repo, e.g. demos/<demo-name>/index.html.
+                        4. "Built by", "Key Technologies" and "Related Project" are optional; drop any row that does not apply.
 
                     <div class="research-card project-card" id="demo-name">
                         <div class="research-icon"><i class="fas fa-robot"></i></div>
@@ -64,19 +114,13 @@
                                 <p><strong>Key Technologies:</strong> Technology A, Technology B, Technology C</p>
                                 <p><strong>Related Project:</strong> <a href="projects.html#active-projects">Project Name</a></p>
                                 <div class="demo-actions">
-                                    <a href="https://example.com" class="demo-link" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> Launch Demo</a>
+                                    <a href="https://example.com" class="demo-link" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> Open Service</a>
                                     <a href="https://github.com/..." class="demo-link secondary" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     -->
-
-                    <div class="demo-empty">
-                        <i class="fas fa-flask"></i>
-                        <h3>Demos are on the way</h3>
-                        <p>Lab members are preparing public demos of the systems behind our research projects. Check back soon, or email <a href="mailto:cbnuaiclab@gmail.com">cbnuaiclab@gmail.com</a> to ask about a specific system.</p>
-                    </div>
                 </div>
             </div>
         </div>
