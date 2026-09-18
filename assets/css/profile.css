@@ -3215,3 +3215,15 @@ footer::before {
   font-size: 0.75rem;
   top: 2px;
 }
+
+/* Inline text links inside profile sections (e.g. dissertation titles) */
+.inline-link {
+  color: var(--accent-red);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(139, 40, 80, 0.35);
+  transition: border-color 0.2s;
+}
+
+.inline-link:hover {
+  border-bottom-color: var(--accent-red);
+}
