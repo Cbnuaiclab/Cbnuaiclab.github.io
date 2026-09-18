@@ -586,6 +586,31 @@ h2::after {
   font-weight: 600;
 }
 
+/* Publication chips: index (SCIE / SCOPUS / KCI) for journals, Conference otherwise.
+   Same classes and colors as the profile pages; keep in sync with profile.css */
+.pub-chips {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.7rem;
+}
+
+.pub-type-chip {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.16rem 0.55rem;
+  border-radius: 20px;
+  letter-spacing: 0.4px;
+  border: 1px solid transparent;
+  white-space: nowrap;
+}
+
+.pub-type-chip.conference { background: #f2f4f8; color: #4a5468; border-color: #d6dbe4; }
+.pub-type-chip.scie   { background: #eef0ff; color: #4a4dc0; border-color: #d0d2f8; }
+.pub-type-chip.kci    { background: #edfaf5; color: #177050; border-color: #b8edd8; }
+.pub-type-chip.scopus { background: #fff8ec; color: #a06008; border-color: #f0d898; }
+
 /* Footer */
 /* Footer Styles */
 footer {

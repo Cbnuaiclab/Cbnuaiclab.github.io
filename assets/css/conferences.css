@@ -135,11 +135,11 @@
 }
 
 .conference-badge.domestic ~ .conference-hero-content .conference-hero-icon {
-    color: var(--accent-red-light);
+    color: #f2b8d0;
 }
 
 .conference-badge.domestic ~ .conference-hero-content .conference-hero-location {
-    color: var(--accent-red-light);
+    color: #f2b8d0;
 }
 
 /* Conference Badges */
@@ -323,5 +323,130 @@
 
     .info-item {
         font-size: 0.9rem;
+    }
+}
+
+/* Grouped conference card: one card per event, papers listed inside */
+.conference-card.conference-group {
+    grid-column: 1 / -1;
+}
+
+.conference-card.conference-group:hover {
+    transform: translateY(-4px);
+}
+
+.conference-group .conference-image {
+    height: 240px;
+}
+
+.conference-group .conference-info {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem 2.5rem;
+}
+
+.conference-papers-label {
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--accent-red);
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.conference-papers {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 0.9rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Equal-height cards within a row. Expandable ones only while none is open,
+   so a closed card never stretches next to an open one. */
+.conference-papers > div.conference-paper,
+.conference-papers:not(:has(details[open])) > details.conference-paper {
+    align-self: stretch;
+}
+
+.conference-paper {
+    border: 1px solid rgba(139, 40, 80, 0.15);
+    border-radius: 12px;
+    background: #fcf9fa;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.conference-paper summary,
+.conference-paper .paper-head {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    padding: 1rem 1.2rem;
+}
+
+.conference-paper summary {
+    cursor: pointer;
+    list-style: none;
+    position: relative;
+    padding-right: 2.6rem;
+}
+
+.conference-paper summary::-webkit-details-marker {
+    display: none;
+}
+
+.conference-paper summary::after {
+    content: "\f078";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    top: 1.1rem;
+    right: 1.1rem;
+    font-size: 0.75rem;
+    color: var(--accent-red);
+    transition: transform 0.2s ease;
+}
+
+.conference-paper[open] summary::after {
+    transform: rotate(180deg);
+}
+
+details.conference-paper:hover,
+.conference-paper[open] {
+    border-color: rgba(139, 40, 80, 0.4);
+    box-shadow: 0 4px 14px rgba(139, 40, 80, 0.08);
+}
+
+.paper-title {
+    font-weight: 700;
+    color: var(--accent-red);
+    font-size: 1.02rem;
+    line-height: 1.45;
+}
+
+.paper-authors {
+    font-size: 0.88rem;
+    color: var(--text-gray);
+    line-height: 1.5;
+}
+
+.conference-paper .conference-description {
+    font-size: 0.95rem;
+    margin: 0;
+    padding: 0 1.2rem 1.1rem;
+}
+
+@media (max-width: 900px) {
+    .conference-papers {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .conference-group .conference-info {
+        flex-direction: column;
     }
 }
