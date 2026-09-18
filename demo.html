@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demos - AICLab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/homepage.css">
+    <link rel="stylesheet" href="./assets/css/page-common.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo"><span></span></a>
+            <button class="mobile-menu-toggle" aria-label="Toggle menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <ul class="nav-menu">
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#team">Team</a></li>
+                <li><a href="index.html#publications">Publications</a></li>
+                <li><a href="index.html#projects">Research Projects</a></li>
+                <li><a href="index.html#activities">Members' Activities</a></li>
+                <li><a href="demo.html">Demo</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="projects-header">
+            <h1><i class="fas fa-display"></i> Demos</h1>
+            <p>Hands-on demos of the systems and services built by AICLab members, from research prototypes to deployed tools</p>
+        </div>
+
+        <div class="projects-container">
+            <div class="project-category" id="available-demos">
+                <h2 class="category-title">
+                    <i class="fas fa-circle-play"></i>
+                    Available Demos
+                </h2>
+                <div class="research-grid project-list demo-list">
+                    <!--
+                        HOW TO ADD A DEMO
+                        1. Copy the template below, paste it above this comment, and remove the comment markers around it.
+                        2. Delete the "demo-empty" block further down once the first demo is live.
+                        3. Status chip: "project-status active" with the label "Live", or "project-status completed" with "Coming Soon".
+                        4. The launch link can point to an external host (Hugging Face Spaces, Streamlit, Vercel, a lab server)
+                           or to a static page in this repo, e.g. demos/<demo-name>/index.html.
+
+                    <div class="research-card project-card" id="demo-name">
+                        <div class="research-icon"><i class="fas fa-robot"></i></div>
+                        <div class="project-body">
+                            <div class="project-head">
+                                <h3>Demo Name</h3>
+                                <span class="project-status active">Live</span>
+                            </div>
+                            <p>One or two sentences on what the system does, who it is for, and what a visitor can try.</p>
+                            <div class="project-meta">
+                                <p><strong>Built by:</strong> <a href="members/firstname-lastname.html">Member Name</a></p>
+                                <p><strong>Key Technologies:</strong> Technology A, Technology B, Technology C</p>
+                                <p><strong>Related Project:</strong> <a href="projects.html#active-projects">Project Name</a></p>
+                                <div class="demo-actions">
+                                    <a href="https://example.com" class="demo-link" target="_blank" rel="noopener"><i class="fas fa-arrow-up-right-from-square"></i> Launch Demo</a>
+                                    <a href="https://github.com/..." class="demo-link secondary" target="_blank" rel="noopener"><i class="fab fa-github"></i> Source</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    -->
+
+                    <div class="demo-empty">
+                        <i class="fas fa-flask"></i>
+                        <h3>Demos are on the way</h3>
+                        <p>Lab members are preparing public demos of the systems behind our research projects. Check back soon, or email <a href="mailto:cbnuaiclab@gmail.com">cbnuaiclab@gmail.com</a> to ask about a specific system.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <div class="footer-main">
+            <div class="footer-content">
+                <div class="footer-section footer-about">
+                    <div class="container">
+                        <img src="assets/img/logo/aiclab_logo_white.png" alt="AICLab Logo" class="footer-logo">
+                    </div>
+                    <div class="footer-text">
+                        <h3>AI Convergence Lab</h3>
+                        <p class="footer-tagline">Pioneering Applied AI, Computer Vision, and Quantum Computing Research</p>
+                        <p class="footer-description">
+                            Bridging academic excellence with industry needs through innovative AI solutions and collaborative research.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="footer-section footer-contact">
+                    <h3>Contact Information</h3>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <strong>Email</strong>
+                            <a href="mailto:cbnuaiclab@gmail.com">cbnuaiclab@gmail.com</a>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <strong>Location</strong>
+                            <p>Room N13-216, Chungbuk National University<br>
+                            Chungdae-Ro 1, Seowon-Gu<br>
+                            Cheongju, Chungbuk, South Korea</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <div class="footer-bottom-content">
+                <p>&copy; 2026 AICLab - AI Convergence Lab. All rights reserved.</p>
+                <p class="footer-affiliation">Chungbuk National University</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="./assets/js/page-common.js"></script>
+</body>
+
+</html>
